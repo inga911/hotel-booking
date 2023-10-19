@@ -164,3 +164,7 @@
     display: flex;
     justify-content: space-between;
 }
+
+.bx {
+    font-size: 26px;
+}

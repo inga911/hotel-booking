@@ -15,8 +15,15 @@
     </div>
     <ul>
         <li>
-            <a href="#">
-                <i class="bx bxs-grid-alt"></i>
+            <a href="{{ route('admin.profile') }}">
+                <i class='bx bx-id-card'></i>
+                <span class="nav-item">Profile</span>
+            </a>
+            <span class="tooltip">Profile</span>
+        </li>
+        <li>
+            <a href="{{ route('admin.dashboard') }}">
+                <i class="bx bx-home"></i>
                 <span class="nav-item">Dashboard</span>
             </a>
             <span class="tooltip">Dashboard</span>

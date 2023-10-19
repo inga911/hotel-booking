@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/profile.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/js/app.js') }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -18,6 +19,7 @@
     <div class="main-content">
         <div class="container">
             @yield('admin')
+            {{-- @yield('profile') --}}
         </div>
         @include('admin.body.footer')
     </div>

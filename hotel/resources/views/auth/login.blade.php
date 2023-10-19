@@ -5,10 +5,14 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
+        <!-- Login -->
         <div>
             <x-input-label for="login" :value="__('Email/Name/Phone')" />
-            <x-text-input id="login" class="block mt-1 w-full" type="text" name="login" :value="old('login')" required
-                autofocus autocomplete="username" />
+            <x-text-input id="login" class="block mt-1 w-full @error('login') is-invalid @enderror" type="text"
+                name="login" :value="old('login')" required autofocus autocomplete="username" />
+            @error('login')
+                <span>{{ $message }}</span>
+            @enderror
         </div>
 
 

@@ -1,0 +1,16 @@
+.user-container {
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    background-color: #ed143da8;
+}
+
+.user-dashboard {
+    width: 65%;
+}
+
+.user-navbar {
+    width: 25%;
+    border: 1px solid black;
+    display: inline-block;
+}

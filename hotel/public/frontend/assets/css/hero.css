@@ -1,0 +1,31 @@
+.hero-section {
+    height: 100vh;
+}
+
+img {
+    width: 100%;
+    height: 70vh;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0.7;
+}
+.hero-title {
+    z-index: 2;
+    position: absolute;
+    bottom: 15rem;
+    font-size: clamp(26px, 3vw, 42px);
+    background-color: antiquewhite;
+    width: 50%;
+    margin-left: 5%;
+}
+.check-in {
+    background-color: cadetblue;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    line-height: 3.5rem;
+    margin: 5%;
+    position: absolute;
+    bottom: 0.3rem;
+}
