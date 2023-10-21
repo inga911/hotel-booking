@@ -1,0 +1,6 @@
+.book-area-container {
+    background: darkcyan;
+    width: 50%;
+    margin-left: calc(100% - 50%);
+    transform: translate(-50%, 20%);
+}

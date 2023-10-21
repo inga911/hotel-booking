@@ -3,4 +3,5 @@
     @include('frontend.home.hero')
     @include('frontend.rooms.rooms')
     @include('frontend.home.testimonials')
+    @include('frontend.rooms.book-room-area')
 @endsection

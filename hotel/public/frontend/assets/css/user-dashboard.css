@@ -1,5 +1,5 @@
 .user-container {
-    height: 100vh;
+    height: fit-content;
     display: flex;
     justify-content: space-around;
     background-color: #ed143da8;
@@ -7,10 +7,30 @@
 
 .user-dashboard {
     width: 65%;
+    border: 1px solid black;
+    height: fit-content;
+    margin-top: 5%;
 }
 
 .user-navbar {
     width: 25%;
+    height: fit-content;
+    margin: 5% 0 5% 5%;
     border: 1px solid black;
     display: inline-block;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    line-height: 2rem;
+    margin: 5% 2%;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: blanchedalmond;
+}
+li:hover {
+    box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.6);
 }
