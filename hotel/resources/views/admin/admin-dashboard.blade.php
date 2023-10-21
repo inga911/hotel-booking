@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/css/sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/book-area.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/js/app.js') }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>

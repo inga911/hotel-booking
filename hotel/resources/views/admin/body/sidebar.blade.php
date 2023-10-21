@@ -29,26 +29,26 @@
             <span class="tooltip">Dashboard</span>
         </li>
         <li>
-            <a href="#">
-                <i class="bx bxs-grid-alt"></i>
-                <span class="nav-item">Products</span>
+            <a href="{{ route('admin.book-area') }}">
+                <i class='bx bx-book-open'></i>
+                <span class="nav-item">BookArea</span>
             </a>
-            <span class="tooltip">Products</span>
+            <span class="tooltip">Book Area</span>
         </li>
         <li>
-            <a href="#">
-                <i class="bx bxs-grid-alt"></i>
-                <span class="nav-item">Categories</span>
+            <a href="{{ route('admin.room-list') }}">
+                <i class='bx bx-hotel'></i>
+                <span class="nav-item">ManageRoom</span>
             </a>
-            <span class="tooltip">Categories</span>
+            <span class="tooltip">ManageRoom</span>
         </li>
-        <li>
+        {{-- <li>
             <a href="#">
                 <i class="bx bx-body"></i>
                 <span class="nav-item">Customers</span>
             </a>
             <span class="tooltip">Customers</span>
-        </li>
+        </li> --}}
         <li>
             <a href="#">
                 <i class="bx bx-cog"></i>

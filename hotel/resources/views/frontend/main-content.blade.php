@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/hero.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/rooms.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/testimonials.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/book-area.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/user-dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/user-profile.css') }}">
 
 </head>
 

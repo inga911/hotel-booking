@@ -43,5 +43,7 @@ Route::controller(BookAreaController::class)->group(function () {
 
 //Room Type
 Route::controller(RoomTypeController::class)->group(function () {
-    Route::get('/admin/room-types', [RoomTypeController::class, 'roomTypeList'])->name('admin.room-list');
+    Route::get('/admin/room-types/list', [RoomTypeController::class, 'roomTypeList'])->name('admin.room-list');
+    Route::get('/admin/room-types', [RoomTypeController::class, 'addRoomType'])->name('admin.add-room-type');
+    Route::post('/admin/room-types/store', [RoomTypeController::class, 'roomTypeStore'])->name('admin.room-type-store');
 });

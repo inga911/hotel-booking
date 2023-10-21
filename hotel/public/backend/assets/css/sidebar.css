@@ -130,15 +130,18 @@
 
 .sidebar ul li .tooltip {
     position: absolute;
-    left: 125px;
+    left: 110px;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-23%, -50%);
     border-radius: 0.6rem;
     box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.2);
     padding: 0.4rem 1.2rem;
     line-height: 1.8rem;
     z-index: 20;
     opacity: 0;
+    width: max-content;
+    background-color: #12171e;
+    color: #fff;
 }
 
 .sidebar ul li:hover .tooltip {
@@ -161,7 +164,7 @@
 }
 
 .container {
-    display: flex;
+    /* display: flex; */
     justify-content: space-between;
 }
 
