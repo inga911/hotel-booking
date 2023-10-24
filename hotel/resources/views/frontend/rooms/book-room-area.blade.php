@@ -15,7 +15,8 @@
                     <div></div>
                 </li>
             @endforelse
-            <img src="{{ asset('frontend/assets/images/hero-section/hero.jpg') }}" class="main-review-img" alt="Review">
+            <img src="{{ !empty($book->image) ? url('upload/bookarea/' . $book->image) : url('upload/noimage.jpg') }}"
+                class="main-review-img" alt="book area">
         </div>
 
     </div>
