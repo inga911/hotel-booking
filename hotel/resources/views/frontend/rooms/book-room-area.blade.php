@@ -10,13 +10,14 @@
                         <a href="{{ $book->link_url }}">Quick book</a>
                     </div>
                 </div>
+                <img src="{{ !empty($book->image) ? url('upload/bookarea/' . $book->image) : url('upload/noimage.jpg') }}"
+                    class="main-review-img" alt="book area">
             @empty
                 <li class="">
                     <div></div>
                 </li>
             @endforelse
-            <img src="{{ !empty($book->image) ? url('upload/bookarea/' . $book->image) : url('upload/noimage.jpg') }}"
-                class="main-review-img" alt="book area">
+
         </div>
 
     </div>

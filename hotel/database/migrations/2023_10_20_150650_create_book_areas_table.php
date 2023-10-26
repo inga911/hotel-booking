@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('main_title')->nullable();
             $table->text('short_desc')->nullable();
             $table->string('link_url')->nullable();
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 
