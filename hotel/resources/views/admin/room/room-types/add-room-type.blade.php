@@ -1,13 +1,15 @@
 @extends('admin.admin-dashboard')
 @section('admin')
-    <h1>here will be ADD ROOM TYPE page</h1>
+    <h1 class="admin-main-title">
+        <i class='bx bxs-chevron-right'></i>
+        Add Room Type
+    </h1>
     <div class="card">
-        <h2 class="contact-title">Room Type</h2>
         <div class="form">
             <form action="{{ route('admin.room-type-store') }}" method="post">
                 @csrf
                 <div class="label">
-                    <label>Name</label>
+                    <label>Enter the name of the new room:</label>
                     <input type="text" name="name" />
                 </div>
 
