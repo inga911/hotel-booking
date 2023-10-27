@@ -6,6 +6,8 @@ use App\Models\RoomType;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use App\Models\BookArea;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 
@@ -15,13 +17,16 @@ class RoomTypeController extends Controller
     public function roomTypeList()
     {
         $roomType = RoomType::all();
-
-        return view('admin.room.room-types.room-type-view', compact('roomType'));
+        $id = Auth::user()->id;
+        $admin = User::find($id);
+        return view('admin.room.room-types.room-type-view', compact('roomType', 'admin'));
     }
 
     public function addRoomType()
     {
-        return view('admin.room.room-types.add-room-type');
+        $id = Auth::user()->id;
+        $admin = User::find($id);
+        return view('admin.room.room-types.add-room-type', compact('admin'));
     }
 
     public function roomTypeStore(Request $request)
@@ -45,12 +50,16 @@ class RoomTypeController extends Controller
 
     public function roomTypeEdit(RoomType $roomType)
     {
-        return view('admin.room.room-types.edit-room-type', compact('roomType'));
+        $id = Auth::user()->id;
+        $admin = User::find($id);
+        return view('admin.room.room-types.edit-room-type', compact('roomType', 'admin'));
     }
 
 
     public function roomTypeUpdate(Request $request, RoomType $roomType)
     {
+        $id = Auth::user()->id;
+        $admin = User::find($id);
         $validator = Validator::make($request->all(), [
             'name' => 'required',
         ]);
@@ -65,7 +74,7 @@ class RoomTypeController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->route('admin.room-list')->with('success', 'Room type updated successfully');
+        return redirect()->route('admin.room-list', compact('admin'))->with('success', 'Room type updated successfully');
     }
 
     public function destroy(RoomType $roomType)

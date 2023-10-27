@@ -19,15 +19,15 @@
 </head>
 
 <body>
-    @include('admin.body.sidebar')
-    <div class="main-content">
-        <div class="container">
+    <div class="container">
+        @include('admin.body.sidebar')
+        <div class="main-content">
             @yield('admin')
-            {{-- @yield('profile') --}}
         </div>
-        @include('admin.body.footer')
     </div>
+    {{-- @include('admin.body.footer') --}}
 </body>
+
 <script>
     let btn = document.querySelector('#btn');
     let sidebar = document.querySelector('.sidebar');

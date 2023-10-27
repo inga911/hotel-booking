@@ -10,7 +10,9 @@ class AdminController extends Controller
 {
     public function adminDashboard()
     {
-        return view('admin.index');
+        $id = Auth::user()->id;
+        $admin = User::find($id);
+        return view('admin.index', compact('admin'));
     }
 
     public function adminLogout(Request $request)

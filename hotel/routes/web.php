@@ -33,6 +33,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     Route::get('/admin/profile', [AdminController::class, 'adminProfile'])->name('admin.profile');
 });
 
+
 //Booking Area
 Route::controller(BookAreaController::class)->group(function () {
     Route::get('/admin/booking-area', [BookAreaController::class, 'createBookArea'])->name('admin.book-area');
@@ -52,9 +53,9 @@ Route::controller(RoomTypeController::class)->group(function () {
 
 // Create Room
 Route::controller(RoomController::class)->group(function () {
-    Route::get('/admin/room-type/{roomType}/rooms', 'roomIndexList')->name('admin.room-type.rooms'); // This is the route for viewing rooms of a specific type
+    Route::get('/admin/room-type/{roomType}/rooms', 'roomIndexList')->name('admin.room-type.rooms');
     Route::get('/admin/create-room', [RoomController::class, 'createRoom'])->name('admin.create-room');
-    Route::post('/admin/store', [RoomController::class, 'roomStore'])->name('admin.room-store'); // This is where you create a new room
+    Route::post('/admin/store', [RoomController::class, 'roomStore'])->name('admin.room-store');
     Route::get('/admin/edit/{room}', [RoomController::class, 'roomEdit'])->name('admin.room-edit');
     Route::post('/admin/update/{room}', [RoomController::class, 'roomUpdate'])->name('admin.room-update');
     Route::delete('/delete/{room}', [RoomController::class, 'destroy'])->name('admin.room-delete');

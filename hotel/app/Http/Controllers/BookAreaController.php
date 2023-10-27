@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\BookArea;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 
@@ -11,8 +13,10 @@ class BookAreaController extends Controller
 {
     public function createBookArea()
     {
+        $id = Auth::user()->id;
+        $admin = User::find($id);
         $book = BookArea::first();
-        return view('admin.bookarea.book-area', compact('book'));
+        return view('admin.bookarea.book-area', compact('book', 'admin'));
     }
 
     public function storeBookArea(Request $request, BookArea $book)

@@ -14,7 +14,7 @@
 }
 
 .sidebar {
-    position: absolute;
+    position: sticky;
     top: 0;
     left: 0;
     height: 100vh;
@@ -25,7 +25,6 @@
 }
 
 .sidebar.active ~ .main-content {
-    left: 250px;
     width: calc(100% - 250px);
 }
 
@@ -162,14 +161,13 @@
     background-color: #eee;
     min-height: 100vh;
     top: 0;
-    left: 80px;
     transition: all 0.5s ease;
     width: calc(100% - 80px);
     padding: 1rem;
 }
 
 .container {
-    /* display: flex; */
+    display: flex;
     justify-content: space-between;
 }
 

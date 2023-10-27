@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use App\Models\RoomType;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 
@@ -15,8 +17,9 @@ class RoomController extends Controller
     {
         $roomType = RoomType::findOrFail($roomType->id);
         $roomList = Room::where('room_type_id', $roomType->id)->get();
-
-        return view('admin.room.rooms-list-view', compact('roomList', 'roomType'));
+        $id = Auth::user()->id;
+        $admin = User::find($id);
+        return view('admin.room.rooms-list-view', compact('roomList', 'roomType', 'admin'));
     }
 
 
@@ -24,9 +27,11 @@ class RoomController extends Controller
     public function createRoom()
     {
         $roomTypes = RoomType::all();
-
+        $id = Auth::user()->id;
+        $admin = User::find($id);
         return view('admin.room.create-room', [
             'roomTypes' => $roomTypes,
+            'admin' => $admin
         ]);
     }
 
@@ -83,11 +88,15 @@ class RoomController extends Controller
     public function roomEdit(Room $room)
     {
         $roomTypes = RoomType::all();
-        return view('admin.room.edit-room', compact('room', 'roomTypes'));
+        $id = Auth::user()->id;
+        $admin = User::find($id);
+        return view('admin.room.edit-room', compact('room', 'roomTypes', 'admin'));
     }
 
     public function roomUpdate(Request $request, Room $room)
     {
+        $id = Auth::user()->id;
+        $admin = User::find($id);
         $validator = Validator::make($request->all(), [
             'room_name' => 'required',
             'room_type_id' => 'required',
@@ -132,6 +141,6 @@ class RoomController extends Controller
             'room_description' => $request->room_description,
         ]);
 
-        return redirect()->route('admin.room.rooms-list-view')->with($validator);
+        return redirect()->route('admin.room-list', compact('admin'))->withErrors($validator);
     }
 }
