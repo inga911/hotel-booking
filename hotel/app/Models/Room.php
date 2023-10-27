@@ -40,4 +40,17 @@ class Room extends Model
         $img->save($path . 't_' . $name, 90);
         return $name;
     }
+
+    public function deletePhoto()
+    {
+        if ($this->photo) {
+            $photo = public_path() . '/upload/room_photos/' . $this->photo;
+            unlink($photo);
+            $photo = public_path() . '//upload/room_photos/t_' . $this->photo;
+            unlink($photo);
+        }
+        $this->update([
+            'photo' => null,
+        ]);
+    }
 }

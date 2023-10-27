@@ -75,7 +75,12 @@
                                     </td>
                                 </tr>
                                 <tr class="room-detail-line">
-                                    <a href="{{ route('admin.room-edit', $room) }}" class="add-new-room room-edit">edit</a>
+                                    <a href="{{ route('admin.room-edit', $room) }}" class="add-new-room room-edit">Edit</a>
+                                    <form action="{{ route('admin.room-delete', $room) }}" method="post">
+                                        <button type="submit" class="btn-delete room-delete">Delete</button>
+                                        @csrf
+                                        @method('delete')
+                                    </form>
                                 </tr>
                             </table>
                         </div>
