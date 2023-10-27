@@ -5,11 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookAreaController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Route::get('/', [FrontController::class, 'index']);
 
@@ -38,6 +36,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
 //Booking Area
 Route::controller(BookAreaController::class)->group(function () {
     Route::get('/admin/booking-area', [BookAreaController::class, 'createBookArea'])->name('admin.book-area');
+    Route::post('/admin/booking-area/store', [BookAreaController::class, 'storeBookArea'])->name('admin.book-area-store');
     Route::post('/admin/booking-area/update', [BookAreaController::class, 'bookAreaUpdate'])->name('admin.book-area-update');
 });
 
@@ -46,4 +45,15 @@ Route::controller(RoomTypeController::class)->group(function () {
     Route::get('/admin/room-types/list', [RoomTypeController::class, 'roomTypeList'])->name('admin.room-list');
     Route::get('/admin/room-types', [RoomTypeController::class, 'addRoomType'])->name('admin.add-room-type');
     Route::post('/admin/room-types/store', [RoomTypeController::class, 'roomTypeStore'])->name('admin.room-type-store');
+    Route::get('/admin/room-types/edit/{roomType}', [RoomTypeController::class, 'roomTypeEdit'])->name('admin.room-type-edit');
+    Route::post('/admin/room-types/update/{roomType}', [RoomTypeController::class, 'roomTypeUpdate'])->name('admin.room-type-update');
+});
+
+// Create Room
+Route::controller(RoomController::class)->group(function () {
+    Route::get('/admin/room-type/{roomType}/rooms', 'roomIndexList')->name('admin.room-type.rooms');
+    Route::get('/admin/create-room', [RoomController::class, 'createRoom'])->name('admin.create-room');
+    Route::post('/admin/store', [RoomController::class, 'roomStore'])->name('admin.room-store');
+    Route::get('/admin/edit/{room}', [RoomController::class, 'roomEdit'])->name('admin.room-edit');
+    Route::post('/admin/update/{room}', [RoomController::class, 'roomUpdate'])->name('admin.room-update');
 });

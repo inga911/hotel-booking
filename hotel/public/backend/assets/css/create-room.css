@@ -1,0 +1,110 @@
+.book-area-container {
+    max-width: 600px;
+    margin: 2% auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.form-select {
+    border-radius: 3px;
+    display: flex;
+}
+
+.room-capacity {
+    line-height: 2em;
+}
+.room-capacity-input {
+    line-height: 2em;
+}
+
+.book-label {
+    font-weight: 500;
+    padding-right: 5px;
+    white-space: nowrap;
+}
+
+input[type="text"],
+input[type="file"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+#showImage {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 0.5em;
+    border: 1px solid #ccc;
+}
+
+button[type="submit"] {
+    background-color: #ff5722;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #12171e;
+}
+
+.form-group {
+    position: relative;
+    width: 44%;
+}
+
+.square-meter::before {
+    content: "";
+    position: absolute;
+}
+.square-meter::after {
+    content: "m²";
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.display-inline {
+    display: flex;
+    justify-content: space-between;
+}
+
+.currency::before {
+    content: "";
+    position: absolute;
+}
+.currency::after {
+    content: "\20AC";
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.big-input {
+    width: 100% !important;
+}
+.discount::before {
+    content: "";
+    position: absolute;
+}
+.discount::after {
+    content: "\0025";
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}

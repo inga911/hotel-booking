@@ -1,0 +1,27 @@
+.room-details,
+.card-left,
+.card-right {
+    border: 1px solid black;
+    border-collapse: collapse;
+    line-height: 1.5em;
+}
+.card-left,
+.card-right {
+    padding: 5px;
+    text-align: left;
+}
+
+.card-left {
+    width: 30%;
+}
+
+.each-room-card {
+    margin-bottom: 4em;
+    position: relative;
+    padding-bottom: 4em;
+}
+.room-edit {
+    position: absolute;
+    bottom: 12px;
+    right: 20px;
+}
