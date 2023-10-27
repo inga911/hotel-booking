@@ -11,6 +11,7 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 20px;
+    padding-bottom: 4em;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 

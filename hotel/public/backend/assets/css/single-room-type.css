@@ -4,6 +4,7 @@
     border: 1px solid black;
     border-collapse: collapse;
     line-height: 1.5em;
+    width: 100%;
 }
 .card-left,
 .card-right {
@@ -24,4 +25,10 @@
     position: absolute;
     bottom: 12px;
     right: 20px;
+}
+
+.room-delete {
+    position: absolute;
+    bottom: 12px;
+    left: 20px;
 }

@@ -67,4 +67,17 @@ class RoomTypeController extends Controller
 
         return redirect()->route('admin.room-list')->with('success', 'Room type updated successfully');
     }
+
+    public function destroy(RoomType $roomType)
+    {
+        $hasRooms = Room::where('room_type_id', $roomType->id)->exists();
+
+        if ($hasRooms) {
+            return redirect()->back()->with('error', 'Room type cannot be deleted as it has associated rooms.');
+        }
+
+        $roomType->delete();
+
+        return redirect()->back()->with('success', 'Room type deleted successfully');
+    }
 }
