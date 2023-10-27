@@ -1,3 +1,26 @@
-.profile-container {
+/* .profile-container {
     margin-left: calc(50% - 350px);
+} */
+.admin-title {
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: clamp(20px, 3vw, 28px);
+}
+
+.admin-profile-card {
+    width: fit-content;
+    margin-left: calc(50% - 100px);
+    margin-top: 5%;
+}
+
+.admin-profile-photo {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid;
+}
+.admin-info {
+    text-align: center;
+    line-height: 2.5rem;
 }

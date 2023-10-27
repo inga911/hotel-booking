@@ -1,29 +1,33 @@
 @extends('admin.admin-dashboard')
 @section('admin')
     <div class="profile-container">
-        <h3>Admin Profile</h3>
-        <div class="row">
-            <div class="admin-photo">
+        <h3 class="admin-title">
+            <i class='bx bxs-chevron-right'></i>
+            Admin Profile
+        </h3>
+        <div class="admin-profile-card">
+            <div>
                 @if ($admin->user_photo)
-                    <img src="{{ asset('/backend/assets/image') . '/' . $admin->user_photo }}" class="photo"
+                    <img src="{{ asset('/backend/assets/image') . '/' . $admin->user_photo }}" class="admin-profile-photo"
                         alt="product photo">
                 @else
-                    <img src="{{ asset('/backend/assets/image') . '/user.jpg' }}" class="photo">
+                    <img src="{{ asset('/backend/assets/image') . '/user.jpg' }}" class="admin-profile-photo">
                 @endif
             </div>
             <div class="admin-info">
                 <div>
-                    <p>Name: {{ $admin->name }}</p>
+                    <label>Name: </label>
+                    <label>{{ $admin->name }}</label>
                 </div>
                 <div>
-                    <p>Status: {{ $admin->status }}</p>
+                    <label>Status: </label>
+                    <label>{{ $admin->status }}</label>
                 </div>
                 <div>
-                    <p>Addres: {{ $admin->adress }}</p>
+                    <label>Role: </label>
+                    <label>{{ $admin->role }}</label>
                 </div>
-                <div>
-                    <p>Role: {{ $admin->role }}</p>
-                </div>
+
             </div>
         </div>
     </div>

@@ -95,12 +95,12 @@
                     </table>
 
                     <button type="submit" class="btn btn-danger">Update Booking area</button>
-
                 </form>
             </div>
-
         </div>
     @endif
+
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('#image').change(function(e) {

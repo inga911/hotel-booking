@@ -9,8 +9,8 @@
     <div class="user">
         <img src="{{ asset('backend/assets/image/user.jpg') }}" alt="user image" class="user-img">
         <div>
-            <p class="admin-name">Name Surname</p>
-            <p>Admin</p>
+            <p class="admin-name"></p>
+            <p class="profile-status"> <span class="profile-status"></span></p>
         </div>
     </div>
     <ul>
@@ -22,39 +22,25 @@
             <span class="tooltip">Profile</span>
         </li>
         <li>
-            <a href="{{ route('admin.dashboard') }}">
-                <i class="bx bx-home"></i>
-                <span class="nav-item">Dashboard</span>
-            </a>
-            <span class="tooltip">Dashboard</span>
-        </li>
-        <li>
             <a href="{{ route('admin.book-area') }}">
                 <i class='bx bx-book-open'></i>
                 <span class="nav-item">BookArea</span>
             </a>
-            <span class="tooltip">Book Area</span>
+            <span class="tooltip">BookArea</span>
         </li>
         <li>
             <a href="{{ route('admin.room-list') }}">
-                <i class='bx bx-hotel'></i>
+                <i class='bx bx-sitemap'></i>
                 <span class="nav-item">ManageRoom</span>
             </a>
             <span class="tooltip">ManageRoom</span>
         </li>
-        {{-- <li>
-            <a href="#">
-                <i class="bx bx-body"></i>
-                <span class="nav-item">Customers</span>
-            </a>
-            <span class="tooltip">Customers</span>
-        </li> --}}
         <li>
-            <a href="#">
-                <i class="bx bx-cog"></i>
-                <span class="nav-item">Settings</span>
+            <a href="{{ route('admin.create-room') }}">
+                <i class='bx bx-hotel'></i>
+                <span class="nav-item">CreateRoom</span>
             </a>
-            <span class="tooltip">Settings</span>
+            <span class="tooltip">CreateRoom</span>
         </li>
         <li>
             <a href="{{ route('admin.logout') }}">

@@ -47,13 +47,15 @@ Route::controller(RoomTypeController::class)->group(function () {
     Route::post('/admin/room-types/store', [RoomTypeController::class, 'roomTypeStore'])->name('admin.room-type-store');
     Route::get('/admin/room-types/edit/{roomType}', [RoomTypeController::class, 'roomTypeEdit'])->name('admin.room-type-edit');
     Route::post('/admin/room-types/update/{roomType}', [RoomTypeController::class, 'roomTypeUpdate'])->name('admin.room-type-update');
+    Route::delete('/delete/{roomType}', [RoomTypeController::class, 'destroy'])->name('admin.room-type-delete');
 });
 
 // Create Room
 Route::controller(RoomController::class)->group(function () {
-    Route::get('/admin/room-type/{roomType}/rooms', 'roomIndexList')->name('admin.room-type.rooms');
+    Route::get('/admin/room-type/{roomType}/rooms', 'roomIndexList')->name('admin.room-type.rooms'); // This is the route for viewing rooms of a specific type
     Route::get('/admin/create-room', [RoomController::class, 'createRoom'])->name('admin.create-room');
-    Route::post('/admin/store', [RoomController::class, 'roomStore'])->name('admin.room-store');
+    Route::post('/admin/store', [RoomController::class, 'roomStore'])->name('admin.room-store'); // This is where you create a new room
     Route::get('/admin/edit/{room}', [RoomController::class, 'roomEdit'])->name('admin.room-edit');
     Route::post('/admin/update/{room}', [RoomController::class, 'roomUpdate'])->name('admin.room-update');
+    Route::delete('/delete/{room}', [RoomController::class, 'destroy'])->name('admin.room-delete');
 });
