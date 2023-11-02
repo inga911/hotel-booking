@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use App\Models\RoomPhotos;
 use App\Models\RoomType;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
+
 
 class RoomController extends Controller
 {
@@ -19,6 +21,7 @@ class RoomController extends Controller
         $roomList = Room::where('room_type_id', $roomType->id)->get();
         $id = Auth::user()->id;
         $admin = User::find($id);
+
         return view('admin.room.rooms-list-view', compact('roomList', 'roomType', 'admin'));
     }
 
@@ -45,6 +48,7 @@ class RoomController extends Controller
             'total_child' => 'required',
             'room_capacity' => 'required',
             'photo' => 'sometimes|required|image|max:1024',
+            'gallery.*' => 'sometimes|required|image|max:1024',
             'price' => 'required',
             'size' => 'required',
             'bed_style' => 'required|in:single,double,couch',
@@ -66,7 +70,7 @@ class RoomController extends Controller
             $name = $room->savePhoto($photo);
         }
 
-        Room::create([
+        $id = Room::create([
             'room_name' => $request->room_name,
             'room_type_id' => $request->room_type_id,
             'total_adult' => $request->total_adult,
@@ -80,8 +84,11 @@ class RoomController extends Controller
             'room_availability' => $request->room_availability,
             'room_short_desc' => $request->room_short_desc,
             'room_description' => $request->room_description,
-        ]);
+        ])->id;
 
+        foreach ($request->gallery ?? [] as $gallery) {
+            RoomPhotos::add($gallery, $id);
+        }
         return redirect()->back();
     }
 
@@ -140,6 +147,11 @@ class RoomController extends Controller
             'room_short_desc' => $request->room_short_desc,
             'room_description' => $request->room_description,
         ]);
+        RoomPhotos::where('room_id', $room->id)->delete();
+
+        foreach ($request->gallery ?? [] as $gallery) {
+            RoomPhotos::add($gallery, $room->id);
+        }
 
         return redirect()->route('admin.room-list', compact('admin'))->withErrors($validator);
     }

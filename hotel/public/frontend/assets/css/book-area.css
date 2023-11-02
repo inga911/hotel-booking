@@ -1,0 +1,50 @@
+.booking-container {
+    height: 80vh;
+    width: 80vw;
+    margin-left: 10vw;
+}
+
+.booking-card {
+    display: flex;
+    margin: 10vw;
+    gap: 5vw;
+}
+
+.to-quick-booking {
+    width: 35vw;
+}
+
+.booking-area-img {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+}
+.booking-short-title {
+    font-size: 2em;
+    letter-spacing: 6px;
+    text-align: center;
+}
+
+.booking-main-title {
+    text-align: center;
+    line-height: 2.5em;
+}
+.booking-short-description {
+    line-height: 2em;
+    text-align: justify;
+}
+
+.to-quick-booking-link {
+    text-decoration: none;
+    color: black;
+    line-height: 4em;
+    text-align: right;
+    float: right;
+    letter-spacing: 2px;
+}
+
+.to-quick-booking-link:hover {
+    color: blueviolet;
+    scale: 1.1;
+    transition: ease-in-out 0.3s;
+}

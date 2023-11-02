@@ -24,9 +24,9 @@ class Room extends Model
         return $this->hasMany(Facility::class, 'facility_id');
     }
 
-    public function roomPhotos()
+    public function gallery()
     {
-        return $this->hasMany(RoomPhotos::class, 'room_photo_id');
+        return $this->hasMany(RoomPhotos::class, 'room_id');
     }
 
     public function savePhoto(UploadedFile $photo): string

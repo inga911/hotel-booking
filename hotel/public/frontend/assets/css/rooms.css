@@ -1,8 +1,8 @@
 .rooms-container {
-    background-color: beige;
     height: auto;
 }
 .rooms-section-title {
+    margin: 2em 0 1em 0;
     text-align: center;
     font-size: clamp(18px, 3vw, 28px);
 }
@@ -12,17 +12,74 @@
     width: 80%;
     margin-left: 10%;
     justify-items: center;
-    background-color: aquamarine;
 }
 .card {
     margin: 4%;
-    width: 80%;
+    width: 95%;
     text-align: center;
     border: 1px solid lightblue;
 }
 
 .room-card-img {
-    width: 100%;
-    height: auto;
+    padding: 1em;
+    width: 25em;
+    height: 20em;
     object-fit: cover;
+    border-radius: 2em;
+}
+.room-description {
+    padding: 1em;
+    line-height: 1.5em;
+}
+
+.each-room-card-link {
+    text-decoration: none;
+    color: black;
+}
+
+/* ROOM SHOW PAGE */
+
+.show-room-name-title {
+    text-align: center;
+    margin: 4%;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.photo-gallery {
+    gap: 1em;
+    width: 80%;
+    justify-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: calc(50% - 40%);
+    background-color: black;
+    padding: 1em;
+}
+
+.show-room-photo {
+    width: 35rem;
+    height: 30rem;
+    object-fit: cover;
+    opacity: 1;
+}
+.no-background {
+    grid-template-columns: 1fr;
+    background-color: transparent;
+}
+.room-info {
+    width: 80%;
+    line-height: 2em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-left: 10%;
+    gap: 1em;
+    padding: 3em;
+}
+
+.long-description {
+    width: 80%;
+    background: antiquewhite;
+    margin-left: 10%;
+    line-height: 2em;
+    margin-bottom: 3em;
 }

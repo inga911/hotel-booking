@@ -108,3 +108,35 @@ button[type="submit"]:hover {
     top: 50%;
     transform: translateY(-50%);
 }
+
+[data-gallery="0"] {
+    display: none;
+}
+
+.gallery-col {
+    margin-top: 15px;
+}
+.form-label {
+    text-transform: uppercase;
+    width: 19vw;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.form-control {
+    width: 40vw;
+}
+
+.rem {
+    position: relative;
+    border: 1.5px solid black;
+    padding: 4px 8px;
+    border-radius: 2em;
+    background-color: #fff;
+}
+.rem:hover {
+    border: 1px solid crimson;
+    color: #fff;
+    background-color: crimson;
+    cursor: pointer;
+}

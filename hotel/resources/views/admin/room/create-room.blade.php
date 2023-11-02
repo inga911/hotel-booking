@@ -109,6 +109,19 @@
                     src="{{ !empty($room->photo) ? url('upload/bookarea/' . $room->photo) : url('upload/noimage.jpg') }}"
                     class="main-review-img" alt="room photo">
             </div>
+
+            <!-- Upload Room Photo Gallery -->
+            <div class="mb-3 gallery-col" data-gallery="0">
+                <label class="form-label"> <span class="rem">X</span> Gallery photo</label>
+                <input type="file" class="form-control" name="room_photo">
+            </div>
+
+            <div class="gallery-inputs">
+
+            </div>
+
+            <button type="button" class="btn-add-gallery --add--gallery">Add gallery photo</button>
+
             <button type="submit" class="btn btn-primary">Create Room</button>
         </form>
     </div>
@@ -122,5 +135,21 @@
                 reader.readAsDataURL(e.target.files['0']);
             });
         });
+
+        if (document.querySelector('.--add--gallery')) {
+            let galleryInput = 0;
+            document.querySelector('.--add--gallery')
+                .addEventListener('click', _ => {
+                    const input = document.querySelector('[data-gallery="0"]').cloneNode(true);
+                    galleryInput++;
+                    input.dataset.gallery = galleryInput;
+                    input.querySelector('input').setAttribute('name', 'gallery[]');
+                    input.querySelector('span')
+                        .addEventListener('click', e => {
+                            e.target.closest('.mb-3').remove();
+                        });
+                    document.querySelector('.gallery-inputs').append(input);
+                });
+        }
     </script>
 @endsection

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\BookArea;
+use App\Models\Room;
+use App\Models\RoomType;
+use App\Models\Testimonials;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,8 +16,18 @@ class FrontController extends Controller
     public function index()
     {
         $bookArea = BookArea::all();
+        $roomType = RoomType::all();
+        $roomList = Room::all();
+        $testimonials = Testimonials::all();
+        $randomRooms = $roomList->shuffle()->take(4);
+        $randomReview = $testimonials->shuffle()->take(3);
         return view('frontend.index', [
             'bookArea' => $bookArea,
+            'roomType' => $roomType,
+            'roomList' => $roomList,
+            'testimonials' => $testimonials,
+            'randomRooms' => $randomRooms,
+            'randomReview' => $randomReview,
         ]);
     }
 
@@ -63,15 +76,15 @@ class FrontController extends Controller
             'new_password' => 'required|confirmed'
         ]);
 
-        // if (!Hash::check($request->old_password, auth::user()->password)) {
+        if (!Hash::check($request->old_password, auth::user()->password)) {
 
-        //     $notification = array(
-        //         'message' => 'Old Password Does not Match!',
-        //         'alert-type' => 'error'
-        //     );
+            $notification = array(
+                'message' => 'Old Password Does not Match!',
+                'alert-type' => 'error'
+            );
 
-        //     return back()->with($notification);
-        // }
+            return back()->with($notification);
+        }
 
         /// Update The New Password 
         User::whereId(auth::user()->id)->update([
@@ -80,11 +93,16 @@ class FrontController extends Controller
 
 
 
-        // $notification = array(
-        //     'message' => 'Password Change Successfully',
-        //     'alert-type' => 'success'
-        // );
+        $notification = array(
+            'message' => 'Password Change Successfully',
+            'alert-type' => 'success'
+        );
 
         return back();
+    }
+
+    public function showRoom(Room $room)
+    {
+        return view('frontend.rooms.show-room', compact('room'));
     }
 }

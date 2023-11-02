@@ -1,19 +1,18 @@
 @forelse($bookArea as $book)
-    <section class="testimonials-container">
-        <div class="container">
-            <div class="main-review">
-                <div class="review-slide">
-                    <h1>{{ $book->short_title }}</h1>
-                    <h3>{{ $book->main_title }}</h3>
-                    <p>{{ $book->short_desc }}</p>
-                    <div class="review-author">
-                        <a href="{{ $book->link_url }}">Quick book</a>
-                    </div>
+    <section class="booking-container">
+        <div class="booking-card">
+            <div class="to-quick-booking">
+                <h1 class="booking-short-title">{{ $book->short_title }}</h1>
+                <h3 class="booking-main-title">{{ $book->main_title }}</h3>
+                <p class="booking-short-description">{{ $book->short_desc }}</p>
+                <div class="review-author">
+                    <a href="{{ $book->link_url }}" class="to-quick-booking-link"><i class='bx bxs-bell-ring bx-tada'></i>
+                        Quick
+                        book</a>
                 </div>
-                <img src="{{ !empty($book->image) ? url('upload/bookarea/' . $book->image) : url('upload/noimage.jpg') }}"
-                    class="main-review-img" alt="book area">
-
             </div>
+            <img src="{{ !empty($book->image) ? url('upload/bookarea/' . $book->image) : url('upload/noimage.jpg') }}"
+                class="booking-area-img" alt="book area">
 
         </div>
     </section>
