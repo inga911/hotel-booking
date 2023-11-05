@@ -6,6 +6,9 @@
     border: 1px solid #ddd;
     border-radius: 5px;
 }
+.create-room-container {
+    display: flex;
+}
 .form-select {
     border-radius: 3px;
     display: flex;
@@ -123,8 +126,8 @@ button[type="submit"]:hover {
     letter-spacing: 1px;
 }
 
-.form-control {
-    width: 40vw;
+.description-form {
+    width: 16vw;
 }
 
 .rem {

@@ -5,7 +5,7 @@
             <div class="card">
                 <a href="{{ route('frontend.show.room', $room) }}" class="each-room-card-link">
                     @if ($room->photo)
-                        <img src="{{ asset('/upload/room_photos') . '/' . $room->photo }}" class="room-card-img"
+                        <img src="{{ asset('/upload/room_photos') . '/t_' . $room->photo }}" class="room-card-img"
                             alt="room-1">
                     @else
                         <img src="{{ asset('/upload') . '/' . 'noimage.jpg' }}" class="room-card-img" alt="room-1">

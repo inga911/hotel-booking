@@ -7,9 +7,11 @@ use App\Http\Controllers\BookAreaController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
-
+use App\Http\Controllers\TestimonialsController;
 
 Route::get('/', [FrontController::class, 'index']);
+Route::get('/show-room/{room}', [FrontController::class, 'showRoom'])->name('frontend.show.room');
+
 
 
 Route::get('/dashboard', function () {
@@ -22,6 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/user-logout', [FrontController::class, 'userLogout'])->name('user.logout');
     Route::get('/user/change-paswword', [FrontController::class, 'userChangePassword'])->name('user.change-password');
     Route::post('/password/change/password', [FrontController::class, 'userChangePasswordStore'])->name('user.change-password-store');
+    Route::get('/testimonials-create', [TestimonialsController::class, 'createTestimonials'])->name('testimonials.create');
+    Route::post('/testimonials-store', [TestimonialsController::class, 'storeTestimonials'])->name('testimonials.store');
 });
 
 require __DIR__ . '/auth.php';
@@ -49,6 +53,7 @@ Route::controller(RoomTypeController::class)->group(function () {
     Route::get('/admin/room-types/edit/{roomType}', [RoomTypeController::class, 'roomTypeEdit'])->name('admin.room-type-edit');
     Route::post('/admin/room-types/update/{roomType}', [RoomTypeController::class, 'roomTypeUpdate'])->name('admin.room-type-update');
     Route::delete('/delete/{roomType}', [RoomTypeController::class, 'destroy'])->name('admin.room-type-delete');
+    // Route::delete('/delete-photo/{photo}', [RoomController::class, 'destroyPhoto'])->name('admin.delete-photo');
 });
 
 // Create Room
@@ -58,5 +63,12 @@ Route::controller(RoomController::class)->group(function () {
     Route::post('/admin/store', [RoomController::class, 'roomStore'])->name('admin.room-store');
     Route::get('/admin/edit/{room}', [RoomController::class, 'roomEdit'])->name('admin.room-edit');
     Route::post('/admin/update/{room}', [RoomController::class, 'roomUpdate'])->name('admin.room-update');
-    Route::delete('/delete/{room}', [RoomController::class, 'destroy'])->name('admin.room-delete');
+    Route::delete('/delete-room/{room}', [RoomController::class, 'destroy'])->name('admin.room-delete');
+    Route::delete('/delete-photo/{photo}', [RoomController::class, 'destroyPhoto'])->name('admin.delete-photo');
+});
+
+
+// Booking Search
+Route::controller(FrontController::class)->group(function () {
+    Route::get('/bookings', 'bookingSearch')->name('booking.search');
 });

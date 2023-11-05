@@ -7,6 +7,8 @@ use App\Models\Room;
 use App\Models\RoomType;
 use App\Models\Testimonials;
 use App\Models\User;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -104,5 +106,27 @@ class FrontController extends Controller
     public function showRoom(Room $room)
     {
         return view('frontend.rooms.show-room', compact('room'));
+    }
+
+    public function bookingSearch(Request $request)
+    {
+        $request->flash();
+        if ($request->check_in == $request->check_out) {
+            $notification = array(
+                'message' => 'Something went wrong!',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+
+        $startDate = date('Y-m-d', strtotime($request->check_in));
+        $endDate = date('Y-m-d', strtotime($request->check_out));
+
+        $allDate = Carbon::create($endDate)->subDay();
+        $period = CarbonPeriod::create($startDate, $allDate);
+        $date_array = [];
+        foreach ($period as $p) {
+            array_push($date_array, date('Y-m-d', strtotime($p)));
+        }
     }
 }

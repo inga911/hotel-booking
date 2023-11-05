@@ -67,7 +67,8 @@ class RoomTypeController extends Controller
         if ($validator->fails()) {
             return redirect()
                 ->back()
-                ->withErrors($validator);
+                ->withErrors($validator)
+                ->withInput();
         }
 
         $roomType->update([

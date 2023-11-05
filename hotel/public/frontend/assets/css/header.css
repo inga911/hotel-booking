@@ -9,6 +9,7 @@
     height: 50px;
     object-fit: cover;
     inset: 5%;
+    margin-bottom: -17%;
 }
 header {
     background-color: black;
@@ -16,23 +17,30 @@ header {
 }
 
 .top-nav {
-    background-color: aqua;
     display: flex;
     justify-content: space-between;
     margin-left: 5%;
 }
+
+.nav-link {
+    text-transform: uppercase;
+    font-size: smaller;
+    text-decoration: none;
+    color: rgb(239, 239, 239);
+    letter-spacing: 1.5px;
+}
+.nav-link:hover {
+    color: rgb(119, 233, 233);
+    scale: 1.2;
+    transition: ease 0.15s;
+}
 .top-right {
-    background-color: antiquewhite;
     display: flex;
     width: 50%;
     justify-content: space-evenly;
 }
-.lower-nav {
-    background-color: aquamarine;
-}
-.lower-left {
-    background-color: cadetblue;
-    display: flex;
-    justify-content: space-evenly;
-    width: 50%;
+
+.front-header-icon {
+    font-size: x-large;
+    vertical-align: middle;
 }

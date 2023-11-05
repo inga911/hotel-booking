@@ -1,28 +1,31 @@
 .testimonials-container {
+    height: 60vh;
     margin: 2% 0;
-    background-color: rgb(212, 250, 206);
+    background-color: black;
 }
-.testimonials-container .container {
-    background-color: cornflowerblue;
-    width: 80%;
-    margin-left: 10%;
+.testimonials-container {
+    background: black;
+    color: #fff;
+    height: 60vh;
 }
-.main-review {
-    background-color: darkcyan;
-    padding: 5% 0;
-    display: flex;
-    justify-content: space-evenly;
-}
-.main-review-img {
-    width: 40%;
-    object-fit: cover;
-}
-.review-slide {
-    width: 40%;
+.other-review {
+    width: 80vw;
+    margin: 0 10vw;
+    display: grid;
+    gap: 2em;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-top: 7vh;
 }
 
-.other-review {
-    display: grid;
-    gap: 10%;
-    grid-template-columns: 1fr 1fr 1fr;
+.review-icon {
+    font-size: 5em;
+}
+
+.review-text {
+    text-align: justify;
+}
+
+.author-name {
+    line-height: 3.5em;
+    margin-left: 5%;
 }

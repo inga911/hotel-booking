@@ -21,12 +21,8 @@
         <p class=""><i class='bx bx-child'></i> Total child: {{ $room->total_child }}</p>
         <p class=""><i class='bx bx-home-alt-2'></i> Room Capacity: {{ $room->room_capacity }}</p>
         <p class=""><i class='bx bxs-purchase-tag'></i> Price: {{ $room->price }}</p>
-        <p class=""><i class='bx bxs-building-house'></i> Room size: {{ $room->size }}</p>
-        {{-- <p class="">Room view: {{ $room->view }}</p> --}}
-        <p class=""><i class='bx bxs-discount'></i> Discount: {{ $room->discount }}</p>
         <p class=""><i class='bx bxs-hotel'></i> Bed style: {{ $room->bed_style }}</p>
         {{-- <p class="">Room short description: {{ $room->room_short_desc }}</p> --}}
-        <p class=""><i class='bx bx-calendar-check'></i> Availability: {{ $room->room_availability }}</p>
         {{-- Make visible if the user has booked this room --}}
         {{-- <a href="{{ route('testimonials.create') }}">Feedback</a> --}}
     </div>
