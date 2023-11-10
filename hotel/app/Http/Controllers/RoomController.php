@@ -44,14 +44,16 @@ class RoomController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'room_name' => 'required',
-            'room_nummber' => 'required',
+            'room_number' => 'required',
             'room_type_id' => 'required',
             'total_adult' => 'required',
             'total_child' => 'required',
             'photo' => 'sometimes|required|image|max:1024',
             'gallery.*' => 'sometimes|required|image|max:1024',
             'price' => 'required',
-            'bed_style' => 'required|in:single,double,couch',
+            'bed_style' => 'required|in:single,double,king',
+            'extra_child_bed' => 'required',
+            'status' => 'required|in:active,inactive',
             'room_short_desc' => 'required',
             'room_description' => 'required',
 
@@ -70,13 +72,15 @@ class RoomController extends Controller
 
         $id = Room::create([
             'room_name' => $request->room_name,
-            'room_nummber' => $request->room_nummber,
+            'room_number' => $request->room_number,
             'room_type_id' => $request->room_type_id,
             'total_adult' => $request->total_adult,
             'total_child' => $request->total_child,
-            'photo' => $name,
+            'photo' => $name ?? null,
             'price' => $request->price,
             'bed_style' => $request->bed_style,
+            'extra_child_bed' => $request->extra_child_bed,
+            'status' => $request->status,
             'room_short_desc' => $request->room_short_desc,
             'room_description' => $request->room_description,
         ])->id;
@@ -89,28 +93,23 @@ class RoomController extends Controller
 
     public function roomEdit(Room $room)
     {
+        $room = Room::findOrFail($room->id);
         $roomTypes = RoomType::all();
         $id = Auth::user()->id;
         $admin = User::find($id);
-        return view('admin.room.edit-room', compact('room', 'roomTypes', 'admin'));
+        $editData = Room::find($id);
+        return view('admin.room.edit-room', compact('room', 'roomTypes', 'admin', 'editData'));
     }
 
     public function roomUpdate(Request $request, Room $room)
     {
 
-        if ($request->delete == 1) {
-            if ($room->photo) {
-                $room->deletePhoto();
-            }
-            return redirect()->back();
-        }
-
-
         $id = Auth::user()->id;
         $admin = User::find($id);
+        $room = Room::findOrFail($room->id);
         $validator = Validator::make($request->all(), [
             'room_name' => 'sometimes|required',
-            'room_nummber' => 'sometimes|required',
+            'room_number' => 'sometimes|required',
             'room_type_id' => 'sometimes|required',
             'total_adult' => 'sometimes|required',
             'total_child' => 'sometimes|required',
@@ -118,8 +117,10 @@ class RoomController extends Controller
             'gallery.*' => 'sometimes|required|image|max:1024',
             'price' => 'sometimes|required',
             'bed_style' => 'sometimes|required|in:single,double,king',
+            'extra_child_bed' => 'sometimes|required',
             'room_short_desc' => 'sometimes|required',
             'room_description' => 'sometimes|required',
+            'status' => 'sometimes|required',
         ]);
 
         if ($validator->fails()) {
@@ -127,32 +128,38 @@ class RoomController extends Controller
                 ->back()
                 ->withErrors($validator);
         }
-
-        $photo = $request->photo;
-        if ($photo) {
-            $name = $room->savePhoto($photo, $room->id);
-        } else {
-            $name = $room->photo;
+        if ($request->delete == 1) {
+            if ($room->photo) {
+                $room->deletePhoto();
+            }
+            return redirect()->back();
         }
 
-        $room->update([
-            'room_name' => $request->room_name,
-            'room_nummber' => $request->room_nummber,
-            'room_type_id' => $request->room_type_id,
-            'total_adult' => $request->total_adult,
-            'total_child' => $request->total_child,
-            'photo' => $name,
-            'price' => $request->price,
-            'bed_style' => $request->bed_style,
-            'room_short_desc' => $request->room_short_desc,
-            'room_description' => $request->room_description,
+        $photoName = $request->hasFile('photo') ? $room->savePhoto($request->photo, $room->id) : $room->photo;
+        $updateData = $request->only([
+            'room_name',
+            'room_number',
+            'room_type_id',
+            'total_adult',
+            'total_child',
+            'price',
+            'bed_style',
+            'extra_child_bed',
+            'room_short_desc',
+            'room_description',
+            'status',
         ]);
-
-        foreach ($request->gallery ?? [] as $gallery) {
-            RoomPhotos::add($gallery, $room->id);
+        if ($request->hasFile('photo')) {
+            $updateData['photo'] = $photoName;
         }
+        $room->update($updateData);
 
-        return redirect()->route('admin.room-list', compact('admin'))->withErrors($validator);
+        if ($request->has('gallery')) {
+            foreach ($request->gallery as $gallery) {
+                RoomPhotos::add($gallery, $room->id);
+            }
+        }
+        return redirect()->route('admin.room-list', compact('admin'))->with('success', 'Room was updated successfully');
     }
 
 
@@ -169,7 +176,7 @@ class RoomController extends Controller
         }
 
         $room->delete();
-        return redirect()->route('admin.room-type.rooms', $room->room_type_id);
+        return redirect()->back()->with('success', 'Room was deleted successfully');
     }
 
     public function destroyPhoto(RoomPhotos $photo)

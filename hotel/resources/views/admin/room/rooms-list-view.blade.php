@@ -24,8 +24,16 @@
                                     <td class="card-right">{{ $room->room_name }}</td>
                                 </tr>
                                 <tr class="room-detail-line">
+                                    <th class="card-left"><b>Room Number:</b></th>
+                                    <td class="card-right">{{ $room->room_number }}</td>
+                                </tr>
+                                <tr class="room-detail-line">
                                     <th class="card-left"><b>Room Type:</b></th>
                                     <td class="card-right">{{ $room->roomType->name }}</td>
+                                </tr>
+                                <tr class="room-detail-line">
+                                    <th class="card-left"><b>Room Status:</b></th>
+                                    <td class="card-right">{{ $room->status }}</td>
                                 </tr>
                                 <tr class="room-detail-line">
                                     <th class="card-left"><b>Total Adult:</b></th>
@@ -42,6 +50,10 @@
                                 <tr class="room-detail-line">
                                     <th class="card-left"><b>Bed Style:</b></th>
                                     <td class="card-right">{{ $room->bed_style }}</td>
+                                </tr>
+                                <tr class="room-detail-line">
+                                    <th class="card-left"><b>Extra Kid Bed:</b></th>
+                                    <td class="card-right">{{ $room->extra_child_bed }} single kid bed</td>
                                 </tr>
                                 <tr class="room-detail-line">
                                     <th class="card-left"><b>Short Description:</b></th>

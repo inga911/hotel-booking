@@ -42,8 +42,6 @@ class Room extends Model
         if ($this->photo) {
             $photo = public_path() . '/upload/room_photos/' . $this->photo;
             unlink($photo);
-            $photo = public_path() . '/upload/room_photos/t_' . $this->photo;
-            unlink($photo);
         }
         $this->update([
             'photo' => null,

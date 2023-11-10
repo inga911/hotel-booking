@@ -1,25 +1,12 @@
 @extends('admin.admin-dashboard')
 @section('admin')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
     <h1 class="admin-main-title">
         <i class='bx bxs-chevron-right'></i>
         EDIT room <i>{{ $room->room_name }}</i>
     </h1>
+    @include('admin.body.errors')
+    @include('admin.body.messages')
     <div class="card">
         <div class="card-body">
             <ul class="nav nav-tabs nav-primary" role="tablist">
@@ -56,18 +43,21 @@
                 <div class="tab-content py-3">
                     <div class="tab-pane fade show active" id="primaryhome" role="tabpanel">
                         <div class="display-inline">
+                            <!-- Room Name -->
                             <div class="form-group">
                                 <label class="book-label">Room Name</label>
                                 <input type="text" id="room_name" name="room_name" class="form-control"
                                     value="{{ $room->room_name }}">
                             </div>
-                            {{-- <div class="form-group">
-                                <label class="book-label">Room Nummber</label>
-                                <input type="text" id="room_nummber" name="room_nummber" class="form-control"
-                                    value="{{ $room->room_nummber }}">
-                            </div> --}}
+                            <!-- Room Price -->
+                            <div class="form-group">
+                                <label class="book-label">Price: <span class="currency"></span></label>
+                                <input type="text" id="price" name="price" value="{{ $room->price }}"
+                                    class="form-control">
+                            </div>
                         </div>
                         <div class="room-selection">
+                            <!-- Room Type -->
                             <div>
                                 <label class="book-label">Room Type: </label>
                                 <select class="form-select" name="room_type_id">
@@ -97,12 +87,6 @@
                         </div>
 
                         <div class="display-inline">
-                            <!-- Room Price -->
-                            <div class="form-group">
-                                <label class="book-label">Price: <span class="currency"></span></label>
-                                <input type="text" id="price" name="price" value="{{ $room->price }}"
-                                    class="form-control">
-                            </div>
                             <!-- Bed Style -->
                             <div class="form-group">
                                 <label class="book-label">Bed Style:</label>
@@ -116,13 +100,30 @@
                                         Bed</option>
                                 </select>
                             </div>
+                            <!-- Extra Child Bed -->
+                            <div class="form-group">
+                                <label class="book-label">Extra Bed Style: <span style="font-size: 11px">(1 child = 1 extra
+                                        single
+                                        bed)</span></label>
+                                <select name="extra_child_bed" class="form-select">
+                                    <option value="0">Select Bed Style</option>
+                                    <option value="1" {{ $room->extra_child_bed === '1' ? 'selected' : '' }}>1 kid
+                                        bed</option>
+                                    <option value="2" {{ $room->extra_child_bed === '2' ? 'selected' : '' }}>2 kid
+                                        bed</option>
+                                    <option value="3" {{ $room->extra_child_bed === '3' ? 'selected' : '' }}>3 kid
+                                        bed</option>
+                                </select>
+                            </div>
+
                         </div>
 
                         <div class="display-inline">
                             <!-- Short Description -->
                             <div class="form-group">
                                 <label class="book-label">Short Description:</label>
-                                <textarea class="form-control" id="room_short_desc" name="room_short_desc" rows="3" placeholder="Description"> {{ $room->room_short_desc }}" </textarea>
+                                <textarea class="form-control" id="room_short_desc" name="room_short_desc" rows="3"
+                                    placeholder="Description"> {{ $room->room_short_desc }}" </textarea>
                             </div>
                             <!-- Long Description -->
                             <div class="form-group">
@@ -179,22 +180,36 @@
         </div>
 
 
-        <div class="tab-content py-3">
-            <div class="tab-pane fade" id="primarynumber" role="tabpanel">
-                <form method="post" action="{{ route('admin.room-update', $room) }}">
-                    @csrf
-                    <div class="display-inline">
-                        <div class="form-group">
-                            <label class="book-label">Room Number</label>
-                            <input type="text" id="room_nummber" name="room_nummber" class="form-control"
-                                value="{{ $room->room_nummber }}">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </form>
-            </div>
-        </div>
+        <div class="tab-pane fade" id="primarynumber" role="tabpanel">
+            <form method="post" action="{{ route('admin.room-update', $room) }}" enctype="multipart/form-data">
 
+                @csrf
+
+                <input type="hidden" name="room_type_id" value="{{ $room->room_type_id }}">
+
+                <div class="display-inline">
+                    <div class="form-group">
+                        <label class="book-label">Room Number</label>
+                        <input type="text" id="room_number" name="room_number" class="form-control"
+                            value="{{ $room->room_number }}">
+                    </div>
+                    <div class="form-group">
+                        <label class="book-label">Room Status: </label>
+                        <select name="status" class="form-select">
+                            <option value="0">Select room status</option>
+                            <option value="active" {{ $room->status === 'active' ? 'selected' : '' }}>Active</option>
+                            <option value="inactive" {{ $room->status === 'inactive' ? 'selected' : '' }}>Inactive
+                            </option>
+                        </select>
+                    </div>
+
+                </div>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </form>
+        </div>
+    </div>
+
+    </div>
     </div>
     </div>
 

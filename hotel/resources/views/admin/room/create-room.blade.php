@@ -1,26 +1,14 @@
 @extends('admin.admin-dashboard')
 
 @section('admin')
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <h1 class="admin-main-title">
         <i class='bx bxs-chevron-right'></i>
         Create a New Room
     </h1>
+    @include('admin.body.errors')
+    @include('admin.body.messages')
 
     <div class="create-room-container">
         <div class="book-area-container">
@@ -32,11 +20,11 @@
                         <input type="text" id="room_name" name="room_name" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label class="book-label">Room Nummber</label>
-                        <input type="text" id="room_nummber" name="room_nummber" class="form-control">
+                        <label class="book-label">Room Number</label>
+                        <input type="text" id="room_number" name="room_number" class="form-control">
                     </div>
                 </div>
-                <div class="room-selection">
+                <div class="display-inline">
                     <div>
                         <label class="book-label">Room Type: </label>
                         <select class="form-select" name="room_type_id">
@@ -44,6 +32,14 @@
                             @foreach ($roomTypes as $roomType)
                                 <option value="{{ $roomType->id }}">{{ $roomType->name }}</option>
                             @endforeach
+                        </select>
+                    </div>
+                    <div>
+                        <label class="book-label">Room Status: </label>
+                        <select name="status" class="form-select">
+                            <option value="0">Select room status</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
                         </select>
                     </div>
                 </div>
@@ -60,11 +56,6 @@
                     </div>
                 </div>
                 <div class="display-inline">
-                    <!-- Room Price -->
-                    <div class="form-group">
-                        <label class="book-label">Price: <span class="currency"></span></label>
-                        <input type="text" id="price" name="price" class="form-control">
-                    </div>
                     <!-- Bed Style -->
                     <div class="form-group">
                         <label class="book-label">Bed Style:</label>
@@ -73,6 +64,17 @@
                             <option value="single">Single Bed</option>
                             <option value="double">Double Bed</option>
                             <option value="king">King Bed</option>
+                        </select>
+                    </div>
+                    <!-- Extra Child Bed -->
+                    <div class="form-group">
+                        <label class="book-label">Extra Bed Style: <span style="font-size: 11px">(1 child = 1 extra single
+                                bed)</span></label>
+                        <select name="extra_child_bed" class="form-select">
+                            <option value="0">Select Bed Style</option>
+                            <option value="1">1 kid bed</option>
+                            <option value="2">2 kid bed</option>
+                            <option value="3">3 kid bed</option>
                         </select>
                     </div>
                 </div>
@@ -84,12 +86,17 @@
                         <textarea class="form-control description-form" id="room_short_desc" name="room_short_desc" rows="3"
                             placeholder="Description"></textarea>
                     </div>
-                    <!-- Long Description -->
+                    <!-- Price -->
                     <div class="form-group">
-                        <label class="book-label">Long Description:</label>
-                        <textarea class="form-control description-form" id="room_description" name="room_description" rows="3"
-                            placeholder="Description"></textarea>
+                        <label class="book-label">Price: <span class="currency"></span></label>
+                        <input type="text" id="price" name="price" class="form-control">
                     </div>
+                </div>
+                <!-- Long Description-->
+                <div class="form-group">
+                    <label class="book-label">Long Description:</label>
+                    <textarea class="form-control description-form" id="room_description" name="room_description" rows="3"
+                        placeholder="Description"></textarea>
                 </div>
                 <!-- Room Photo Upload -->
                 <div class="form-group book-area-photo">
