@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BookArea;
 use App\Models\Room;
+use App\Models\RoomBookedDate;
 use App\Models\RoomType;
 use App\Models\Testimonials;
 use App\Models\User;
@@ -62,7 +63,7 @@ class FrontController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/');
     }
 
     public function userChangePassword()
@@ -108,15 +109,29 @@ class FrontController extends Controller
         return view('frontend.rooms.show-room', compact('room'));
     }
 
+    public function showAllRoom()
+    {
+        $roomType = RoomType::all();
+        $roomList = Room::all();
+        $testimonials = Testimonials::all();
+        return view('frontend.rooms.all-rooms', [
+            'roomType' => $roomType,
+            'roomList' => $roomList,
+            'testimonials' => $testimonials,
+        ]);
+    }
+
     public function bookingSearch(Request $request)
     {
-        $request->flash();
+        $request->validate([
+            'check_in' => 'required|date|after_or_equal:today',
+            'check_out' => 'required|date|after:check_in',
+            'person-adult' => 'required|integer|min:0',
+            'person-child' => 'required|integer|min:0',
+        ]);
+
         if ($request->check_in == $request->check_out) {
-            $notification = array(
-                'message' => 'Something went wrong!',
-                'alert-type' => 'error'
-            );
-            return redirect()->back()->with($notification);
+            return redirect()->back();
         }
 
         $startDate = date('Y-m-d', strtotime($request->check_in));
@@ -125,8 +140,26 @@ class FrontController extends Controller
         $allDate = Carbon::create($endDate)->subDay();
         $period = CarbonPeriod::create($startDate, $allDate);
         $date_array = [];
+
         foreach ($period as $p) {
             array_push($date_array, date('Y-m-d', strtotime($p)));
         }
+
+        $checkBookingDateId = RoomBookedDate::whereIn('book_date', $date_array)->distinct()->pluck('booking_id')->toArray();
+
+        $personAdult = $request->input('person-adult');
+        $personChild = $request->input('person-child');
+
+        $rooms = Room::where('status', 'active')
+            ->whereNotIn('id', $checkBookingDateId)
+            ->where(function ($query) use ($personAdult, $personChild) {
+                $query->where('total_adult', $personAdult)->where('total_child', $personChild);
+            })
+            ->orWhere(function ($query) use ($personAdult, $personChild) {
+                $query->where('total_adult', '=', $personAdult)->where('total_child', '=', $personChild);
+            })
+            ->get();
+
+        return view('frontend.rooms.search-room', compact('rooms', 'checkBookingDateId'));
     }
 }

@@ -5,16 +5,20 @@
             <div class="card">
                 <a href="{{ route('frontend.show.room', $room) }}" class="each-room-card-link">
                     @if ($room->photo)
-                        <img src="{{ asset('/upload/room_photos') . '/t_' . $room->photo }}" class="room-card-img"
+                        <img src="{{ asset('/upload/room_photos') . '/' . $room->photo }}" class="room-card-img"
                             alt="room-1">
                     @else
                         <img src="{{ asset('/upload') . '/' . 'noimage.jpg' }}" class="room-card-img" alt="room-1">
                     @endif
-                    <h4>{{ $room->room_name }}</h4>
-                    <p class="room-description">{{ $room->room_short_desc }}</p>
-
-                    {{-- Make visible if the user has booked this room --}}
-                    {{-- <a href="{{ route('testimonials.create') }}">Feedback</a> --}}
+                    <div class="room-name-card">{{ $room->room_name }}</div>
+                    <div class="room-card-details">
+                        <div class="room-name-card"><i class='bx bx-euro card-bx'></i> {{ $room->price }}</div>
+                        <div class="room-name-card"><i class='bx bx-bed card-bx'></i> {{ $room->bed_style }}</div>
+                        <div class="room-name-card"><i class='bx bx-male-female card-bx'></i> {{ $room->total_adult }}
+                        </div>
+                        <div class="room-name-card"><i class='bx bx-child card-bx'></i> {{ $room->total_child }}</div>
+                    </div>
+                    <div class="room-description">{{ $room->room_short_desc }}</div>
                 </a>
             </div>
         @endforeach

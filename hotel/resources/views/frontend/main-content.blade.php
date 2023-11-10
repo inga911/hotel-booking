@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HOTEL</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/hero.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/rooms.css') }}">

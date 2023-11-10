@@ -17,14 +17,15 @@
     </div>
     </div>
     <div class="room-info">
-        <p class=""><i class='bx bx-male-female'></i> Total adults: {{ $room->total_adult }}</p>
-        <p class=""><i class='bx bx-child'></i> Total child: {{ $room->total_child }}</p>
-        <p class=""><i class='bx bx-home-alt-2'></i> Room Capacity: {{ $room->room_capacity }}</p>
-        <p class=""><i class='bx bxs-purchase-tag'></i> Price: {{ $room->price }}</p>
-        <p class=""><i class='bx bxs-hotel'></i> Bed style: {{ $room->bed_style }}</p>
-        {{-- <p class="">Room short description: {{ $room->room_short_desc }}</p> --}}
+        <p class=""><i class='bx bx-male-female'></i>Adult {{ $room->total_adult }}</p>
+        <p class=""><i class='bx bxs-hotel'></i>{{ $room->bed_style }} bed</p>
+        @if ($room->total_child > 0)
+            <p class=""><i class='bx bx-child'></i>Child{{ $room->total_child }}
+                ({{ $room->extra_child_bed }} extra bed)</p>
+        @endif
+        <p class=""><i class='bx bx-euro card-bx'></i>{{ $room->price }}</p>
         {{-- Make visible if the user has booked this room --}}
         {{-- <a href="{{ route('testimonials.create') }}">Feedback</a> --}}
     </div>
-    <p class="long-description"><b>Long Description:</b> {{ $room->room_description }}</p>
+    <p class="long-description"><b>About room:</b> {{ $room->room_description }}</p>
 @endsection

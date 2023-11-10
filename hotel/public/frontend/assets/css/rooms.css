@@ -5,6 +5,9 @@
     margin: 2em 0 1em 0;
     text-align: center;
     font-size: clamp(18px, 3vw, 28px);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgb(24, 84, 140);
 }
 .cards {
     display: grid;
@@ -17,7 +20,14 @@
     margin: 4%;
     width: 95%;
     text-align: center;
-    border: 1px solid lightblue;
+    box-shadow: 0 0px 5px 2px #d3d3d3a8;
+    border-radius: 2em;
+    background: #d3d3d338;
+    opacity: 0.9;
+}
+.card:hover {
+    background: #ecfffb;
+    opacity: 1;
 }
 
 .room-card-img {
@@ -27,9 +37,20 @@
     object-fit: cover;
     border-radius: 2em;
 }
+.room-name-card {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 .room-description {
     padding: 1em;
     line-height: 1.5em;
+}
+.room-card-details {
+    display: inline-flex;
+    gap: 2em;
+}
+.card-bx {
+    font: 1.5em;
 }
 
 .each-room-card-link {
@@ -46,40 +67,47 @@
     letter-spacing: 2px;
 }
 .photo-gallery {
-    gap: 1em;
     width: 80%;
-    justify-items: center;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-left: calc(50% - 40%);
-    background-color: black;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
     padding: 1em;
+    justify-content: space-between;
 }
 
 .show-room-photo {
-    width: 35rem;
-    height: 30rem;
+    width: calc(50% - 0.5em);
+    height: auto;
     object-fit: cover;
-    opacity: 1;
+    margin: 0.25em;
+    border-radius: 0.5em;
 }
 .no-background {
     grid-template-columns: 1fr;
     background-color: transparent;
 }
 .room-info {
+    border-radius: 1em;
+    margin: 2% auto;
+    background: white;
     width: 80%;
+    box-shadow: 0 0 5px 2px lightgrey;
     line-height: 2em;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    margin-left: 10%;
+    display: flex;
     gap: 1em;
-    padding: 3em;
+    padding: 1.5em;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .long-description {
     width: 80%;
-    background: antiquewhite;
+    background: white;
     margin-left: 10%;
     line-height: 2em;
     margin-bottom: 3em;
+    box-shadow: 0 0 5px 2px lightgray;
+    padding: 2em;
+    border-radius: 1em;
 }

@@ -1,7 +1,7 @@
-@forelse($randomReview as $testimonial)
-    <section class="testimonials-container">
-        <div class="container">
-            <div class="other-review">
+<section class="testimonials-container">
+    <div class="container">
+        <div class="other-review">
+            @forelse($randomReview as $testimonial)
                 <div class="review-card">
                     <i class='bx bxs-quote-alt-left review-icon'></i>
                     <p class="review-text">{{ $testimonial->review }}</p>
@@ -9,10 +9,9 @@
                         <p class="author-name"> - <i>{{ $testimonial->author_name }}</i></p>
                     </div>
                 </div>
-            </div>
+            @empty
+            @endforelse
         </div>
-        </div>
-    </section>
-
-@empty
-@endforelse
+    </div>
+    </div>
+</section>
