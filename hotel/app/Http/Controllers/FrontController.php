@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BookArea;
+use App\Models\Booking;
 use App\Models\Room;
 use App\Models\RoomBookedDate;
 use App\Models\RoomType;
@@ -106,8 +107,11 @@ class FrontController extends Controller
 
     public function showRoom(Room $room)
     {
-        return view('frontend.rooms.show-room', compact('room'));
+        $searchData = request()->query();
+        $bookDateArray = session('book_date');
+        return view('frontend.rooms.show-room', compact('room', 'searchData'));
     }
+
 
     public function showAllRoom()
     {
@@ -121,13 +125,13 @@ class FrontController extends Controller
         ]);
     }
 
-    public function bookingSearch(Request $request)
+    public function bookingSearch(Request $request, Room $room)
     {
         $request->validate([
             'check_in' => 'required|date|after_or_equal:today',
             'check_out' => 'required|date|after:check_in',
-            'person-adult' => 'required|integer|min:0',
-            'person-child' => 'required|integer|min:0',
+            'person_adult' => 'required|integer|min:0',
+            'person_child' => 'required|integer|min:0',
         ]);
 
         if ($request->check_in == $request->check_out) {
@@ -147,8 +151,8 @@ class FrontController extends Controller
 
         $checkBookingDateId = RoomBookedDate::whereIn('book_date', $date_array)->distinct()->pluck('booking_id')->toArray();
 
-        $personAdult = $request->input('person-adult');
-        $personChild = $request->input('person-child');
+        $personAdult = $request->input('person_adult');
+        $personChild = $request->input('person_child');
 
         $rooms = Room::where('status', 'active')
             ->whereNotIn('id', $checkBookingDateId)
@@ -161,5 +165,35 @@ class FrontController extends Controller
             ->get();
 
         return view('frontend.rooms.search-room', compact('rooms', 'checkBookingDateId'));
+    }
+
+    public function checkRoomAvailability(Request $request)
+    {
+        try {
+            $startDate = Carbon::parse($request->check_in);
+            $endDate = Carbon::parse($request->check_out);
+
+            $date_array = [];
+            $period = Carbon::create($startDate)->daysUntil($endDate);
+            foreach ($period as $date) {
+                $date_array[] = $date->format('Y-m-d');
+            }
+
+            $checkBookingDateId = RoomBookedDate::whereIn('book_date', $date_array)->distinct()->pluck('booking_id')->toArray();
+
+            $room = Room::withCount('room_numbers')->find($request->room_id);
+
+            $bookings = Booking::withCount('assign_rooms')->whereIn('id', $checkBookingDateId)->where('rooms_id', $room->id)->get()->toArray();
+
+            $total_book_room = array_sum(array_column($bookings, 'assign_rooms_count'));
+
+            $available_room = max(0, $room->room_numbers_count - $total_book_room);
+
+            $nights = $startDate->diffInDays($endDate);
+
+            return response()->json(['available_room' => $available_room, 'total_nights' => $nights]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'An error occurred']);
+        }
     }
 }

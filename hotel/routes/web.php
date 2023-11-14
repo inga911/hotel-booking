@@ -8,8 +8,10 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\TestimonialsController;
+use App\Http\Controllers\BookingController;
 
 Route::get('/', [FrontController::class, 'index']);
+Route::get('/show-all-room', [FrontController::class, 'showAllRoom'])->name('frontend.show.all.room');
 Route::get('/show-room/{room}', [FrontController::class, 'showRoom'])->name('frontend.show.room');
 
 
@@ -53,22 +55,33 @@ Route::controller(RoomTypeController::class)->group(function () {
     Route::get('/admin/room-types/edit/{roomType}', [RoomTypeController::class, 'roomTypeEdit'])->name('admin.room-type-edit');
     Route::post('/admin/room-types/update/{roomType}', [RoomTypeController::class, 'roomTypeUpdate'])->name('admin.room-type-update');
     Route::delete('/delete/{roomType}', [RoomTypeController::class, 'destroy'])->name('admin.room-type-delete');
-    // Route::delete('/delete-photo/{photo}', [RoomController::class, 'destroyPhoto'])->name('admin.delete-photo');
 });
 
 // Create Room
 Route::controller(RoomController::class)->group(function () {
     Route::get('/admin/room-type/{roomType}/rooms', 'roomIndexList')->name('admin.room-type.rooms');
     Route::get('/admin/create-room', [RoomController::class, 'createRoom'])->name('admin.create-room');
-    Route::post('/admin/store', [RoomController::class, 'roomStore'])->name('admin.room-store');
+    Route::post('/admin/room/store', [RoomController::class, 'roomStore'])->name('admin.room-store');
     Route::get('/admin/edit/{room}', [RoomController::class, 'roomEdit'])->name('admin.room-edit');
+    // Route::post('/admin/update/{room}', [RoomController::class, 'roomUpdate'])->name('admin.room-update');
     Route::post('/admin/update/{room}', [RoomController::class, 'roomUpdate'])->name('admin.room-update');
+
     Route::delete('/delete-room/{room}', [RoomController::class, 'destroy'])->name('admin.room-delete');
     Route::delete('/delete-photo/{photo}', [RoomController::class, 'destroyPhoto'])->name('admin.delete-photo');
+    Route::get('/admin/room-number/{room}/', 'roomNumberList')->name('admin.room-number-list');
 });
 
 
 // Booking Search
 Route::controller(FrontController::class)->group(function () {
     Route::get('/bookings', 'bookingSearch')->name('booking.search');
+    Route::get('/check-room-availability', 'checkRoomAvailability')->name('check.room.availability');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::controller(BookingController::class)->group(function () {
+        Route::get('/make-reservation/{room}', 'makeReservation')->name('frontend.reservation');
+        Route::get('/booking-store', 'reservationStore')->name('frontend.reservation.store');
+        Route::post('/payment-store/{room}', 'paymentStore')->name('frontend.payment.store');
+    });
 });

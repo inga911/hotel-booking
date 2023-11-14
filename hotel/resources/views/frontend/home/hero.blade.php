@@ -18,26 +18,19 @@
 
                 <div class="guest check">
                     <div class="check-label">Guest (Adult)</div>
-                    <select name="person-adult" class="check-input guest-input">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
+                    <select name="person_adult" class="check-input guest-input">
+                        @for ($i = 1; $i <= 6; $i++)
+                            <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
                     </select>
                 </div>
 
                 <div class="guest check">
                     <div class="check-label">Guest (Child)</div>
-                    <select name="person-child" class="check-input guest-input">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
+                    <select name="person_child" class="check-input guest-input">
+                        @for ($i = 0; $i <= 6; $i++)
+                            <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
                     </select>
                 </div>
 

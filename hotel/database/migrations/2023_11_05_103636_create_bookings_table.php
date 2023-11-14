@@ -13,33 +13,31 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->integer('rooms_id')->nullable();
+            $table->integer('room_id');
             $table->integer('user_id')->nullable();
             $table->string('check_in')->nullable();
             $table->string('check_out')->nullable();
-            $table->string('person')->nullable();
-            $table->string('number_of_rooms')->nullable();
+            $table->string('total_adult')->nullable();
+            $table->string('total_child')->nullable();
 
-            $table->float('total_night')->default(0);
-            // $table->float('actual_price')->default(0);
-            // $table->float('subtotal')->default(0);
-            // $table->integer('discount')->default(0);
-            $table->float('total_price')->default(0);
+            $table->integer('total_night')->nullable();
+            $table->decimal('total_price', 6, 2)->nullable();
 
             $table->string('payment_method')->nullable();
             $table->string('transation_id')->nullable();
             $table->string('payment_status')->nullable();
 
-            $table->string('name')->nullable();
+            $table->string('name', 30)->nullable();
+            $table->string('last_name', 30)->nullable();
+            $table->string('company_name')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('country')->nullable();
-            $table->string('state')->nullable();
-            $table->string('zip_code')->nullable();
+            $table->string('town')->nullable();
+            $table->string('post_code')->nullable();
             $table->string('address')->nullable();
 
-            $table->string('code')->nullable();
-            $table->integer('status')->default(1);
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

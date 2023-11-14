@@ -18,12 +18,14 @@ return new class extends Migration
             $table->foreign('room_type_id')->references('id')->on('room_types');
             $table->string('total_adult')->nullable();
             $table->string('total_child')->nullable();
-            $table->string('photo')->nullable();
-            $table->decimal('price', 6, 2)->nullable();
-            $table->string('room_nummber')->nullable();
             $table->string('bed_style')->nullable();
+            $table->string('extra_child_bed')->default(0);
+            $table->decimal('price', 6, 2)->nullable();
             $table->string('room_short_desc')->nullable();
             $table->text('room_description')->nullable();
+            $table->string('room_number')->nullable();
+            $table->string('status')->nullable();
+            $table->string('photo')->nullable();
         });
     }
 
