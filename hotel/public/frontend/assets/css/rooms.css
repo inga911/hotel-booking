@@ -28,6 +28,8 @@
 .card:hover {
     background: #ecfffb;
     opacity: 1;
+    scale: 1.03;
+    transition: ease-in-out 0.3s;
 }
 
 .room-card-img {
@@ -67,7 +69,7 @@
     letter-spacing: 2px;
 }
 .photo-gallery {
-    width: 80%;
+    width: 60%;
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
@@ -78,7 +80,7 @@
 
 .show-room-photo {
     width: calc(50% - 0.5em);
-    height: auto;
+    height: 20em;
     object-fit: cover;
     margin: 0.25em;
     border-radius: 0.5em;
@@ -110,4 +112,64 @@
     box-shadow: 0 0 5px 2px lightgray;
     padding: 2em;
     border-radius: 1em;
+}
+
+/* BOOKING PAGE */
+
+.booking-page-check {
+    margin-left: 10%;
+    width: 20%;
+}
+
+.booking-page-left-side {
+    border-radius: 1em;
+    margin: 2% auto;
+    background: white;
+    box-shadow: 0 0 5px 2px lightgrey;
+    line-height: 2em;
+    display: flex;
+    gap: 1em;
+    padding: 1.5em;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    text-transform: uppercase;
+    font-size: smaller;
+    letter-spacing: 1px;
+}
+
+.reservation-table {
+    width: 12em;
+}
+.table-leftside {
+    border-bottom: 1px solid lightgrey;
+}
+.table-rightside {
+    text-align: right;
+    border-bottom: 1px solid lightgrey;
+}
+.count {
+    font-size: 11px;
+}
+
+.reservation-bx {
+    font-size: 13px;
+}
+.check-in-out {
+    display: flex;
+}
+.booking-page-gallery {
+    margin: 0;
+}
+
+/* SEARCH ROOM WITH POSSIBLE ROOM */
+
+.search-room-check-form {
+    display: flex;
+    justify-content: center;
+    margin: 5%;
+    background: #d9eaf9;
+    border-radius: 2em;
+    gap: 2em;
+    align-items: center;
 }

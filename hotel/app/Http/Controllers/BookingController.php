@@ -10,6 +10,7 @@ use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+// use Stripe;
 use Illuminate\Support\Facades\Validator;
 
 class BookingController extends Controller
@@ -40,6 +41,7 @@ class BookingController extends Controller
 
     public function paymentStore(Request $request, Room $room)
     {
+        // dd(env('STRIPE_SECRET'));
         $room_price = $room->price;
         // dd($room->price);
         $userRegistrationData = Session::get('user_registration_data');
@@ -52,7 +54,38 @@ class BookingController extends Controller
             $total_night = $fromDate->diffInDays($toDate);
             $total_price = $total_night * $room_price;
 
-            // $code = rand(000000000, 999999999);
+            $code = rand(000000000, 999999999);
+
+            // if ($request->payment_method == 'stripe') {
+            //     Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            //     $stripe_pay = Stripe\Charge::create([
+            //         "amount" => $total_price * 100,
+            //         "currency" => "eur",
+            //         "source" => $request->stripeToken,
+            //         "description" => "Payment for booking. Booking No " . $code,
+            //     ]);
+
+            //     if ($stripe_pay['status'] == 'succeeded') {
+            //         $payment_status = 1;
+            //         $transation_id = $stripe_pay->id;
+            //     } else {
+
+            //         $notification = array(
+            //             'message' => 'Sorry Payment Field',
+            //             'alert-type' => 'error'
+            //         );
+            //         return redirect('/')->with($notification);
+            //     }
+            // } else {
+            //     $payment_status = 0;
+            //     $transation_id = '';
+            // }
+
+
+
+
+
+
             $data = new Booking();
             $data->room_id = $room->id;
             $data->user_id = Auth::user()->id;
@@ -79,7 +112,7 @@ class BookingController extends Controller
             $data->address = Auth::user()->address ?? $request->input('address', '');
             $data->town =  Auth::user()->town ?? $request->input('town', '');
 
-            // $data->code = $code;
+            $data->code = $code;
             $data->status = 0;
             $data->created_at = Carbon::now();
             $data->save();

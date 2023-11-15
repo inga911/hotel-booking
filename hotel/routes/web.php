@@ -83,5 +83,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/make-reservation/{room}', 'makeReservation')->name('frontend.reservation');
         Route::get('/booking-store', 'reservationStore')->name('frontend.reservation.store');
         Route::post('/payment-store/{room}', 'paymentStore')->name('frontend.payment.store');
+        // Route::match(['get', 'post'], '/stripe_pay', [BookingController::class, 'stripe_pay'])->name('stripe_pay');
     });
 });

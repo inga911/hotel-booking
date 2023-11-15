@@ -48,14 +48,15 @@
     background: transparent;
 }
 .guest-input {
+    height: 2.3em;
     width: 3.5em;
     padding-left: 10px;
 }
 
 .checkin-button {
     margin-top: 3em;
-    border-radius: 0.5em;
-    border: none;
+    border-radius: 0.3em;
+    border: 1px solid black;
     padding: 0.5em;
     background: transparent;
     text-transform: uppercase;

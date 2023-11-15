@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/user-dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/user-profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/reservation.css') }}">
 
 </head>
 

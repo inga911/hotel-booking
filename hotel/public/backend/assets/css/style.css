@@ -56,3 +56,28 @@
 .tab-pane.active {
     display: block;
 }
+
+/* ERRORS MESSAGES */
+.alert-danger {
+    background-color: #ed143d66;
+    border: 1px solid crimson;
+    width: 50%;
+    margin-left: 25%;
+    margin: 2em auto;
+}
+
+.error-ul {
+    list-style: none;
+    line-height: 1.5em;
+    padding: 1em;
+}
+
+/* SUCCESS MESSAGES */
+.alert-success {
+    background: #71bb71b0;
+    line-height: 2em;
+    width: 50%;
+    margin-left: 25%;
+    padding: 1em;
+    margin: 2em auto;
+}
