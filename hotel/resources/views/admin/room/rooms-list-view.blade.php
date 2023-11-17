@@ -24,8 +24,16 @@
                                     <td class="card-right">{{ $room->room_name }}</td>
                                 </tr>
                                 <tr class="room-detail-line">
+                                    <th class="card-left"><b>Room Number:</b></th>
+                                    <td class="card-right">{{ $room->room_number }}</td>
+                                </tr>
+                                <tr class="room-detail-line">
                                     <th class="card-left"><b>Room Type:</b></th>
                                     <td class="card-right">{{ $room->roomType->name }}</td>
+                                </tr>
+                                <tr class="room-detail-line">
+                                    <th class="card-left"><b>Room Status:</b></th>
+                                    <td class="card-right">{{ $room->status }}</td>
                                 </tr>
                                 <tr class="room-detail-line">
                                     <th class="card-left"><b>Total Adult:</b></th>
@@ -36,28 +44,16 @@
                                     <td class="card-right">{{ $room->total_child }}</td>
                                 </tr>
                                 <tr class="room-detail-line">
-                                    <th class="card-left"><b>Room Capacity:</b></th>
-                                    <td class="card-right">{{ $room->room_capacity }}</td>
-                                </tr>
-                                <tr class="room-detail-line">
                                     <th class="card-left"><b>Room Price:</b></th>
                                     <td class="card-right">{{ $room->price }}</td>
-                                </tr>
-                                <tr class="room-detail-line">
-                                    <th class="card-left"><b>Room Size:</b></th>
-                                    <td class="card-right">{{ $room->size }} m&sup2;</td>
                                 </tr>
                                 <tr class="room-detail-line">
                                     <th class="card-left"><b>Bed Style:</b></th>
                                     <td class="card-right">{{ $room->bed_style }}</td>
                                 </tr>
                                 <tr class="room-detail-line">
-                                    <th class="card-left"><b>Discount:</b></th>
-                                    <td class="card-right">{{ $room->discount }}</td>
-                                </tr>
-                                <tr class="room-detail-line">
-                                    <th class="card-left"><b>Room Availability:</b></th>
-                                    <td class="card-right">{{ $room->room_availability }}</td>
+                                    <th class="card-left"><b>Extra Kid Bed:</b></th>
+                                    <td class="card-right">{{ $room->extra_child_bed }} single kid bed</td>
                                 </tr>
                                 <tr class="room-detail-line">
                                     <th class="card-left"><b>Short Description:</b></th>
@@ -72,6 +68,24 @@
                                     <td class="card-right">
                                         <img src="{{ !empty($room->photo) ? url('upload/room_photos/' . $room->photo) : url('upload/noimage.jpg') }}"
                                             class="room-photo" alt="room photo" width="200px">
+                                    </td>
+                                </tr>
+                                <tr class="room-detail-line">
+                                    <th class="card-left"><b>Photo Gallery:</b></th>
+                                    <td class="card-right">
+                                        @if (count($room->gallery) > 0)
+                                            <div class="photo-gallery">
+                                                @foreach ($room->gallery as $key => $photo)
+                                                    <img src="{{ asset('/upload/room_photos') . '/' . $photo->room_photo }}"
+                                                        class="room-photo" alt="room-{{ $key + 1 }}" width="200px">
+                                                @endforeach
+                                            </div>
+                                        @else
+                                            <div class="photo-gallery no-background">
+                                                <img src="{{ asset('/upload') . '/' . 'noimage.jpg' }}" class="room-photo"
+                                                    alt="room-1" width="200px">
+                                            </div>
+                                        @endif
                                     </td>
                                 </tr>
                                 <tr class="room-detail-line">

@@ -4,6 +4,8 @@
         <i class='bx bxs-chevron-right'></i>
         Add Room Type
     </h1>
+    @include('admin.body.errors')
+    @include('admin.body.messages')
     <div class="card">
         <div class="form">
             <form action="{{ route('admin.room-type-store') }}" method="post">

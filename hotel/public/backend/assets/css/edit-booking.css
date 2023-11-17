@@ -1,0 +1,92 @@
+.card-top {
+    background: #fff;
+    padding: 1em;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 1em;
+    box-shadow: 0 0 8px 2px #ccc;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.horizontal-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3em;
+    margin: 4% auto;
+}
+
+.booking-edit-container {
+    display: flex;
+}
+
+.booked-room-details {
+    margin-left: 4%;
+    width: fit-content;
+}
+
+.payment-booking-status {
+    padding: 1em;
+}
+
+.manage-booking-dates {
+    width: 13em;
+    padding: 1em;
+}
+
+.update-data {
+    display: flex;
+    justify-content: space-between;
+}
+
+.label {
+    font-size: smaller;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.input {
+    padding: 0.5em;
+    line-height: 1em;
+    border-radius: 0.3em;
+    border: 0.5px solid #ccc;
+}
+
+.label-input {
+    display: grid;
+    margin: 0.5em auto;
+}
+
+.customer-information {
+    margin: 0 5% 0 10%;
+    line-height: 2em;
+    padding: 2em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: smaller;
+    width: 30%;
+}
+
+.customer-list {
+    list-style: none;
+}
+
+.customer-list li {
+    display: inline-flex;
+    width: 70%;
+    justify-content: space-between;
+}

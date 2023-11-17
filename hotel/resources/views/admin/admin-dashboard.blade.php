@@ -14,8 +14,9 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/css/room-types.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/single-room-type.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/create-room.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('backend/assets/js/app.js') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/edit-booking.css') }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
 </head>
 
 <body>
@@ -25,7 +26,6 @@
             @yield('admin')
         </div>
     </div>
-    {{-- @include('admin.body.footer') --}}
 </body>
 
 <script>
@@ -35,5 +35,6 @@
         sidebar.classList.toggle('active');
     }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
 
 </html>

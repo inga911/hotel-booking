@@ -1,5 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .admin-main-title {
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 1.5rem;
+}
+
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+}
+
+.nav-tabs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.nav-tabs .nav-item {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.nav-tabs .nav-link {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #007bff;
+    border-radius: 4px 4px 0 0;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-bottom: none;
+}
+
+.nav-tabs .nav-link.active {
+    color: #495057;
+}
+
+.tab-content {
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    background-color: #fff;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+/* ERRORS MESSAGES */
+.alert-danger {
+    background-color: #ed143d66;
+    border: 1px solid crimson;
+    width: 50%;
+    margin-left: 25%;
+    margin: 2em auto;
+}
+
+.error-ul {
+    list-style: none;
+    line-height: 1.5em;
+    padding: 1em;
+}
+
+/* SUCCESS MESSAGES */
+.alert-success {
+    background: #71bb71b0;
+    line-height: 2em;
+    width: 50%;
+    margin-left: 25%;
+    padding: 1em;
+    margin: 2em auto;
 }

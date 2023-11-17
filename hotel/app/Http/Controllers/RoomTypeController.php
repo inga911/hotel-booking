@@ -16,10 +16,10 @@ class RoomTypeController extends Controller
 {
     public function roomTypeList()
     {
-        $roomType = RoomType::all();
+        $roomCounts = RoomType::withCount('rooms')->get();
         $id = Auth::user()->id;
         $admin = User::find($id);
-        return view('admin.room.room-types.room-type-view', compact('roomType', 'admin'));
+        return view('admin.room.room-types.room-type-view', compact('roomCounts', 'admin'));
     }
 
     public function addRoomType()
@@ -45,7 +45,7 @@ class RoomTypeController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->route('admin.room-list');
+        return redirect()->route('admin.room-list')->with('success', 'Room Type was created successfully');
     }
 
     public function roomTypeEdit(RoomType $roomType)
@@ -67,7 +67,8 @@ class RoomTypeController extends Controller
         if ($validator->fails()) {
             return redirect()
                 ->back()
-                ->withErrors($validator);
+                ->withErrors($validator)
+                ->withInput();
         }
 
         $roomType->update([

@@ -5,21 +5,23 @@
         <i class='bx bxs-chevron-right'></i>
         Room types
     </h1>
+    @include('admin.body.errors')
+    @include('admin.body.messages')
     <div class="roon-type-container">
         <div class="card">
-            @if ($roomType->isEmpty())
-                <p>No rooms yet.</p>
+            @if ($roomCounts->isEmpty())
+                <p>No room types yet.</p>
             @else
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Room Name</th>
-                            <th scope="col" colspan="3">Links</th>
+                            <th scope="col" colspan="4">Links</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($roomType as $key => $type)
+                        @foreach ($roomCounts as $key => $type)
                             <tr>
                                 <th scope="row">{{ $key + 1 }}</th>
                                 <td>{{ $type->name }}</td>
@@ -37,7 +39,12 @@
                                 <td>
                                     <a href="{{ route('admin.room-type.rooms', ['roomType' => $type->id]) }}">View rooms of
                                         this type</a>
+
                                 </td>
+                                <td>
+                                    <div>{{ $type->rooms_count }}</div>
+                                </td>
+
                             </tr>
                         @endforeach
                     </tbody>

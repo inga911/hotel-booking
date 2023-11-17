@@ -1,0 +1,60 @@
+body {
+    background-color: #f5feff;
+}
+.exp-wrapper {
+    position: relative;
+    border: 0.5px solid #aaa;
+    display: flex;
+    width: 300px;
+    justify-content: space-around;
+    height: 36px;
+    line-height: 36px;
+    font-size: 24px;
+    border-radius: 0.25em;
+}
+
+.exp-wrapper:after {
+    content: "/";
+    position: absolute;
+    left: 50%;
+    margin-left: -4px;
+    color: #aaaaaaad;
+}
+
+.exp {
+    float: left;
+    font-family: monospace;
+    border: 0;
+    width: 18px;
+    outline: none;
+    appearance: none;
+    font-size: 14px;
+}
+
+.card-info {
+    display: grid;
+}
+
+.card-number-data {
+    position: relative;
+    border: 0.5px solid #aaa;
+    display: flex;
+    /* width: 30%; */
+    justify-content: space-around;
+    height: 2em;
+    font-size: 24px;
+    border-radius: 0.25em;
+}
+.card-number-data-input {
+    border: none;
+    width: 3em;
+    outline: none;
+    appearance: none;
+}
+
+.stripe-card {
+    width: 50%;
+    border: 0.5px solid rgb(150, 150, 150);
+    border-radius: 1em;
+    padding: 2em;
+}

@@ -6,6 +6,9 @@
     border: 1px solid #ddd;
     border-radius: 5px;
 }
+.create-room-container {
+    display: flex;
+}
 .form-select {
     border-radius: 3px;
     display: flex;
@@ -107,4 +110,36 @@ button[type="submit"]:hover {
     right: 8px;
     top: 50%;
     transform: translateY(-50%);
+}
+
+[data-gallery="0"] {
+    display: none;
+}
+
+.gallery-col {
+    margin-top: 15px;
+}
+.form-label {
+    text-transform: uppercase;
+    width: 19vw;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.description-form {
+    width: 16vw;
+}
+
+.rem {
+    position: relative;
+    border: 1.5px solid black;
+    padding: 4px 8px;
+    border-radius: 2em;
+    background-color: #fff;
+}
+.rem:hover {
+    border: 1px solid crimson;
+    color: #fff;
+    background-color: crimson;
+    cursor: pointer;
 }

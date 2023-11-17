@@ -2,34 +2,27 @@
     <nav class="top-nav">
 
         <a href="/">
-            <img src="{{ asset('frontend/assets/images/hero-section/logo.jpeg') }}" class="header-logo" alt="Hotel logo">
+            <img src="{{ asset('frontend/assets/images/logo/logo.jpg') }}" class="header-logo" alt="Hotel logo">
         </a>
 
         <div class="top-right">
-            <a href="#">Language</a>
-            <a href="#">Valiuta</a>
+            <a href="/" class="nav-link">Home</a>
+            <a href="{{ route('frontend.show.all.room') }}" class="nav-link">All rooms</a>
             @auth
-                <a href="{{ route('dashboard') }}">
-                    <i class='bx bxs-user-pin'></i>My account
+                <a href="{{ route('dashboard') }}" class="nav-link">
+                    <i class='bx bxs-user-account front-header-icon'></i>My account
                 </a>
-                <a href="{{ route('user.logout') }}">
-                    <i class='bx bxs-user-rectangle'></i>Logout
+                <a href="{{ route('user.logout') }}" class="nav-link">
+                    <i class='bx bx-log-out front-header-icon'></i>Logout
                 </a>
             @else
-                <a href="{{ route('login') }}">
-                    <i class='bx bxs-user-pin'></i>Login
+                <a href="{{ route('login') }}" class="nav-link">
+                    <i class='bx bx-log-in front-header-icon'></i>Login
                 </a>
-                <a href="{{ route('register') }}">
-                    <i class='bx bxs-user-rectangle'></i>Register
+                <a href="{{ route('register') }}" class="nav-link">
+                    <i class='bx bxs-user-rectangle  front-header-icon'></i>Register
                 </a>
             @endauth
-        </div>
-    </nav>
-    <nav class="lower-nav">
-        <div class="lower-left">
-            <a href="#">Hotels</a>
-            <a href="#">Deals</a>
-            <a href="#">Resorts</a>
         </div>
     </nav>
 </header>

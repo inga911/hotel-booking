@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('room_id');
             $table->foreign('room_id')->references('id')->on('rooms');
             $table->string('room_photo')->nullable();
-            // $table->timestamps();
         });
     }
 
