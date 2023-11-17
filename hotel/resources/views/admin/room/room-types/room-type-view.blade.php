@@ -39,6 +39,7 @@
                                 <td>
                                     <a href="{{ route('admin.room-type.rooms', ['roomType' => $type->id]) }}">View rooms of
                                         this type</a>
+
                                 </td>
                                 <td>
                                     <div>{{ $type->rooms_count }}</div>

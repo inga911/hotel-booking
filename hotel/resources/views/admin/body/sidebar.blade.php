@@ -10,18 +10,21 @@
         <div class="user">
             <img src="{{ asset('backend/assets/image/user.jpg') }}" alt="user image" class="user-img">
             <div>
-                <p class="admin-name">{{ $admin->name }}</p>
-                <p class="profile-status">{{ $admin->role }} <span class="profile-status">{{ $admin->status }}</span>
-                </p>
+                <a href="{{ route('admin.profile') }}">
+                    <p class="admin-name">{{ $admin->name }}</p>
+                    <p class="profile-status">{{ $admin->role }} <span
+                            class="profile-status">{{ $admin->status }}</span>
+                    </p>
+                </a>
             </div>
         </div>
         <ul>
             <li>
-                <a href="{{ route('admin.profile') }}">
-                    <i class='bx bx-id-card'></i>
-                    <span class="nav-item">Profile</span>
+                <a href="{{ route('admin.dashboard') }}">
+                    <i class='bx bx-home-alt-2'></i>
+                    <span class="nav-item">Dashboard</span>
                 </a>
-                <span class="tooltip">Profile</span>
+                <span class="tooltip">Dashboard</span>
             </li>
             <li>
                 <a href="{{ route('admin.book-area') }}">
@@ -43,6 +46,13 @@
                     <span class="nav-item">CreateRoom</span>
                 </a>
                 <span class="tooltip">CreateRoom</span>
+            </li>
+            <li>
+                <a href="{{ route('admin.booking-list') }}">
+                    <i class='bx bx-hotel'></i>
+                    <span class="nav-item">BookingList</span>
+                </a>
+                <span class="tooltip">BookingList</span>
             </li>
             <li>
                 <a href="{{ route('admin.logout') }}">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\Room;
 use App\Models\RoomBookedDate;
+use App\Models\User;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 // use Stripe;
 use Illuminate\Support\Facades\Validator;
+use PhpParser\Node\Stmt\Return_;
 
 class BookingController extends Controller
 {
@@ -137,5 +139,67 @@ class BookingController extends Controller
         } else {
             return redirect()->back()->with('error', 'Invalid booking data');
         }
+    }
+
+    //Booking List (admin)
+    public function bookingList()
+    {
+        $id = Auth::user()->id;
+        $admin = User::find($id);
+
+        $allBookingData = Booking::orderBy('id', 'desc')->get();
+        foreach ($allBookingData as $booking) {
+            $booking->totalGuests = $booking->total_adult + $booking->total_child;
+        }
+        return view('admin.booking.booking-list', compact('allBookingData', 'admin'));
+    }
+
+    public function bookingEdit($id)
+    {
+        $admin = Auth::user();
+        $bookingEditData = Booking::with('room')->find($id);
+
+        return view('admin.booking.booking-edit', compact('bookingEditData', 'admin'));
+    }
+
+    public function updateBookingStatus(Request $request, $id)
+    {
+        $bookingUpdate = Booking::find($id);
+        $bookingUpdate->payment_status = $request->payment_status;
+        $bookingUpdate->status = $request->status;
+        $bookingUpdate->save();
+
+        $notification = array(
+            'success' => 'Information Updated Successfully'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function updateCheckInOut(Request $request, $id)
+    {
+        $checkInOutUpdate = Booking::find($id);
+
+        $newCheckIn = $request->check_in;
+        $newCheckOut = $request->check_out;
+
+        $fromDate = Carbon::parse($newCheckIn);
+        $toDate = Carbon::parse($newCheckOut);
+        $totalNights = $fromDate->diffInDays($toDate);
+
+        $roomPrice = $checkInOutUpdate->room->price;
+        $newTotalPrice = $totalNights * $roomPrice;
+
+        $checkInOutUpdate->check_in = $newCheckIn;
+        $checkInOutUpdate->check_out = $newCheckOut;
+        $checkInOutUpdate->total_night = $totalNights;
+        $checkInOutUpdate->total_price = $newTotalPrice;
+
+        $checkInOutUpdate->save();
+
+        $notification = array(
+            'success' => 'Information Updated Successfully'
+        );
+
+        return redirect()->back()->with($notification);
     }
 }
