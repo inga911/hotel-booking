@@ -34,11 +34,18 @@
                 <span class="tooltip">BookArea</span>
             </li>
             <li>
-                <a href="{{ route('admin.room-list') }}">
+                <a href="{{ route('admin.room-type-list') }}">
                     <i class='bx bx-sitemap'></i>
-                    <span class="nav-item">ManageRoom</span>
+                    <span class="nav-item">RoomType</span>
                 </a>
-                <span class="tooltip">ManageRoom</span>
+                <span class="tooltip">RoomType</span>
+            </li>
+            <li>
+                <a href="{{ route('admin.booked-room-list') }}">
+                    <i class='bx bx-sitemap'></i>
+                    <span class="nav-item">BookedRoomList</span>
+                </a>
+                <span class="tooltip">BookedRoomList</span>
             </li>
             <li>
                 <a href="{{ route('admin.create-room') }}">

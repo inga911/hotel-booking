@@ -9,6 +9,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\RoomListController;
 
 Route::get('/', [FrontController::class, 'index']);
 Route::get('/show-all-room', [FrontController::class, 'showAllRoom'])->name('frontend.show.all.room');
@@ -63,7 +64,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     Route::post('/admin/booking-area/update', [BookAreaController::class, 'bookAreaUpdate'])->name('admin.book-area-update');
 
     // Room Types routes
-    Route::get('/admin/room-types/list', [RoomTypeController::class, 'roomTypeList'])->name('admin.room-list');
+    Route::get('/admin/room-types/list', [RoomTypeController::class, 'roomTypeList'])->name('admin.room-type-list');
     Route::get('/admin/room-types', [RoomTypeController::class, 'addRoomType'])->name('admin.add-room-type');
     Route::post('/admin/room-types/store', [RoomTypeController::class, 'roomTypeStore'])->name('admin.room-type-store');
     Route::get('/admin/room-types/edit/{roomType}', [RoomTypeController::class, 'roomTypeEdit'])->name('admin.room-type-edit');
@@ -86,4 +87,8 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     //Booking Edit/Update
     Route::post('/update/booking/status/{id}', [BookingController::class, 'updateBookingStatus'])->name('admin.update-booking-status');
     Route::post('/update/booking/check-in-out/{id}', [BookingController::class, 'updateCheckInOut'])->name('admin.update-check-in-out');
+
+
+    //Room List 
+    Route::get('/view-room-list', [RoomListController::class, 'viewRoomList'])->name('admin.booked-room-list');
 });

@@ -2,7 +2,9 @@
 @section('admin')
     @include('admin.body.errors')
     @include('admin.body.messages')
-    <h1>Booking Editing</h1>
+    <h1 class="admin-main-title">
+        <i class='bx bxs-chevron-right'></i>Booking Editing
+    </h1>
     <div class="main-info-top">
         <div class="horizontal-cards">
             <div class="card-top">
@@ -116,6 +118,7 @@
                                         </option>
                                     </select>
                                 </div>
+                                <a href=""><i class='bx bxs-download'></i>Download Invoice</a>
                                 <div>
                                     <button type="submit">Update</button>
                                 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\BookingRoomList;
 use App\Models\Room;
 use App\Models\RoomBookedDate;
 use App\Models\User;
@@ -134,6 +135,19 @@ class BookingController extends Controller
 
             Session::forget('user_registration_data');
             Session::forget('book_date');
+
+            $bookingId = $data->id;
+            $roomIds = [$room->id];
+            $roomNumber = $room->room_number;
+
+
+            foreach ($roomIds as $roomId) {
+                BookingRoomList::create([
+                    'booking_id' => $bookingId,
+                    'room_id' => $roomId,
+                    'room_number' => $roomNumber,
+                ]);
+            }
 
             return redirect()->route('frontend.show.all.room', compact('userRegistrationData'))->with('success', 'Registration completed successfully');
         } else {
