@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BookArea;
 use App\Models\Booking;
+use App\Models\Contact;
 use App\Models\Room;
 use App\Models\RoomBookedDate;
 use App\Models\RoomType;
@@ -195,5 +196,27 @@ class FrontController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => 'An error occurred']);
         }
+    }
+
+    //CONTACT
+    public function contact()
+    {
+        return view('frontend.contact.contact-us');
+    }
+
+    public function storeContact(Request $request)
+    {
+        Contact::insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'subject' => $request->subject,
+            'message' => $request->message,
+            'created_at' => Carbon::now(),
+        ]);
+        $notification = array(
+            'success' => 'Your message was sent successfully'
+        );
+        return redirect()->back()->with($notification);
     }
 }

@@ -28,7 +28,7 @@
             </li>
             <li>
                 <a href="{{ route('admin.book-area') }}">
-                    <i class='bx bx-book-open'></i>
+                    <i class='bx bxs-chalkboard'></i>
                     <span class="nav-item">BookArea</span>
                 </a>
                 <span class="tooltip">BookArea</span>
@@ -42,13 +42,14 @@
             </li>
             <li>
                 <a href="{{ route('admin.booked-room-list') }}">
-                    <i class='bx bx-sitemap'></i>
-                    <span class="nav-item">BookedRoomList</span>
+                    <i class='bx bx-list-ul'></i>
+                    <span class="nav-item">RoomListStatus</span>
                 </a>
-                <span class="tooltip">BookedRoomList</span>
+                <span class="tooltip">RoomListStatus</span>
             </li>
             <li>
                 <a href="{{ route('admin.create-room') }}">
+                    <i class='bx bx-plus bx-create-room'></i>
                     <i class='bx bx-hotel'></i>
                     <span class="nav-item">CreateRoom</span>
                 </a>
@@ -56,11 +57,28 @@
             </li>
             <li>
                 <a href="{{ route('admin.booking-list') }}">
-                    <i class='bx bx-hotel'></i>
+                    <i class='bx bx-book-content'></i>
                     <span class="nav-item">BookingList</span>
                 </a>
                 <span class="tooltip">BookingList</span>
             </li>
+
+            <li>
+                <a href="{{ route('admin.request-message') }}">
+                    <i class='bx bx-message'></i>
+                    <span class="nav-item">RequestMessage</span>
+                </a>
+                <span class="tooltip">RequestMessage</span>
+            </li>
+
+            <li>
+                <a href="{{ route('admin.smtp-setting') }}">
+                    <i class='bx bxs-cog'></i>
+                    <span class="nav-item">Setting</span>
+                </a>
+                <span class="tooltip">Setting</span>
+            </li>
+
             <li>
                 <a href="{{ route('admin.logout') }}">
                     <i class="bx bx-log-out"></i>

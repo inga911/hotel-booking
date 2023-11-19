@@ -8,6 +8,7 @@
         <div class="top-right">
             <a href="/" class="nav-link">Home</a>
             <a href="{{ route('frontend.show.all.room') }}" class="nav-link">All rooms</a>
+            <a href="{{ route('frontend.contact') }}" class="nav-link">Contact us</a>
             @auth
                 <a href="{{ route('dashboard') }}" class="nav-link">
                     <i class='bx bxs-user-account front-header-icon'></i>My account

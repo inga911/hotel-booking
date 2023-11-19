@@ -10,10 +10,15 @@ use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RoomListController;
+use App\Http\Controllers\SettingController;
+use App\Models\Testimonials;
 
 Route::get('/', [FrontController::class, 'index']);
 Route::get('/show-all-room', [FrontController::class, 'showAllRoom'])->name('frontend.show.all.room');
 Route::get('/show-room/{room}', [FrontController::class, 'showRoom'])->name('frontend.show.room');
+//Contact
+Route::get('/contact', [FrontController::class, 'contact'])->name('frontend.contact');
+Route::post('/store-contact', [FrontController::class, 'storeContact'])->name('frontend.store.contact');
 
 
 // Booking Search
@@ -33,6 +38,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/user-logout', [FrontController::class, 'userLogout'])->name('user.logout');
     Route::get('/user/change-paswword', [FrontController::class, 'userChangePassword'])->name('user.change-password');
     Route::post('/password/change/password', [FrontController::class, 'userChangePasswordStore'])->name('user.change-password-store');
+
+    //User booking
+    Route::get('/booking-details', [BookingController::class, 'userBooking'])->name('user.reservations-details');
+    Route::get('/user-invoice/{id}', [BookingController::class, 'userInvoice'])->name('user.invoice');
+    // Route::get('/download-invoice/{id}', [BookingController::class, 'downloadInvoice'])->name('admin.download.invoice');
+
+
 
     //Testimonials 
     Route::get('/testimonials-create', [TestimonialsController::class, 'createTestimonials'])->name('testimonials.create');
@@ -87,8 +99,16 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     //Booking Edit/Update
     Route::post('/update/booking/status/{id}', [BookingController::class, 'updateBookingStatus'])->name('admin.update-booking-status');
     Route::post('/update/booking/check-in-out/{id}', [BookingController::class, 'updateCheckInOut'])->name('admin.update-check-in-out');
+    // Route::get('/download-invoice/{id}', [BookingController::class, 'downloadInvoice'])->name('admin.download.invoice');
 
 
     //Room List 
     Route::get('/view-room-list', [RoomListController::class, 'viewRoomList'])->name('admin.booked-room-list');
+
+    //Settings(.env)
+    Route::get('/smtp-setting', [SettingController::class, 'smtpSetting'])->name('admin.smtp-setting');
+    Route::post('/smtp-update', [SettingController::class, 'smtpUpdate'])->name('admin.smtp-update');
+
+    //Contacts request
+    Route::get('/request-message', [AdminController::class, 'requestMessage'])->name('admin.request-message');
 });
