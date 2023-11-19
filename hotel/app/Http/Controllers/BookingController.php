@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BookingConfirm;
 use App\Models\Booking;
 use App\Models\BookingRoomList;
 use App\Models\Room;
@@ -14,7 +15,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 // use Stripe;
 use Illuminate\Support\Facades\Validator;
-use PhpParser\Node\Stmt\Return_;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
@@ -183,6 +185,17 @@ class BookingController extends Controller
         $bookingUpdate->status = $request->status;
         $bookingUpdate->save();
 
+        $sendMail = Booking::find($id);
+        $mailData = [
+            'check_in' => $sendMail->check_in,
+            'check_out' => $sendMail->check_out,
+            'name' => $sendMail->ame,
+            'email' => $sendMail->email,
+            'phone' => $sendMail->phone,
+        ];
+
+        Mail::to($sendMail->email)->send(new BookingConfirm($mailData));
+
         $notification = array(
             'success' => 'Information Updated Successfully'
         );
@@ -215,5 +228,36 @@ class BookingController extends Controller
         );
 
         return redirect()->back()->with($notification);
+    }
+
+    // public function downloadInvoice($id)
+    // {
+    //     $bookingEditData = Booking::with('room')->find($id);
+    //     $pdf = Pdf::loadView('admin.booking.pdf-invoice', compact('bookingEditData'))->setPaper('a4')->setOption([
+    //         'tempDir' => public_path(),
+    //         'chroot' => public_path(),
+    //     ]);
+
+    //     return $pdf->download('booking-invoice.pdf');
+    // }
+
+
+    //USER BOOKING
+    public function userBooking()
+    {
+        $id = Auth::user()->id;
+        $allUserBookingData = Booking::where('user_id', $id)->orderBy('id', 'desc')->get();
+        return view('frontend.user.user-reservation', compact('allUserBookingData'));
+    }
+
+    public function userInvoice($id)
+    {
+        $allUserBookingData = Booking::with('room')->find($id);
+        $pdf = Pdf::loadView('frontend.rooms.pdf-invoice', compact('allUserBookingData'))->setPaper('a4')->setOption([
+            'tempDir' => public_path(),
+            'chroot' => public_path(),
+        ]);
+
+        return $pdf->download('booking-invoice.pdf');
     }
 }
