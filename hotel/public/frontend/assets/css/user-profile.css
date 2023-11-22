@@ -1,3 +1,54 @@
-.user-profile-container {
-    /* width: 65%; */
+.user-container {
+    display: flex;
+}
+
+.profile-card {
+    width: 50%;
+    margin: 10% 10% 5% 0%;
+    border: 1px solid #ccc;
+    padding: 2em;
+    border-radius: 1em;
+}
+
+.user-main-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.user-form-label {
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: small;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+.user-form-label label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.user-form-label input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.user-btn:hover {
+    border-color: #23c85a;
+}
+
+@media (max-width: 779px) {
+    .user-container {
+        display: block;
+    }
+    .profile-card {
+        width: 80%;
+        margin: 10%;
+    }
 }

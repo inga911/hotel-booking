@@ -28,9 +28,9 @@ Route::controller(FrontController::class)->group(function () {
 });
 
 //USER SIDE
-Route::get('/dashboard', function () {
-    return view('frontend.user.user-dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/booking-details', function () {
+    return view('frontend.user.reservations-details');
+})->middleware(['auth', 'verified'])->name('user.reservations-details');
 
 Route::middleware('auth')->group(function () {
     Route::get('/edit-profile', [FrontController::class, 'editProfile'])->name('user.edit-profile');
@@ -111,4 +111,9 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
 
     //Contacts request
     Route::get('/request-message', [AdminController::class, 'requestMessage'])->name('admin.request-message');
+});
+
+//Notification
+Route::controller(BookingController::class)->group(function () {
+    Route::post('/mark-notification-as-read/{notification}', 'MarkAsRead');
 });

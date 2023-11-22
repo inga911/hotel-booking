@@ -46,6 +46,15 @@ class FrontController extends Controller
 
     public function userStore(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . auth()->user()->id,
+            'phone' => ['required', 'regex:/^[0-9]{9}$/'],
+            'address' => 'required',
+        ], [
+            'phone.regex' => 'The phone number must consist of 9 digits and contain only numbers (0-9).',
+        ]);
+
         $id = Auth::user()->id;
         $data = User::find($id);
         $data->name = $request->name;
@@ -54,7 +63,13 @@ class FrontController extends Controller
         $data->address = $request->address;
         $data->save();
 
-        return redirect()->back();
+
+        $notification = [
+            'message' => 'Profile information updated successfully!',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->back()->with($notification);
     }
 
     public function userLogout(Request $request)
@@ -75,36 +90,31 @@ class FrontController extends Controller
 
     public function userChangePasswordStore(Request $request)
     {
-        // Validation 
         $request->validate([
             'old_password' => 'required',
             'new_password' => 'required|confirmed'
         ]);
 
         if (!Hash::check($request->old_password, auth::user()->password)) {
-
             $notification = array(
                 'message' => 'Old Password Does not Match!',
                 'alert-type' => 'error'
             );
-
             return back()->with($notification);
         }
 
-        /// Update The New Password 
         User::whereId(auth::user()->id)->update([
             'password' => Hash::make($request->new_password)
         ]);
-
-
 
         $notification = array(
             'message' => 'Password Change Successfully',
             'alert-type' => 'success'
         );
 
-        return back();
+        return back()->with($notification);
     }
+
 
     public function showRoom(Room $room)
     {
@@ -206,6 +216,15 @@ class FrontController extends Controller
 
     public function storeContact(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'subject' => 'required',
+            'message' => 'required',
+            'subject' => 'required',
+        ]);
+
         Contact::insert([
             'name' => $request->name,
             'email' => $request->email,

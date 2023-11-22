@@ -167,3 +167,9 @@
 .bx {
     font-size: 26px;
 }
+
+.bx-create-room {
+    position: absolute;
+    bottom: 12px;
+    left: 14px;
+}

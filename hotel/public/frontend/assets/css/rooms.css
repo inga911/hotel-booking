@@ -1,3 +1,4 @@
+/* ROOMS IN MAIN PAGE (4 random rooms) */
 .rooms-container {
     height: auto;
 }
@@ -12,13 +13,15 @@
 .cards {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 80%;
-    margin-left: 10%;
+    width: 90%;
+    margin: 8% auto;
     justify-items: center;
 }
 .card {
     margin: 4%;
-    width: 95%;
+    height: max-content;
+    width: 90%;
+    height: 25em;
     text-align: center;
     box-shadow: 0 0px 5px 2px #d3d3d3a8;
     border-radius: 2em;
@@ -31,11 +34,10 @@
     scale: 1.03;
     transition: ease-in-out 0.3s;
 }
-
 .room-card-img {
     padding: 1em;
-    width: 25em;
-    height: 20em;
+    width: 90%;
+    height: 65%;
     object-fit: cover;
     border-radius: 2em;
 }
@@ -54,41 +56,86 @@
 .card-bx {
     font: 1.5em;
 }
-
 .each-room-card-link {
     text-decoration: none;
     color: black;
+    font-size: clamp(14px, 3.5vw, 15px);
 }
 
-/* ROOM SHOW PAGE */
+@media (max-width: 845px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
 
-.show-room-name-title {
-    text-align: center;
-    margin: 4%;
+/* ROOM SHOW - PAGE */
+
+.check-in-showroom {
+    width: 80%;
+    margin: 10%;
+}
+
+.booking-page-left-side {
+    border-radius: 1em;
+    margin: 2% auto;
+    background: white;
+    box-shadow: 0 0 5px 2px lightgrey;
+    line-height: 2em;
+    gap: 1em;
+    padding: 1.5em;
+    justify-content: center;
+    flex-wrap: wrap;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    font-size: smaller;
+    letter-spacing: 1px;
+}
+
+.total-data {
+    justify-content: end;
+    gap: 2em;
+}
+
+.reservation-bx {
+    font-size: 13px;
+}
+
+.reservation-table {
+    width: 12em;
+}
+
+.table-leftside {
+    border-bottom: 1px solid lightgrey;
+}
+
+.table-rightside {
+    text-align: right;
+    border-bottom: 1px solid lightgrey;
+}
+
+.count {
+    font-size: 11px;
+}
+
+.room-photo-gallery {
+    width: 90%;
+    margin: auto;
 }
 .photo-gallery {
-    width: 60%;
+    width: 100%;
     justify-content: center;
-    display: flex;
-    flex-wrap: wrap;
     margin: 0 auto;
     padding: 1em;
     justify-content: space-between;
 }
 
 .show-room-photo {
-    width: calc(50% - 0.5em);
-    height: 20em;
+    width: 100%;
+    height: 60%;
     object-fit: cover;
     margin: 0.25em;
     border-radius: 0.5em;
 }
-.no-background {
-    grid-template-columns: 1fr;
-    background-color: transparent;
-}
+
 .room-info {
     border-radius: 1em;
     margin: 2% auto;
@@ -99,8 +146,11 @@
     display: flex;
     gap: 1em;
     padding: 1.5em;
-    justify-content: center;
     flex-wrap: wrap;
+    text-transform: uppercase;
+    font-size: smaller;
+    letter-spacing: 1px;
+    justify-content: space-around;
 }
 
 .long-description {
@@ -114,62 +164,76 @@
     border-radius: 1em;
 }
 
-/* BOOKING PAGE */
+.room-info .bx {
+    font-size: clamp(18px, 3vw, 20px);
+    vertical-align: sub;
+}
+@media (min-width: 779px) {
+    .photo-gallery {
+        display: grid;
+        gap: 1em;
+        grid-template-columns: 1fr 1fr;
+    }
+    .show-room-photo {
+        height: 25em;
+    }
+    .checkin-data {
+        display: flex;
+    }
+    .total-data {
+        display: flex;
+        justify-content: end;
+        gap: 2em;
+    }
+}
+@media (max-width: 779px) {
+    .check-in-out {
+        display: block;
+    }
 
-.booking-page-check {
-    margin-left: 10%;
-    width: 20%;
-}
-
-.booking-page-left-side {
-    border-radius: 1em;
-    margin: 2% auto;
-    background: white;
-    box-shadow: 0 0 5px 2px lightgrey;
-    line-height: 2em;
-    display: flex;
-    gap: 1em;
-    padding: 1.5em;
-    justify-content: center;
-    flex-wrap: wrap;
-
-    text-transform: uppercase;
-    font-size: smaller;
-    letter-spacing: 1px;
-}
-
-.reservation-table {
-    width: 12em;
-}
-.table-leftside {
-    border-bottom: 1px solid lightgrey;
-}
-.table-rightside {
-    text-align: right;
-    border-bottom: 1px solid lightgrey;
-}
-.count {
-    font-size: 11px;
-}
-
-.reservation-bx {
-    font-size: 13px;
-}
-.check-in-out {
-    display: flex;
-}
-.booking-page-gallery {
-    margin: 0;
+    .total-data {
+        display: block;
+    }
 }
 
 /* SEARCH ROOM WITH POSSIBLE ROOM */
-
 .search-room-check-form {
     display: flex;
-    justify-content: center;
-    margin: 5%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
     background: #d9eaf9;
+    margin: 5%;
     border-radius: 2em;
-    gap: 2em;
-    align-items: center;
+    padding: 1em;
+}
+
+.check {
+    flex: 1;
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+.check-label {
+    margin-bottom: 5px;
+}
+
+.check-input,
+.guest-input {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.available-rooms-btn {
+    width: 100%;
+    margin-top: 0;
+}
+
+@media (min-width: 941px) {
+    .checkin-button {
+        margin-top: 4em;
+    }
 }

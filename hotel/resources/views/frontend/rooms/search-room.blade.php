@@ -1,7 +1,8 @@
 @extends('frontend.main-content')
 
 @section('content')
-    <div>
+    @include('frontend.body.header')
+    <section class="rooms-container">
 
         <div class="check-in-out-form">
             <form action="{{ route('booking.search') }}" method="get">
@@ -39,20 +40,20 @@
                         </select>
                     </div>
                     <div>
-                        <button type="submit" class="checkin-button">Check Availability</button>
+                        <button type="submit" class="checkin-button available-rooms-btn">Check Availability</button>
                     </div>
                 </div>
             </form>
 
         </div>
-    </div>
-    <section class="rooms-container">
+
         <h3 class="rooms-section-title">Available Rooms</h3>
-        <div class="cards" style="display: flex">
+        <div class="cards">
             @forelse ($rooms as $room)
                 @if ($room->status == 'active')
                     <div class="card">
-                        <a href="{{ route('frontend.show.room', ['room' => $room] + request()->query()) }}">
+                        <a href="{{ route('frontend.show.room', ['room' => $room] + request()->query()) }}"
+                            class="each-room-card-link">
                             @if ($room->photo)
                                 <img src="{{ asset('/upload/room_photos') . '/' . $room->photo }}" class="room-card-img"
                                     alt="{{ $room->room_name }}" width="200px">
