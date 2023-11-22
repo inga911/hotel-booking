@@ -1,19 +1,16 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
 .header-logo {
     width: 100px;
     height: 50px;
     object-fit: cover;
-    inset: 5%;
-    margin-bottom: -17%;
+    margin-top: 7%;
+    border-radius: 0.3em;
 }
 header {
-    background-color: black;
-    line-height: 3rem;
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+    background-color: rgb(0, 0, 0);
+    box-shadow: 1px 1px 4px 0 rgba(255, 255, 255, 0.489);
 }
 
 .top-nav {
@@ -22,25 +19,122 @@ header {
     margin-left: 5%;
 }
 
+.header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+}
+
+.header .menu {
+    clear: both;
+    max-height: 0;
+    transition: max-height 0.2s ease-out;
+}
+
+.header .menu-icon {
+    left: 12em;
+    cursor: pointer;
+    display: inline-block;
+    padding: 20px 20px;
+    position: relative;
+    user-select: none;
+}
+.header .menu-icon .navicon {
+    display: block;
+    height: 2px;
+    position: relative;
+    transition: 0.2s ease-out;
+    width: 18px;
+}
+
+.header .menu-icon .navicon:before,
+.header .menu-icon .navicon:after {
+    background: #00bcd4;
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all 0.2s ease-out;
+    width: 100%;
+}
 .nav-link {
     text-transform: uppercase;
     font-size: smaller;
     text-decoration: none;
-    color: rgb(239, 239, 239);
+    color: rgb(255, 255, 255);
     letter-spacing: 1.5px;
+    display: block;
+    padding: 10px 35px;
 }
 .nav-link:hover {
-    color: rgb(119, 233, 233);
+    color: rgb(87, 214, 214);
     scale: 1.2;
     transition: ease 0.15s;
 }
-.top-right {
-    display: flex;
-    width: 50%;
-    justify-content: space-evenly;
+.menu {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000000;
+    clear: both;
+    max-height: 0;
+    transition: max-height 0.2s ease-out;
 }
 
 .front-header-icon {
     font-size: x-large;
     vertical-align: middle;
+}
+
+.header .menu-icon .navicon:before {
+    top: 5px;
+}
+
+.header .menu-icon .navicon:after {
+    top: -5px;
+}
+
+.header .menu-btn {
+    display: none;
+}
+
+.header .menu-btn:checked ~ .menu {
+    max-height: 240px;
+    text-align: end;
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon {
+    background: transparent;
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon:before {
+    transform: rotate(-45deg);
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon:after {
+    transform: rotate(45deg);
+}
+
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+    top: 0;
+}
+
+@media (min-width: 912px) {
+    .header li {
+        float: left;
+    }
+
+    .header li a {
+        padding: 20px 30px;
+    }
+    .header .menu {
+        clear: none;
+        float: right;
+        max-height: none;
+    }
+    .header .menu-icon {
+        display: none;
+    }
 }

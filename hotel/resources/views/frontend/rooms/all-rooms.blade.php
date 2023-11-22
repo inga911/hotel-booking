@@ -1,6 +1,7 @@
 @extends('frontend.main-content')
 
 @section('content')
+    @include('frontend.body.header')
     <section class="rooms-container">
         <h3 class="rooms-section-title">All Rooms</h3>
         <div class="cards">

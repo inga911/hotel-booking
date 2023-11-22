@@ -28,6 +28,12 @@ class Room extends Model
         return $this->hasMany(RoomPhotos::class, 'room_id');
     }
 
+    public function lastBooking()
+    {
+        return $this->hasOne(Booking::class)->latest();
+    }
+
+
     public function savePhoto(UploadedFile $photo): string
     {
         $name = $photo->getClientOriginalName();

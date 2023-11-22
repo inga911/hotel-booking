@@ -1,6 +1,9 @@
 @extends('admin.admin-dashboard')
 @section('admin')
-    <h1>Booking List</h1>
+    <h1 class="admin-main-title">
+        <i class='bx bxs-chevron-right'></i>
+        Booking List
+    </h1>
     <div class="page-content">
 
         <div class="card">
@@ -9,7 +12,7 @@
 
                 <div class="table-responsive">
 
-                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <table class="table table-striped table-bordered" style="width:100%">
 
                         <thead>
 

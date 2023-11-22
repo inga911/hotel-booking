@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BookArea;
 use App\Models\Booking;
+use App\Models\Contact;
 use App\Models\Room;
 use App\Models\RoomBookedDate;
 use App\Models\RoomType;
@@ -45,6 +46,15 @@ class FrontController extends Controller
 
     public function userStore(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . auth()->user()->id,
+            'phone' => ['required', 'regex:/^[0-9]{9}$/'],
+            'address' => 'required',
+        ], [
+            'phone.regex' => 'The phone number must consist of 9 digits and contain only numbers (0-9).',
+        ]);
+
         $id = Auth::user()->id;
         $data = User::find($id);
         $data->name = $request->name;
@@ -53,7 +63,13 @@ class FrontController extends Controller
         $data->address = $request->address;
         $data->save();
 
-        return redirect()->back();
+
+        $notification = [
+            'message' => 'Profile information updated successfully!',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->back()->with($notification);
     }
 
     public function userLogout(Request $request)
@@ -74,36 +90,31 @@ class FrontController extends Controller
 
     public function userChangePasswordStore(Request $request)
     {
-        // Validation 
         $request->validate([
             'old_password' => 'required',
             'new_password' => 'required|confirmed'
         ]);
 
         if (!Hash::check($request->old_password, auth::user()->password)) {
-
             $notification = array(
                 'message' => 'Old Password Does not Match!',
                 'alert-type' => 'error'
             );
-
             return back()->with($notification);
         }
 
-        /// Update The New Password 
         User::whereId(auth::user()->id)->update([
             'password' => Hash::make($request->new_password)
         ]);
-
-
 
         $notification = array(
             'message' => 'Password Change Successfully',
             'alert-type' => 'success'
         );
 
-        return back();
+        return back()->with($notification);
     }
+
 
     public function showRoom(Room $room)
     {
@@ -195,5 +206,36 @@ class FrontController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => 'An error occurred']);
         }
+    }
+
+    //CONTACT
+    public function contact()
+    {
+        return view('frontend.contact.contact-us');
+    }
+
+    public function storeContact(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'subject' => 'required',
+            'message' => 'required',
+            'subject' => 'required',
+        ]);
+
+        Contact::insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'subject' => $request->subject,
+            'message' => $request->message,
+            'created_at' => Carbon::now(),
+        ]);
+        $notification = array(
+            'success' => 'Your message was sent successfully'
+        );
+        return redirect()->back()->with($notification);
     }
 }

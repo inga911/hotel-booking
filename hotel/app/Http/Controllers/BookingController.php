@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BookingConfirm;
 use App\Models\Booking;
+use App\Models\BookingRoomList;
 use App\Models\Room;
 use App\Models\RoomBookedDate;
 use App\Models\User;
@@ -13,7 +15,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 // use Stripe;
 use Illuminate\Support\Facades\Validator;
-use PhpParser\Node\Stmt\Return_;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
+use App\Notifications\BookingComplete;
+use Illuminate\Support\Facades\Notification;
+
 
 class BookingController extends Controller
 {
@@ -43,6 +49,8 @@ class BookingController extends Controller
 
     public function paymentStore(Request $request, Room $room)
     {
+
+        $user = User::where('role', 'admin')->get();
         // dd(env('STRIPE_SECRET'));
         $room_price = $room->price;
         // dd($room->price);
@@ -82,10 +90,6 @@ class BookingController extends Controller
             //     $payment_status = 0;
             //     $transation_id = '';
             // }
-
-
-
-
 
 
             $data = new Booking();
@@ -135,6 +139,21 @@ class BookingController extends Controller
             Session::forget('user_registration_data');
             Session::forget('book_date');
 
+            $bookingId = $data->id;
+            $roomIds = [$room->id];
+            $roomNumber = $room->room_number;
+
+
+            foreach ($roomIds as $roomId) {
+                BookingRoomList::create([
+                    'booking_id' => $bookingId,
+                    'room_id' => $roomId,
+                    'room_number' => $roomNumber,
+                ]);
+            }
+
+            Notification::send($user, new BookingComplete($request->name));
+
             return redirect()->route('frontend.show.all.room', compact('userRegistrationData'))->with('success', 'Registration completed successfully');
         } else {
             return redirect()->back()->with('error', 'Invalid booking data');
@@ -169,6 +188,17 @@ class BookingController extends Controller
         $bookingUpdate->status = $request->status;
         $bookingUpdate->save();
 
+        $sendMail = Booking::find($id);
+        $mailData = [
+            'check_in' => $sendMail->check_in,
+            'check_out' => $sendMail->check_out,
+            'name' => $sendMail->ame,
+            'email' => $sendMail->email,
+            'phone' => $sendMail->phone,
+        ];
+
+        Mail::to($sendMail->email)->send(new BookingConfirm($mailData));
+
         $notification = array(
             'success' => 'Information Updated Successfully'
         );
@@ -202,4 +232,39 @@ class BookingController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+
+    //USER BOOKING
+    public function userBooking()
+    {
+        $id = Auth::user()->id;
+        $allUserBookingData = Booking::where('user_id', $id)->orderBy('id', 'desc')->get();
+        return view('frontend.user.user-reservation', compact('allUserBookingData'));
+    }
+
+    public function userInvoice($id)
+    {
+        $allUserBookingData = Booking::with('room')->find($id);
+        $pdf = Pdf::loadView('frontend.rooms.pdf-invoice', compact('allUserBookingData'))->setPaper('a4')->setOption([
+            'tempDir' => public_path(),
+            'chroot' => public_path(),
+        ]);
+
+        return $pdf->download('booking-invoice.pdf');
+    }
+
+
+    // NOTIFICATION
+    // public function MarkAsRead(Request $request, $notificationId)
+    // {
+
+    //     $user = Auth::user();
+    //     $notification = $user->notifications()->where('id', $notificationId)->first();
+
+    //     if ($notification) {
+    //         $notification->markAsRead();
+    //     }
+
+    //     return response()->json(['count' => $user->unreadNotifications()->count()]);
+    // }
 }

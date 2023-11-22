@@ -81,8 +81,8 @@
             </div>
             <div class="booking-details">
 
-                <h3>{{ $room->room_name }}</h3>
-                <div class="">
+                <h3 class="reservation-room-name">{{ $room->room_name }}</h3>
+                <div>
                     <div class="booking-info">
                         <div>Check-in date</div>
                         <input autocomplete="off" type="date" name="check_in" id="check_in"
@@ -107,8 +107,10 @@
                             {{ request()->input('person_child', 0) }}
                         </p>
                     </div>
-                    <div>For changing the data <a
-                            href="{{ route('frontend.show.room', ['room' => $room] + request()->query()) }}">click
+                    <div>
+                        For changing the data
+                        <a href="{{ route('frontend.show.room', ['room' => $room] + request()->query()) }}"
+                            class="change-data">click
                             here</a>
                     </div>
                     <table class="reservation-page-table">
@@ -189,7 +191,7 @@
                 </div>
             </div>
 
-            <button type="submit" id="myButton">Order</button>
+            <button class="checkin-button" type="submit" id="myButton">Order</button>
         </div>
 
     </form>

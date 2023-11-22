@@ -6,18 +6,15 @@
 
 .booking-card {
     display: flex;
-    margin: 10vw;
     gap: 5vw;
-}
-
-.to-quick-booking {
-    width: 35vw;
+    margin-top: 10%;
 }
 
 .booking-area-img {
-    width: 500px;
-    height: 500px;
+    width: 50vw;
+    height: 70vh;
     object-fit: cover;
+    border-radius: 1em;
 }
 .booking-short-title {
     font-size: 2em;
@@ -47,4 +44,24 @@
     color: blueviolet;
     scale: 1.1;
     transition: ease-in-out 0.3s;
+}
+
+@media (max-width: 844px) {
+    .booking-container {
+        height: 100vh;
+    }
+    .to-quick-booking {
+        display: inline;
+    }
+    .booking-area-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 1em;
+        margin-top: 5%;
+    }
+    .booking-card {
+        display: block;
+        margin-top: 20%;
+    }
 }

@@ -9,10 +9,16 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\RoomListController;
+use App\Http\Controllers\SettingController;
+use App\Models\Testimonials;
 
 Route::get('/', [FrontController::class, 'index']);
 Route::get('/show-all-room', [FrontController::class, 'showAllRoom'])->name('frontend.show.all.room');
 Route::get('/show-room/{room}', [FrontController::class, 'showRoom'])->name('frontend.show.room');
+//Contact
+Route::get('/contact', [FrontController::class, 'contact'])->name('frontend.contact');
+Route::post('/store-contact', [FrontController::class, 'storeContact'])->name('frontend.store.contact');
 
 
 // Booking Search
@@ -22,9 +28,9 @@ Route::controller(FrontController::class)->group(function () {
 });
 
 //USER SIDE
-Route::get('/dashboard', function () {
-    return view('frontend.user.user-dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/booking-details', function () {
+    return view('frontend.user.reservations-details');
+})->middleware(['auth', 'verified'])->name('user.reservations-details');
 
 Route::middleware('auth')->group(function () {
     Route::get('/edit-profile', [FrontController::class, 'editProfile'])->name('user.edit-profile');
@@ -32,6 +38,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/user-logout', [FrontController::class, 'userLogout'])->name('user.logout');
     Route::get('/user/change-paswword', [FrontController::class, 'userChangePassword'])->name('user.change-password');
     Route::post('/password/change/password', [FrontController::class, 'userChangePasswordStore'])->name('user.change-password-store');
+
+    //User booking
+    Route::get('/booking-details', [BookingController::class, 'userBooking'])->name('user.reservations-details');
+    Route::get('/user-invoice/{id}', [BookingController::class, 'userInvoice'])->name('user.invoice');
+    // Route::get('/download-invoice/{id}', [BookingController::class, 'downloadInvoice'])->name('admin.download.invoice');
+
+
 
     //Testimonials 
     Route::get('/testimonials-create', [TestimonialsController::class, 'createTestimonials'])->name('testimonials.create');
@@ -63,7 +76,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     Route::post('/admin/booking-area/update', [BookAreaController::class, 'bookAreaUpdate'])->name('admin.book-area-update');
 
     // Room Types routes
-    Route::get('/admin/room-types/list', [RoomTypeController::class, 'roomTypeList'])->name('admin.room-list');
+    Route::get('/admin/room-types/list', [RoomTypeController::class, 'roomTypeList'])->name('admin.room-type-list');
     Route::get('/admin/room-types', [RoomTypeController::class, 'addRoomType'])->name('admin.add-room-type');
     Route::post('/admin/room-types/store', [RoomTypeController::class, 'roomTypeStore'])->name('admin.room-type-store');
     Route::get('/admin/room-types/edit/{roomType}', [RoomTypeController::class, 'roomTypeEdit'])->name('admin.room-type-edit');
@@ -86,4 +99,21 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     //Booking Edit/Update
     Route::post('/update/booking/status/{id}', [BookingController::class, 'updateBookingStatus'])->name('admin.update-booking-status');
     Route::post('/update/booking/check-in-out/{id}', [BookingController::class, 'updateCheckInOut'])->name('admin.update-check-in-out');
+    // Route::get('/download-invoice/{id}', [BookingController::class, 'downloadInvoice'])->name('admin.download.invoice');
+
+
+    //Room List 
+    Route::get('/view-room-list', [RoomListController::class, 'viewRoomList'])->name('admin.booked-room-list');
+
+    //Settings(.env)
+    Route::get('/smtp-setting', [SettingController::class, 'smtpSetting'])->name('admin.smtp-setting');
+    Route::post('/smtp-update', [SettingController::class, 'smtpUpdate'])->name('admin.smtp-update');
+
+    //Contacts request
+    Route::get('/request-message', [AdminController::class, 'requestMessage'])->name('admin.request-message');
+});
+
+//Notification
+Route::controller(BookingController::class)->group(function () {
+    Route::post('/mark-notification-as-read/{notification}', 'MarkAsRead');
 });

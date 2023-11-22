@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,5 +29,15 @@ class AdminController extends Controller
         $id = Auth::user()->id;
         $admin = User::find($id);
         return view('admin.admin-profile', compact('admin'));
+    }
+
+
+    //Contact
+    public function requestMessage()
+    {
+        $id = Auth::user()->id;
+        $admin = User::find($id);
+        $contact = Contact::latest()->get();
+        return view('admin.contact.request-message', compact('contact', 'admin'));
     }
 }

@@ -2,7 +2,9 @@
 @section('admin')
     @include('admin.body.errors')
     @include('admin.body.messages')
-    <h1>Booking Editing</h1>
+    <h1 class="admin-main-title">
+        <i class='bx bxs-chevron-right'></i>Booking Editing
+    </h1>
     <div class="main-info-top">
         <div class="horizontal-cards">
             <div class="card-top">
@@ -59,7 +61,7 @@
                                 <th>Room ID/Number</th>
                                 <th>Check IN</th>
                                 <th>Check Out</th>
-                                <th>Guest (adukt)</th>
+                                <th>Guest (adult)</th>
                                 <th>Guest (child)</th>
                                 <th>Days (total)</th>
                                 <th>Room Price</th>
@@ -116,6 +118,9 @@
                                         </option>
                                     </select>
                                 </div>
+                                {{-- <a href="{{ route('admin.download.invoice', $bookingEditData->id) }}"><i
+                                        class='bx bxs-download'></i>
+                                        Download Invoice</a> --}}
                                 <div>
                                     <button type="submit">Update</button>
                                 </div>

@@ -1,0 +1,52 @@
+.user-navbar {
+    position: relative;
+    width: 15%;
+    height: fit-content;
+    margin: 14% 0 5% 5%;
+    border: 1px solid #00bcd4cf;
+    display: inline-block;
+    border-radius: 1em;
+}
+.user-navbar ul {
+    list-style: none;
+}
+
+.user-nav-link {
+    line-height: 2rem;
+    margin: 5% 2%;
+    border-radius: 5px;
+}
+.user-nav-link:hover {
+    box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.301);
+}
+.user-nav-link a {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: black;
+    padding: 0.5em;
+    font-size: medium;
+    letter-spacing: 1px;
+}
+
+.user-nav-link a:hover {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgb(30, 151, 131);
+    padding: 0.5em;
+    font-size: medium;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 779px) {
+    .user-navbar {
+        width: 80%;
+        margin: 22% 10% 5%;
+    }
+}
+
+@media (min-width: 779px) {
+    .user-navbar {
+        width: 25%;
+        margin: 11% 10% 5%;
+    }
+}

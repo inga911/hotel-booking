@@ -11,8 +11,10 @@
                         book</a>
                 </div>
             </div>
-            <img src="{{ !empty($book->image) ? url('upload/bookarea/' . $book->image) : url('upload/noimage.jpg') }}"
-                class="booking-area-img" alt="book area">
+            <div class="booking-area-img">
+                <img src="{{ !empty($book->image) ? url('upload/bookarea/' . $book->image) : url('upload/noimage.jpg') }}"
+                    class="booking-area-img" alt="book area">
+            </div>
 
         </div>
     </section>
