@@ -61,7 +61,7 @@
                                 <th>Room ID/Number</th>
                                 <th>Check IN</th>
                                 <th>Check Out</th>
-                                <th>Guest (adukt)</th>
+                                <th>Guest (adult)</th>
                                 <th>Guest (child)</th>
                                 <th>Days (total)</th>
                                 <th>Room Price</th>
@@ -118,7 +118,9 @@
                                         </option>
                                     </select>
                                 </div>
-                                <a href=""><i class='bx bxs-download'></i>Download Invoice</a>
+                                {{-- <a href="{{ route('admin.download.invoice', $bookingEditData->id) }}"><i
+                                        class='bx bxs-download'></i>
+                                        Download Invoice</a> --}}
                                 <div>
                                     <button type="submit">Update</button>
                                 </div>

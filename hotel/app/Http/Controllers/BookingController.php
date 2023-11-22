@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Mail;
+use App\Notifications\BookingComplete;
+use Illuminate\Support\Facades\Notification;
+
 
 class BookingController extends Controller
 {
@@ -46,6 +49,8 @@ class BookingController extends Controller
 
     public function paymentStore(Request $request, Room $room)
     {
+
+        $user = User::where('role', 'admin')->get();
         // dd(env('STRIPE_SECRET'));
         $room_price = $room->price;
         // dd($room->price);
@@ -85,10 +90,6 @@ class BookingController extends Controller
             //     $payment_status = 0;
             //     $transation_id = '';
             // }
-
-
-
-
 
 
             $data = new Booking();
@@ -150,6 +151,8 @@ class BookingController extends Controller
                     'room_number' => $roomNumber,
                 ]);
             }
+
+            Notification::send($user, new BookingComplete($request->name));
 
             return redirect()->route('frontend.show.all.room', compact('userRegistrationData'))->with('success', 'Registration completed successfully');
         } else {
@@ -230,17 +233,6 @@ class BookingController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    // public function downloadInvoice($id)
-    // {
-    //     $bookingEditData = Booking::with('room')->find($id);
-    //     $pdf = Pdf::loadView('admin.booking.pdf-invoice', compact('bookingEditData'))->setPaper('a4')->setOption([
-    //         'tempDir' => public_path(),
-    //         'chroot' => public_path(),
-    //     ]);
-
-    //     return $pdf->download('booking-invoice.pdf');
-    // }
-
 
     //USER BOOKING
     public function userBooking()
@@ -260,4 +252,19 @@ class BookingController extends Controller
 
         return $pdf->download('booking-invoice.pdf');
     }
+
+
+    // NOTIFICATION
+    // public function MarkAsRead(Request $request, $notificationId)
+    // {
+
+    //     $user = Auth::user();
+    //     $notification = $user->notifications()->where('id', $notificationId)->first();
+
+    //     if ($notification) {
+    //         $notification->markAsRead();
+    //     }
+
+    //     return response()->json(['count' => $user->unreadNotifications()->count()]);
+    // }
 }

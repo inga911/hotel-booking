@@ -3,7 +3,7 @@
 @section('admin')
     <h1 class="admin-main-title">
         <i class='bx bxs-chevron-right'></i>
-        Room list
+        Booked Room list/status
     </h1>
     <div class="card">
         <div class="card-body">
