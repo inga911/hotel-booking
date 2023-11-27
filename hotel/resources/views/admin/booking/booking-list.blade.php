@@ -35,9 +35,6 @@
                                 <th>Payment status</th>
 
                                 <th>Status</th>
-
-                                <th>Action buttons</th>
-
                             </tr>
 
                         </thead>
@@ -82,11 +79,6 @@
                                         @else
                                             <div>Pending</div>
                                         @endif
-                                    </td>
-
-                                    <td>
-
-
                                     </td>
 
                                 </tr>

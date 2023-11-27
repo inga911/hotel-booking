@@ -3,8 +3,65 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <h1>main admin content</h1>
+    <h1 class="admin-main-title">
+        <i class='bx bxs-chevron-right'></i>main admin content
 
+    </h1>
+    {{-- DROPDOWN NOTIFICATIONS --}}
+    {{-- <li class="nav-item dropdown dropdown-large" style="list-style: none">
+        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" data-bs-toggle="dropdown">
+            @php
+                $ncount = Auth::user()
+                    ->unreadNotifications()
+                    ->count();
+            @endphp
+            <span class="alert-count" id="notification-count"
+                style="    color: red;
+        position: absolute;
+        left: 35px;
+        top: 50px;">{{ $ncount }}</span>
+            <i class='bx bx-bell'></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end">
+            <a href="javascript:;">
+                <div class="msg-header">
+                    <p class="msg-header-title">Notifications</p>
+                    <p class="msg-header-badge"> </p>
+                </div>
+            </a>
+            <div class="header-notifications-list">
+
+                @php
+                    $user = Auth::user();
+                @endphp
+
+                @forelse ($user->notifications as $notification)
+                    <a class="dropdown-item" href="javascript:;"
+                        onclick="markNotificationAsRead('{{ $notification->id }}')">
+                        <div>
+                            <div><i class='bx bx-check-square'></i>
+                            </div>
+                            <div>
+                                <h6>{{ $notification->data['message'] }}<span>
+                                        {{ Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}
+                                    </span></h6>
+                                <p>New Booking </p>
+                            </div>
+                        </div>
+                    </a>
+                @empty
+                @endforelse
+
+
+            </div>
+            <a href="javascript:;">
+                <div class="text-center msg-footer">
+
+                    <button class="btn btn-primary w-100">View All Notifications</button>
+                </div>
+            </a>
+        </div>
+    </li> --}}
     @php
         $bookings = App\Models\Booking::latest()->get();
         $pendingBooking = App\Models\Booking::where('status', '0')->get();
@@ -273,4 +330,23 @@
 
         });
     </script>
+    {{-- <script>
+        function markNotificationAsRead(notificationId) {
+            fetch('/mark-notification-as-read/' + notificationId, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({})
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('notification-count').textContent = data.count;
+                })
+                .catch(error => {
+                    console.log('Error', error);
+                });
+        }
+    </script> --}}
 @endsection

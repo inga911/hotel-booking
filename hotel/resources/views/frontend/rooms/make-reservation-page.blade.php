@@ -273,4 +273,46 @@
             });
         });
     </script>
+
+    <script>
+        $(document).ready(function() {
+            let check_in = "{{ request()->input('check_in', date('Y-m-d')) }}";
+            let check_out = "{{ request()->input('check_out', date('Y-m-d', strtotime('+1 day'))) }}";
+            let room_price = parseFloat("{{ $room->price }}");
+
+            updatePrice(check_in, check_out, room_price);
+
+            $("#check_in, #check_out").on('change', function() {
+                let check_in = $("#check_in").val();
+                let check_out = $("#check_out").val();
+                updatePrice(check_in, check_out, room_price);
+            });
+        });
+
+        function updatePrice(check_in, check_out, room_price) {
+            $.ajax({
+                url: "{{ route('check.room.availability') }}",
+                data: {
+                    room_id: "{{ $room->id }}",
+                    check_in: check_in,
+                    check_out: check_out
+                },
+                success: function(data) {
+                    let total_nights = calculateNights(check_in, check_out);
+                    let total_price = room_price * total_nights;
+
+                    $(".table_total_night").text(total_nights);
+                    $(".table_total_price").text(total_price.toFixed(2));
+                }
+            });
+        }
+
+        function calculateNights(check_in, check_out) {
+            let checkInDate = new Date(check_in);
+            let checkOutDate = new Date(check_out);
+            let timeDifference = checkOutDate - checkInDate;
+            let totalNights = Math.ceil(timeDifference / (1000 * 3600 * 24));
+            return totalNights;
+        }
+    </script>
 @endsection

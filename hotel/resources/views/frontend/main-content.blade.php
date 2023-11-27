@@ -30,7 +30,6 @@
     @yield('content')
 
     @include('frontend.body.footer')
-
 </body>
 
 </html>

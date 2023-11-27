@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Models\SmtpSetting;
 use Illuminate\Support\ServiceProvider;
-use Config;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
