@@ -20,13 +20,24 @@
                         <input type="text" name="name" value="{{ $user->name }}" />
                     </div>
                     <div class="user-form-label">
+                        <label>Last Name</label>
+                        <input type="text" name="last_name" value="{{ $user->last_name }}" />
+                    </div>
+                    <div class="user-form-label">
                         <label>Address</label>
                         <input type="text" name="address" value="{{ $user->address }}" />
+                    </div>
+                    <div class="user-form-label">
+                        <label>City</label>
+                        <input type="text" name="town" value="{{ $user->town }}" />
                     </div>
                     <div class="">
                         <div class="user-form-label">
                             <label>Email</label>
                             <input type="email" name="email" value="{{ $user->email }}" />
+                            @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="">

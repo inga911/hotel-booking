@@ -165,6 +165,8 @@
                             <th>Room</th>
                             <th>Check IN/Out</th>
                             <th>Guest (total)</th>
+                            <th>Payment Status</th>
+                            <th>Booking Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -183,6 +185,22 @@
                                 <td>
                                     {{ $item->totalGuests }}
                                     (Adult: {{ $item->total_adult }} and child: {{ $item->total_child }})
+                                </td>
+
+                                <td>
+                                    @if ($item->payment_status == 1)
+                                        <div>Complete</div>
+                                    @else
+                                        <div>Pending</div>
+                                    @endif
+                                </td>
+
+                                <td>
+                                    @if ($item->status == 1)
+                                        <div>Active</div>
+                                    @else
+                                        <div>Pending</div>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

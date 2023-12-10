@@ -24,7 +24,7 @@ class FrontController extends Controller
         $roomType = RoomType::all();
         $roomList = Room::all();
         $testimonials = Testimonials::all();
-        $randomRooms = $roomList->shuffle()->take(4);
+        $randomRooms = $roomList->shuffle()->unique('id')->take(4);
         $randomReview = $testimonials->shuffle()->take(3);
         return view('frontend.index', [
             'bookArea' => $bookArea,
@@ -46,21 +46,31 @@ class FrontController extends Controller
 
     public function userStore(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . auth()->user()->id,
-            'phone' => ['required', 'regex:/^[0-9]{9}$/'],
-            'address' => 'required',
-        ], [
-            'phone.regex' => 'The phone number must consist of 9 digits and contain only numbers (0-9).',
-        ]);
+        $request->validate(
+            [
+                'name' => 'required',
+                'last_name' => 'required',
+                'email' => 'required|email|unique:users,email,' . auth()->user()->id,
+                'phone' => ['required', 'regex:/^[+]*[0-9]{9}$/'],
+                'address' => 'required',
+                'town' => 'sometimes',
+            ],
+            [
+                'email' => 'The email you have provide is already exists.',
+            ],
+            [
+                'phone.regex' => 'The phone number must consist of 9 digits and contain only numbers (0-9).',
+            ]
+        );
 
         $id = Auth::user()->id;
         $data = User::find($id);
         $data->name = $request->name;
+        $data->last_name = $request->last_name;
         $data->email = $request->email;
         $data->phone = $request->phone;
         $data->address = $request->address;
+        $data->town = $request->town;
         $data->save();
 
 
@@ -138,6 +148,7 @@ class FrontController extends Controller
 
     public function bookingSearch(Request $request, Room $room)
     {
+
         $request->validate([
             'check_in' => 'required|date|after_or_equal:today',
             'check_out' => 'required|date|after:check_in',
@@ -162,10 +173,18 @@ class FrontController extends Controller
 
         $checkBookingDateId = RoomBookedDate::whereIn('book_date', $date_array)->distinct()->pluck('booking_id')->toArray();
 
+
+
+
         $personAdult = $request->input('person_adult');
         $personChild = $request->input('person_child');
 
-        $rooms = Room::where('status', 'active')
+        $rooms = Room::whereNotIn('id', function ($query) use ($date_array) {
+            $query->select('room_id')
+                ->from('room_booked_dates')
+                ->whereIn('book_date', $date_array);
+        })
+            ->where('status', 'active')
             ->whereNotIn('id', $checkBookingDateId)
             ->where(function ($query) use ($personAdult, $personChild) {
                 $query->where('total_adult', $personAdult)->where('total_child', $personChild);
@@ -174,6 +193,11 @@ class FrontController extends Controller
                 $query->where('total_adult', '=', $personAdult)->where('total_child', '=', $personChild);
             })
             ->get();
+        $checkBookingDateId = RoomBookedDate::whereIn('book_date', $date_array)
+            ->whereIn('room_id', $rooms->pluck('id'))
+            ->distinct()
+            ->pluck('booking_id')
+            ->toArray();
 
         return view('frontend.rooms.search-room', compact('rooms', 'checkBookingDateId'));
     }
@@ -204,7 +228,7 @@ class FrontController extends Controller
 
             return response()->json(['available_room' => $available_room, 'total_nights' => $nights]);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'An error occurred']);
+            return response()->json(['error' => 'No available room']);
         }
     }
 

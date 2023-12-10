@@ -1,7 +1,7 @@
-.resevations-container {
+/* .resevations-container {
     margin-left: 5%;
     margin-top: 5%;
-}
+} */
 
 .user-table {
     width: 100%;
@@ -60,6 +60,17 @@
     color: rgb(87, 214, 214);
     text-decoration: none;
     text-transform: uppercase;
+}
+
+.start-room-search {
+    text-decoration: none;
+    color: #06625e;
+    letter-spacing: 0.8px;
+}
+
+.start-room-search:hover {
+    text-decoration: none;
+    color: #42d0ca;
 }
 
 @media (max-width: 1012px) {

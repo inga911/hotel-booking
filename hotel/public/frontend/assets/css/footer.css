@@ -2,8 +2,13 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
-    background-color: rgb(7, 7, 84);
-    color: aliceblue;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 1) 1%,
+        rgb(192 230 226) 100%
+    );
+    color: rgb(1, 1, 1);
 }
 .footer-container {
     display: flex;
@@ -32,7 +37,7 @@ footer {
 
 .footer-links {
     display: flex;
-    color: #fff;
+    color: #000000;
     text-decoration: none;
     text-transform: uppercase;
     font-size: smaller;
@@ -40,7 +45,8 @@ footer {
 }
 
 .footer-links:hover {
-    color: #c17eff;
+    color: #0088a8;
+    transition: ease-in-out 0.15s;
     scale: 1.1;
 }
 

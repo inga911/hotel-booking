@@ -20,11 +20,13 @@
     font-size: 2em;
     letter-spacing: 6px;
     text-align: center;
+    text-transform: uppercase;
 }
 
 .booking-main-title {
     text-align: center;
-    line-height: 2.5em;
+    line-height: 2em;
+    text-transform: uppercase;
 }
 .booking-short-description {
     line-height: 2em;
@@ -41,7 +43,7 @@
 }
 
 .to-quick-booking-link:hover {
-    color: blueviolet;
+    color: #42d0ca;
     scale: 1.1;
     transition: ease-in-out 0.3s;
 }

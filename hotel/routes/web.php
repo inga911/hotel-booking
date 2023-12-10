@@ -42,13 +42,11 @@ Route::middleware('auth')->group(function () {
     //User booking
     Route::get('/booking-details', [BookingController::class, 'userBooking'])->name('user.reservations-details');
     Route::get('/user-invoice/{id}', [BookingController::class, 'userInvoice'])->name('user.invoice');
-    // Route::get('/download-invoice/{id}', [BookingController::class, 'downloadInvoice'])->name('admin.download.invoice');
 
 
-
-    //Testimonials 
-    Route::get('/testimonials-create', [TestimonialsController::class, 'createTestimonials'])->name('testimonials.create');
-    Route::post('/testimonials-store', [TestimonialsController::class, 'storeTestimonials'])->name('testimonials.store');
+    // //Testimonials 
+    // Route::get('/testimonials-create', [TestimonialsController::class, 'createTestimonials'])->name('testimonials.create');
+    // Route::post('/testimonials-store', [TestimonialsController::class, 'storeTestimonials'])->name('testimonials.store');
 });
 //Reservation
 Route::middleware(['auth'])->group(function () {
@@ -99,7 +97,6 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     //Booking Edit/Update
     Route::post('/update/booking/status/{id}', [BookingController::class, 'updateBookingStatus'])->name('admin.update-booking-status');
     Route::post('/update/booking/check-in-out/{id}', [BookingController::class, 'updateCheckInOut'])->name('admin.update-check-in-out');
-    // Route::get('/download-invoice/{id}', [BookingController::class, 'downloadInvoice'])->name('admin.download.invoice');
 
 
     //Room List 
@@ -113,7 +110,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     Route::get('/request-message', [AdminController::class, 'requestMessage'])->name('admin.request-message');
 });
 
-//Notification
-Route::controller(BookingController::class)->group(function () {
-    Route::post('/mark-notification-as-read/{notification}', 'MarkAsRead');
-});
+// //Notification
+// Route::controller(BookingController::class)->group(function () {
+//     Route::post('/mark-notification-as-read/{notification}', 'MarkAsRead');
+// });

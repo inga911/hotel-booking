@@ -7,7 +7,7 @@
                 <i class='bx bxs-chevron-right'></i>Your reservations
             </h1>
             <div>
-                @foreach ($allUserBookingData as $item)
+                @forelse ($allUserBookingData as $item)
                     <table class="table user-table">
                         <tr>
                             <th>Booking Number</th>
@@ -55,7 +55,12 @@
                             </td>
                         </tr>
                     </table>
-                @endforeach
+                @empty
+                    <div>
+                        You don't have any reservations yet. You can book your room <a href="/"
+                            class="start-room-search">HERE.</a>
+                    </div>
+                @endforelse
             </div>
         </div>
     </div>

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Facility;
 use App\Models\Room;
 use App\Models\RoomPhotos;
 use App\Models\RoomType;

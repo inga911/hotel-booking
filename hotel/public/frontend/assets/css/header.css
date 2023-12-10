@@ -9,8 +9,8 @@ header {
     position: fixed;
     width: 100%;
     z-index: 3;
-    background-color: rgb(0, 0, 0);
-    box-shadow: 1px 1px 4px 0 rgba(255, 255, 255, 0.489);
+    background-color: rgb(255 255 255);
+    box-shadow: 1px 1px 4px 0 rgb(113 113 113 / 15%);
 }
 
 .top-nav {
@@ -62,13 +62,13 @@ header {
     text-transform: uppercase;
     font-size: smaller;
     text-decoration: none;
-    color: rgb(255, 255, 255);
+    color: rgb(2 107 98);
     letter-spacing: 1.5px;
     display: block;
     padding: 10px 35px;
 }
 .nav-link:hover {
-    color: rgb(87, 214, 214);
+    color: rgb(34, 2, 107);
     scale: 1.2;
     transition: ease 0.15s;
 }
@@ -76,7 +76,7 @@ header {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #000000;
+    background-color: #ffffff;
     clear: both;
     max-height: 0;
     transition: max-height 0.2s ease-out;

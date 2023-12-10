@@ -42,12 +42,34 @@
     font-size: smaller;
 }
 .reservation-form-input {
-    line-height: 2em;
+    line-height: 1.5em;
     border-radius: 0.5em;
     border: 0.5px solid #ccc;
     padding: 5px;
+    margin-bottom: 1.5em;
+}
+.inline-text-error {
+    position: relative;
+    top: auto;
+    font-size: x-small;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #da0029;
+    margin-top: -30px;
 }
 
+.last-name-error {
+    margin-left: 10px;
+}
+
+@media (max-width: 512px) {
+    .display-inline {
+        display: block;
+    }
+    .display-grid {
+        width: 100%;
+    }
+}
 /* BOOKING-DETAILS */
 
 .booking-info {

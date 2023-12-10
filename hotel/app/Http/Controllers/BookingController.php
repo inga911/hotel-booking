@@ -90,6 +90,19 @@ class BookingController extends Controller
             //     $payment_status = 0;
             //     $transation_id = '';
             // }
+            $request->validate([
+                'name' => 'required|string',
+                'last_name' => 'required|string',
+                'company_name' => 'sometimes',
+                'email' => 'required|email',
+                'phone' => ['required', 'regex:/^[+]*[0-9]{9}$/'],
+                'country' => 'sometimes',
+                'post_code' => 'sometimes',
+                'address' => 'required',
+                'town' => 'sometimes',
+            ], [
+                'phone.regex' => 'The phone number must consist of 9 digits and contain only numbers (0-9).',
+            ]);
 
 
             $data = new Booking();
@@ -154,7 +167,7 @@ class BookingController extends Controller
 
             Notification::send($user, new BookingComplete($request->name));
 
-            return redirect()->route('frontend.show.all.room', compact('userRegistrationData'))->with('success', 'Registration completed successfully');
+            return redirect()->route('frontend.show.all.room', compact('userRegistrationData'))->with('success', 'Your registration has been completed successfully.');
         } else {
             return redirect()->back()->with('error', 'Invalid booking data');
         }
@@ -267,4 +280,6 @@ class BookingController extends Controller
 
     //     return response()->json(['count' => $user->unreadNotifications()->count()]);
     // }
+
+
 }

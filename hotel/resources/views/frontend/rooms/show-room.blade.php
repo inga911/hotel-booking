@@ -106,8 +106,6 @@
             <i class='bx bx-euro card-bx'></i>
             {{ $room->price }}
         </p>
-        {{-- Make visible if the user has booked this room --}}
-        {{-- <a href="{{ route('testimonials.create') }}">Feedback</a> --}}
     </div>
     <p class="long-description"><b>About room:</b> {{ $room->room_description }}</p>
 @endsection

@@ -44,13 +44,23 @@
                     </div>
                 </div>
             </form>
-
         </div>
 
-        <h3 class="rooms-section-title">Available Rooms</h3>
+
+        <div class="search-result">
+            @php
+                $availableRoomsCount = $rooms
+                    ->filter(function ($room) {
+                        return $room->status == 'active' && $room->isAvailableToday();
+                    })
+                    ->count();
+            @endphp
+
+            We can offer you {{ $availableRoomsCount }} rooms according to your request
+        </div>
         <div class="cards">
             @forelse ($rooms as $room)
-                @if ($room->status == 'active')
+                @if ($room->status == 'active' && $room->isAvailableToday())
                     <div class="card">
                         <a href="{{ route('frontend.show.room', ['room' => $room] + request()->query()) }}"
                             class="each-room-card-link">
@@ -62,22 +72,23 @@
                             @endif
                             <div class="room-name-card">{{ $room->room_name }}</div>
                             <div class="room-card-details">
-                                <div class="room-name-card"><i class='bx bx-euro card-bx'></i> {{ $room->price }}</div>
-                                <div class="room-name-card"><i class='bx bx-bed card-bx'></i> {{ $room->bed_style }}</div>
+                                <div class="room-name-card"><i class='bx bx-euro card-bx'></i> {{ $room->price }}
+                                </div>
+                                <div class="room-name-card"><i class='bx bx-bed card-bx'></i> {{ $room->bed_style }}
+                                </div>
                                 <div class="room-name-card"><i class='bx bx-male-female card-bx'></i>
                                     {{ $room->total_adult }}
                                 </div>
-                                <div class="room-name-card"><i class='bx bx-child card-bx'></i> {{ $room->total_child }}
+                                <div class="room-name-card"><i class='bx bx-child card-bx'></i>
+                                    {{ $room->total_child }}
                                 </div>
                             </div>
                             <div class="room-description">{{ $room->room_short_desc }}</div>
                         </a>
                     </div>
-                @else
-                    <div>No rooms available for the selected dates and number of PERSONS.</div>
                 @endif
             @empty
-                <div>No rooms available for the selected dates and number of persons.</div>
+                <div>No rooms available for the selected dates and number of PERSONS.</div>
             @endforelse
         </div>
     </section>

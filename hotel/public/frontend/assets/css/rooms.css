@@ -1,6 +1,6 @@
 /* ROOMS IN MAIN PAGE (4 random rooms) */
 .rooms-container {
-    height: auto;
+    min-height: 50vh;
 }
 .rooms-section-title {
     margin: 2em 0 1em 0;
@@ -14,7 +14,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 90%;
-    margin: 8% auto;
+    margin: 2% auto;
     justify-items: center;
 }
 .card {
@@ -202,10 +202,12 @@
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 10px;
-    background: #d9eaf9;
+    /* background: #d9eaf9; */
     margin: 5%;
     border-radius: 2em;
     padding: 1em;
+    border: 1px solid #f0efef;
+    box-shadow: 0 2px 5px 0px lightgray;
 }
 
 .check {
@@ -236,4 +238,9 @@
     .checkin-button {
         margin-top: 4em;
     }
+}
+.search-result {
+    text-align: center;
+    letter-spacing: 1px;
+    color: grey;
 }

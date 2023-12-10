@@ -1,10 +1,12 @@
 .user-container {
     display: flex;
+    min-height: 90vh;
 }
 
 .profile-card {
     width: 50%;
-    margin: 10% 10% 5% 0%;
+    height: fit-content;
+    margin: 11% 10% 5% 0%;
     border: 1px solid #ccc;
     padding: 2em;
     border-radius: 1em;
