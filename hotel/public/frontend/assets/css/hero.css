@@ -36,7 +36,7 @@
 }
 
 .check {
-    line-height: 03em;
+    line-height: 3em;
     padding: 11px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -48,11 +48,12 @@
     line-height: 2em;
     border-radius: 7px;
     background: transparent;
+    color: black;
 }
 
 .guest-input {
     height: 2.3em;
-    width: 3.5em;
+    /* width: 3.5em; */
     padding-left: 10px;
 }
 
@@ -66,6 +67,7 @@
     letter-spacing: 1px;
     font-size: smaller;
     font-weight: 500;
+    color: black;
 }
 
 .checkin-button:hover {
@@ -73,7 +75,12 @@
     cursor: pointer;
 }
 
-@media (min-width: 360px) {
+@media (max-width: 540px) {
+    .hero-section {
+        background-size: 160vh;
+        background-position-x: 22%;
+        height: 165vh;
+    }
     .hero-title {
         top: -1rem;
         font-size: clamp(22px, 4vw, 39px);
@@ -84,8 +91,15 @@
     }
 
     .check-in {
+        height: 50%;
+        top: 45%;
         width: 80%;
         left: 10%;
+        bottom: 0;
+        background-color: #ffffff;
+        border: 0.7px solid gray;
+        box-shadow: 0px 12px 22px 3px gray;
+        display: flex;
     }
 
     .check {
@@ -98,12 +112,47 @@
     }
 }
 
-@media (min-width: 768px) {
-    .hero-title {
-        width: 50%;
+@media (min-width: 540px) {
+    .hero-section {
+        background-position-x: 22%;
+        height: 125vh;
     }
+    .hero-title {
+        top: -1rem;
+        font-size: clamp(22px, 4vw, 39px);
+        width: 80%;
+        margin-left: 10%;
+        letter-spacing: 2px;
+        line-height: 2em;
+    }
+
     .check-in {
-        width: 60%;
-        left: 10%;
+        min-height: 18%;
+        width: 80%;
+        bottom: 12em;
+        background-color: #ffffff;
+        border: 0.7px solid gray;
+        box-shadow: 0px 12px 22px 3px gray;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .check {
+        line-height: 2.5rem;
+    }
+
+    .check-input,
+    .guest-input {
+        width: 100%;
+    }
+}
+
+@media (min-width: 990px) {
+    .check-in {
+        bottom: 5em;
+        background-color: #ffffff;
+        border: 0.7px solid gray;
+        box-shadow: 0px 12px 22px 3px gray;
+        display: flex;
     }
 }

@@ -4,7 +4,7 @@
     background: #f9f9f9;
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 14px 20px -1px rgb(157 154 154);
 }
 
 .contact-p {
@@ -85,7 +85,7 @@
 @media (max-width: 768px) {
     .contact-form {
         padding: 20px;
-        width: 80%;
+        width: 90%;
     }
     .contact-another-content {
         width: 90%;

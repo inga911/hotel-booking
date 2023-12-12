@@ -22,25 +22,25 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (Schema::hasTable('smtp_settings')) {
-            $settings = SmtpSetting::first();
+        // if (Schema::hasTable('smtp_settings')) {
+        //     $settings = SmtpSetting::first();
 
-            if ($settings) {
-                $data = [
-                    'driver' => $settings->mailer,
-                    'host' => $settings->host,
-                    'port' => $settings->port,
-                    'username' => $settings->username,
-                    'password' => $settings->password,
-                    'encryption' => $settings->encryption,
-                    'from' => [
-                        'address' => $settings->from_address,
-                        'name' => 'HotelBooking'
-                    ]
-                ];
+        //     if ($settings) {
+        //         $data = [
+        //             'driver' => $settings->mailer,
+        //             'host' => $settings->host,
+        //             'port' => $settings->port,
+        //             'username' => $settings->username,
+        //             'password' => $settings->password,
+        //             'encryption' => $settings->encryption,
+        //             'from' => [
+        //                 'address' => $settings->from_address,
+        //                 'name' => 'HotelBooking'
+        //             ]
+        //         ];
 
-                Config::set('mail', $data);
-            }
-        }
+        //         Config::set('mail', $data);
+        //     }
+        // }
     }
 }

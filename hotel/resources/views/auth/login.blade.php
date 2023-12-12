@@ -8,15 +8,9 @@
         margin-left: 5%
     }
 
-    .login-img {
-        width: 45%;
-        height: 95vh;
-    }
-
     .login-image {
-        position: relative;
         height: 50%;
-        width: 85%;
+        width: 50%;
         top: 10em;
         left: 4em;
         z-index: 0;
@@ -32,7 +26,7 @@
         display: grid;
         text-transform: uppercase;
         letter-spacing: 1px;
-        font-size: medium;
+        font-size: small;
 
     }
 
@@ -48,6 +42,7 @@
         border: 1px solid #ccc;
         border-radius: 0.5em;
         width: 100%;
+        font-size: small;
     }
 
     .login-link {
@@ -63,7 +58,7 @@
         text-transform: uppercase;
         font-size: small;
         letter-spacing: 1px;
-        background-color: F1DCF7;
+        background-color: #F1DCF7;
         border: none;
         border-radius: 0.3em;
     }
@@ -76,34 +71,43 @@
     }
 
 
-    @media(max-width:900px) {
+    @media (max-width: 900px) {
         .login-container {
-            display: block;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 5%;
         }
 
         .login-image {
-            width: 60%;
-            position: absolute;
-            height: 31%;
-            top: 8em;
-            left: 15%;
-        }
-
-        .login-img {
-            margin: 0;
+            position: relative;
             width: 100%;
+            top: 3em;
+            left: 0;
+            z-index: 0;
+            opacity: 0.9;
         }
 
         .login-form {
-            position: absolute;
-            left: 24%;
-            width: 49%;
-            top: 48%;
+            width: 80%;
+            max-width: 400px;
+            margin-top: 1em;
+            position: relative;
+            padding: 1em;
         }
 
-        .login-buttons {
-            flex-wrap: wrap
+
+        .login-label-input {
+            display: grid;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: small
         }
+
+        .label {
+            line-height: 2em;
+        }
+
     }
 
     .password-input-container {
@@ -122,9 +126,9 @@
 <x-auth-session-status class="mb-4" :status="session('status')" />
 <div class="login-container">
 
-    <div class="login-img">
-        <img src="{{ asset('/upload') . '/' . 'undraw_mobile_login_re_9ntv.svg' }}" class="login-image" alt="Login">
-    </div>
+
+    <img src="{{ asset('/upload') . '/' . 'undraw_mobile_login_re_9ntv.svg' }}" class="login-image" alt="Login">
+
     <div class="login-form">
         <form method="POST" action="{{ route('login') }}">
             @csrf

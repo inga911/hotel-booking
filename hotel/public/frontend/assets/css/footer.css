@@ -54,6 +54,7 @@ footer {
     font-size: 14px;
     font-style: italic;
     margin-top: 2%;
+    color: black;
 }
 .address-contact {
     line-height: 1.4em;
@@ -75,6 +76,7 @@ footer {
         margin-top: 9%;
         gap: 2em;
         width: 100%;
+        flex-wrap: wrap;
     }
     .footer-description {
         margin-bottom: 5%;

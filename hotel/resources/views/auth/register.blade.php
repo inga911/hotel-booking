@@ -9,15 +9,10 @@
         margin-left: 5%
     }
 
-    .login-img {
-        width: 45%;
-        height: 95vh;
-    }
 
     .login-image {
-        position: relative;
         height: 50%;
-        width: 85%;
+        width: 50%;
         top: 10em;
         left: 4em;
         z-index: 0;
@@ -27,7 +22,7 @@
     .login-form {
         width: 35%;
         line-height: 3em;
-        padding: 2em;
+        padding: 3em;
     }
 
     .login-label-input {
@@ -35,8 +30,6 @@
         text-transform: uppercase;
         letter-spacing: 1px;
         font-size: small;
-        line-height: 2em;
-        margin-bottom: 1em;
     }
 
     .login-buttons {
@@ -108,26 +101,26 @@
     @media(max-width:900px) {
         .login-container {
             display: block;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 5%;
         }
 
         .login-image {
-            width: 75%;
-            position: absolute;
-            height: 31%;
-            top: 8em;
-            left: 15%;
+            position: relative;
+            width: 50%;
+            top: 0em;
+            z-index: 0;
+            opacity: 0.9;
+            margin-left: 7%;
         }
 
-        .login-img {
-            margin: 0;
-            width: 100%;
-        }
 
         .login-form {
-            position: absolute;
-            width: 70%;
-            left: 13%;
-            top: 48%;
+            width: 80%;
+            position: relative;
+            padding: 1em;
+            top: -4em;
         }
 
         .login-buttons {
@@ -148,9 +141,8 @@
 </style>
 <div class="login-container">
 
-    <div class="login-img">
-        <img src="{{ asset('/upload') . '/' . 'undraw_sign_up_n6im.svg' }}" class="login-image" alt="Register">
-    </div>
+    <img src="{{ asset('/upload') . '/' . 'undraw_sign_up_n6im.svg' }}" class="login-image" alt="Register">
+
     <div class="login-form">
         <form method="POST" action="{{ route('register') }}">
             @csrf
