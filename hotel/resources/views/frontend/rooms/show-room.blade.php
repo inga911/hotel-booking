@@ -63,9 +63,9 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div>
-                        <button type="submit" class="checkin-button">BOOK NOW</button>
-                    </div>
+
+                    <button type="submit" class="checkin-button">BOOK NOW</button>
+
                 </div>
             </div>
         </form>

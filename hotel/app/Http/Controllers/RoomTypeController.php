@@ -45,7 +45,7 @@ class RoomTypeController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->route('admin.room-list')->with('success', 'Room Type was created successfully');
+        return redirect()->route('admin.room-type-list')->with('success', 'Room Type was created successfully');
     }
 
     public function roomTypeEdit(RoomType $roomType)

@@ -66,7 +66,7 @@
                                     </td>
 
                                     <td>
-                                        @if ($item->payment_method == '1')
+                                        @if ($item->payment_status == '1')
                                             <div>Complete</div>
                                         @else
                                             <div>Pending</div>

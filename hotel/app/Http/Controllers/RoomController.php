@@ -158,7 +158,7 @@ class RoomController extends Controller
                 RoomPhotos::add($gallery, $room->id);
             }
         }
-        return redirect()->route('admin.room-list', compact('admin'))->with('success', 'Room was updated successfully');
+        return redirect()->back()->with('success', 'Room was updated successfully');
     }
 
 

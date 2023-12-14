@@ -37,7 +37,7 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.room-type.rooms', ['roomType' => $type->id]) }}">View rooms of
+                                    <a href="{{ route('admin.rooms-list-view', ['roomType' => $type->id]) }}">View rooms of
                                         this type</a>
 
                                 </td>

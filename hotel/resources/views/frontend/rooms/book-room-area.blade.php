@@ -6,7 +6,7 @@
                 <h3 class="booking-main-title">{{ $book->main_title }}</h3>
                 <p class="booking-short-description">{{ $book->short_desc }}</p>
                 <div class="review-author">
-                    <a href="{{ $book->link_url }}" class="to-quick-booking-link"><i class='bx bxs-bell-ring bx-tada'></i>
+                    <a href="/" class="to-quick-booking-link"><i class='bx bxs-bell-ring bx-tada'></i>
                         Quick
                         book</a>
                 </div>

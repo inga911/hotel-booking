@@ -18,7 +18,6 @@
                             <th>Phone</th>
                             <th>Email</th>
                             <th>Date</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -32,7 +31,6 @@
                                 <td>{{ $item->phone }}</td>
                                 <td>{{ $item->email }}</td>
                                 <td>{{ $item->created_at }}</td>
-
                             </tr>
                         @endforeach
                     </tbody>

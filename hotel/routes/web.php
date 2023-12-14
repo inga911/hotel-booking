@@ -82,13 +82,14 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     Route::delete('/delete/{roomType}', [RoomTypeController::class, 'destroy'])->name('admin.room-type-delete');
 
     // Room routes
-    Route::get('/admin/room-type/{roomType}/rooms', [RoomController::class, 'roomIndexList'])->name('admin.room-type.rooms');
+    Route::get('/admin/room-type/{roomType}/rooms', [RoomController::class, 'roomIndexList'])->name('admin.rooms-list-view');
     Route::get('/admin/create-room', [RoomController::class, 'createRoom'])->name('admin.create-room');
     Route::post('/admin/room/store', [RoomController::class, 'roomStore'])->name('admin.room-store');
     Route::get('/admin/edit/{room}', [RoomController::class, 'roomEdit'])->name('admin.room-edit');
     Route::post('/admin/update/{room}', [RoomController::class, 'roomUpdate'])->name('admin.room-update');
     Route::delete('/delete-room/{room}', [RoomController::class, 'destroy'])->name('admin.room-delete');
     Route::delete('/delete-photo/{photo}', [RoomController::class, 'destroyPhoto'])->name('admin.delete-photo');
+    Route::get('/admin/room-list', [RoomController::class, 'roomIndexList'])->name('admin.room-list');
 
     //Booking List
     Route::get('/booking/list', [BookingController::class, 'bookingList'])->name('admin.booking-list');

@@ -70,9 +70,11 @@
 
 /* ROOM SHOW - PAGE */
 
-.check-in-showroom {
+.check-in-data {
     width: 80%;
     margin: 10%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .booking-page-left-side {
@@ -98,18 +100,20 @@
 .reservation-bx {
     font-size: 13px;
 }
-
-.reservation-table {
-    width: 12em;
+.booking-page-left-side {
+    width: 80%;
 }
 
 .table-leftside {
     border-bottom: 1px solid lightgrey;
+    width: 100%;
 }
 
 .table-rightside {
     text-align: right;
     border-bottom: 1px solid lightgrey;
+    display: flex;
+    align-items: baseline;
 }
 
 .count {
@@ -168,7 +172,21 @@
     font-size: clamp(18px, 3vw, 20px);
     vertical-align: sub;
 }
-@media (min-width: 779px) {
+
+@media (min-width: 540px) {
+    .checkin-data {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .check-input {
+        text-align: center;
+    }
+    .check {
+        text-align: center;
+    }
+    .reservation-table {
+        width: 50%;
+    }
     .photo-gallery {
         display: grid;
         gap: 1em;
@@ -177,25 +195,16 @@
     .show-room-photo {
         height: 25em;
     }
+    .total-data {
+        display: flex;
+    }
+}
+
+@media (min-width: 1040px) {
     .checkin-data {
         display: flex;
     }
-    .total-data {
-        display: flex;
-        justify-content: end;
-        gap: 2em;
-    }
 }
-@media (max-width: 779px) {
-    .check-in-out {
-        display: block;
-    }
-
-    .total-data {
-        display: block;
-    }
-}
-
 /* SEARCH ROOM WITH POSSIBLE ROOM */
 .search-room-check-form {
     display: flex;
