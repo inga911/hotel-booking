@@ -1,18 +1,44 @@
-{{-- <x-guest-layout> --}}
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap');
+
+    * {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+        background: #8288cf1c;
+    }
+
+    h1 {
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: #5b6096;
+        font-size: clamp(22px, 4vw, 40px);
+    }
+
+    .password-input-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .password-visibility {
+        cursor: pointer;
+        margin-left: -3em;
+        width: 1.5em;
+    }
+
     .login-container {
         display: flex;
         height: 97vh;
         align-items: center;
         gap: 2em;
         box-sizing: border-box;
-        margin-left: 5%
+        flex-direction: column;
+        justify-content: center;
     }
 
-
     .login-image {
-        height: 50%;
-        width: 50%;
+        width: 30%;
         top: 10em;
         left: 4em;
         z-index: 0;
@@ -20,9 +46,8 @@
     }
 
     .login-form {
-        width: 35%;
+        min-width: 30%;
         line-height: 3em;
-        padding: 3em;
     }
 
     .login-label-input {
@@ -30,6 +55,7 @@
         text-transform: uppercase;
         letter-spacing: 1px;
         font-size: small;
+
     }
 
     .login-buttons {
@@ -43,7 +69,8 @@
         padding: 0.7em;
         border: 1px solid #ccc;
         border-radius: 0.5em;
-        width: 100%
+        width: 100%;
+        font-size: small;
     }
 
     .login-link {
@@ -59,10 +86,9 @@
         text-transform: uppercase;
         font-size: small;
         letter-spacing: 1px;
-        background-color: F1DCF7;
+        background-color: #F1DCF7;
         border: none;
         border-radius: 0.3em;
-        flex-wrap: wrap;
     }
 
     .login-btn:hover {
@@ -80,7 +106,6 @@
         color: crimson;
     }
 
-
     .repeat-pasw {
         display: inline;
     }
@@ -97,52 +122,9 @@
         top: 2em;
         left: 3em;
     }
-
-    @media(max-width:900px) {
-        .login-container {
-            display: block;
-            flex-direction: column;
-            align-items: center;
-            margin-left: 5%;
-        }
-
-        .login-image {
-            position: relative;
-            width: 50%;
-            top: 0em;
-            z-index: 0;
-            opacity: 0.9;
-            margin-left: 7%;
-        }
-
-
-        .login-form {
-            width: 80%;
-            position: relative;
-            padding: 1em;
-            top: -4em;
-        }
-
-        .login-buttons {
-            flex-wrap: wrap
-        }
-    }
-
-    .password-input-container {
-        display: flex;
-        align-items: center;
-    }
-
-    .password-visibility {
-        cursor: pointer;
-        margin-left: -3em;
-        width: 1.5em;
-    }
 </style>
 <div class="login-container">
-
-    <img src="{{ asset('/upload') . '/' . 'undraw_sign_up_n6im.svg' }}" class="login-image" alt="Register">
-
+    <h1>Registration</h1>
     <div class="login-form">
         <form method="POST" action="{{ route('register') }}">
             @csrf
@@ -223,7 +205,6 @@
         </form>
     </div>
 </div>
-{{-- </x-guest-layout> --}}
 
 <script>
     function togglePasswordVisibility(inputId) {

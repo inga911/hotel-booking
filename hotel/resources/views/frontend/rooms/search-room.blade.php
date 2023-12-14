@@ -39,8 +39,8 @@
                             @endfor
                         </select>
                     </div>
-                    <div>
-                        <button type="submit" class="checkin-button available-rooms-btn">Check Availability</button>
+                    <div class="search-room-width">
+                        <button type="submit" class="checkin-button available-rooms-btn">Search</button>
                     </div>
                 </div>
             </form>

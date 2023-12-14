@@ -1,4 +1,3 @@
-{{-- <header class="header"> --}}
 <nav class="top-nav">
     <a href="/">
         <img class="header-logo" src="{{ asset('frontend/assets/images/logo/logo.jpg') }}" alt="Hotel logo">
@@ -34,4 +33,3 @@
         @endauth
     </ul>
 </nav>
-{{-- </header> --}}
