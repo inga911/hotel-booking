@@ -1,0 +1,135 @@
+$bp-largest: 75em; //1200px / 16 = 75em
+$bp-large: 62.5em; //1000px / 16 = 62.5em
+$bp-large-900: 56.25em; //900px / 16 = 56.25em
+$bp-medium: 50em; //800px  / 16 = 50em
+$bp-medium-700: 43.75em; //700px  / 16 = 43.75em
+$bp-small: 37.5em; //600px  / 16 = 37.5em
+$bp-smallest: 25em; //400px  / 16 = 25em
+
+
+$main-dark-blue: rgb(7, 5, 87);
+$main-light-yellow: rgb(243, 176, 5);
+$bg-light-grey: #f9f9f9;
+
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+
+    @media only screen and (max-width:$bp-large) {
+        font-size: 50%;
+    }
+}
+
+body {
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+}
+
+.section-title-main {
+    margin: 4rem 0;
+    text-align: center;
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgb(24, 84, 140);
+
+    @media only screen and (max-width:$bp-small) {
+        margin: 2rem 0;
+    }
+}
+
+.section-title-second {
+    text-align: center;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgb(24, 84, 140);
+}
+
+.section-paragraph {
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    color: rgb(24, 84, 140);
+    line-height: 1.5;
+    padding: 1.5rem 0;
+}
+
+.user-profile-title {
+    font-weight: 400;
+    margin-bottom: 5rem;
+
+    @media only screen and (max-width:$bp-medium) {
+        text-align: center;
+    }
+
+    .bx {
+        font-weight: 300;
+    }
+}
+
+
+/* ERRORS  */
+
+.user-success {
+    background: #90ee908a;
+    width: 30%;
+    padding: 2rem;
+    margin: 2%;
+    border-radius: 5px;
+    position: absolute;
+    list-style: none;
+    top: -100%;
+    font-size: 1.5rem;
+    animation: slideDown 0.6s ease-in-out forwards;
+}
+
+.user-error {
+    background: #ee90968a;
+    width: 30%;
+    padding: 2rem;
+    margin: 2%;
+    border-radius: 5px;
+    position: absolute;
+    list-style: none;
+    top: -100%;
+    animation: slideDown 0.6s ease-in-out forwards;
+}
+
+@keyframes slideDown {
+    0% {
+        top: -100%;
+        opacity: 0.3;
+    }
+
+    100% {
+        top: 4em;
+        opacity: 1;
+    }
+}
+
+// @media (max-width: 480px) {
+//     .user-success {
+//         background: #90ee908a;
+//         width: 85%;
+//         padding: 1em;
+//         margin: 7%;
+//         position: relative;
+//     }
+
+//     .user-error {
+//         background: #ee90968a;
+//         width: 85%;
+//         padding: 1em;
+//         margin: 7%;
+//         position: relative;
+//     }
+// }

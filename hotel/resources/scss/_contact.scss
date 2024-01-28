@@ -1,0 +1,137 @@
+.contact-form {
+    width: 50%;
+    margin: 5% auto;
+    background: $bg-light-grey;
+    padding: 3rem;
+    border-radius: 5px;
+    box-shadow: 0 1.5rem 2rem rgb(157 154 154);
+
+
+    @media only screen and (max-width:$bp-large) {
+        width: 60%;
+    }
+
+    @media only screen and (max-width:$bp-medium) {
+        width: 70%;
+    }
+
+    @media only screen and (max-width:$bp-small) {
+        width: 80%;
+    }
+
+    &__group {
+        margin-bottom: 2rem;
+
+        &--input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.4rem;
+            position: relative;
+        }
+    }
+
+    &__btn {
+        border: none;
+        background-color: transparent;
+        text-transform: uppercase;
+        font-size: 1.3rem;
+        text-decoration: none;
+        color: $main-dark-blue;
+        letter-spacing: 2px;
+        display: block;
+        position: relative;
+        overflow: hidden;
+        padding: 1rem 1rem;
+        cursor: pointer;
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: $main-light-yellow;
+            left: 0;
+            bottom: 0;
+            transform-origin: right;
+            transform: scaleX(0);
+            transition: transform .3s ease-in-out;
+        }
+
+        &:hover::before {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+
+        &:hover {
+            color: $main-light-yellow;
+        }
+
+        &:active::before {
+            width: 0%;
+        }
+
+        &:active {
+            color: rgb(213, 190, 132);
+        }
+    }
+}
+
+.contact-info {
+    width: 70%;
+    margin: 8% auto;
+
+    &__item {
+        margin-top: 3rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+
+
+        &--column {
+
+            .location {
+                z-index: 2;
+                font-size: 1.5rem;
+                padding: 2rem 0;
+            }
+
+            .contact {
+                z-index: 2;
+                padding: 2rem 0;
+
+                &--links {
+                    text-decoration: none;
+                    color: black;
+                    z-index: 5;
+                    font-size: 1.5rem;
+
+                    &:hover {
+                        color: #2a9792;
+                    }
+                }
+            }
+        }
+
+        &--img {
+            width: 35%;
+            top: -8em;
+            left: 14em;
+            z-index: 0;
+            opacity: 0.7;
+            z-index: -1;
+
+            @media only screen and (max-width:$bp-small) {
+                display: none;
+            }
+        }
+    }
+
+    .bx {
+        vertical-align: middle;
+        font-size: 2.5rem;
+        color: #42d0ca;
+        margin-right: 1rem;
+    }
+}

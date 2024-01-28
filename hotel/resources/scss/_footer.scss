@@ -1,0 +1,163 @@
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background: rgb(25, 18, 49);
+    color: goldenrod;
+
+    .footer-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+        grid-gap: 1.5rem;
+        padding: 2rem 0;
+
+        @media only screen and (max-width:$bp-small) {
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: min-content min-content;
+            gap: 0;
+            justify-items: center;
+        }
+
+        &--logo {
+            width: 50%;
+            height: 50%;
+            object-fit: cover;
+            border-radius: 3px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            margin-top: 10%;
+        }
+
+
+        &--links {
+            padding: 2rem;
+
+            .bx {
+                font-weight: 300;
+                font-size: 1.5rem;
+                vertical-align: middle;
+            }
+
+            .footer-links {
+                color: goldenrod;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-size: 1.2rem;
+                letter-spacing: 1px;
+                padding: .4rem .6rem;
+                font-weight: 300;
+                position: relative;
+                width: fit-content;
+                display: block;
+                position: relative;
+                overflow: hidden;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: 1px;
+                    background-color: $main-light-yellow;
+                    left: 0;
+                    bottom: 0;
+                    transform-origin: right;
+                    transform: scaleX(0);
+                    transition: transform .3s ease-in-out;
+                }
+
+                &:hover::before {
+                    transform-origin: left;
+                    transform: scaleX(1);
+                }
+
+                &:hover {
+                    color: $main-light-yellow;
+                }
+
+                &:active::before {
+                    width: 0%;
+                }
+
+                &:active {
+                    color: rgb(213, 190, 132);
+                }
+            }
+        }
+
+        &--contact {
+            font-weight: 300;
+            padding: 1rem;
+
+            @media only screen and (max-width:$bp-small) {
+                grid-row: 2/3;
+                grid-column: 1/span 4;
+            }
+
+            .contacts {
+                .contact-link {
+                    font-size: 1.2rem;
+                    color: goldenrod;
+                    text-decoration: none;
+                    letter-spacing: 1px;
+                    padding: .4rem 0;
+                    font-weight: 300;
+                    position: relative;
+                    width: fit-content;
+                    display: block;
+                    position: relative;
+                    overflow: hidden;
+
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        width: 100%;
+                        height: 1px;
+                        background-color: $main-light-yellow;
+                        left: 0;
+                        bottom: 0;
+                        transform-origin: right;
+                        transform: scaleX(0);
+                        transition: transform .3s ease-in-out;
+                    }
+
+                    &:hover::before {
+                        transform-origin: left;
+                        transform: scaleX(1);
+                    }
+
+                    &:hover {
+                        color: $main-light-yellow;
+                    }
+
+                    &:active::before {
+                        width: 0%;
+                    }
+
+                    &:active {
+                        color: rgb(213, 190, 132);
+                    }
+
+
+                    .bx {
+                        font-weight: 300;
+                        font-size: 1.5rem;
+                        vertical-align: middle;
+                    }
+                }
+
+
+
+
+
+            }
+        }
+    }
+
+    .copy-rights {
+        padding-bottom: 1.5rem;
+        text-align: center;
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+        font-weight: 300;
+    }
+}

@@ -1,0 +1,113 @@
+.search-room-container {
+    .form-search {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+        gap: 2rem;
+        width: 80%;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        margin-top: 6rem;
+        margin-bottom: 5rem;
+
+        @media only screen and (max-width:$bp-small) {
+            display: block;
+        }
+
+        .search-btn {
+            height: 3.2rem;
+            align-self: center;
+            margin-top: 2rem;
+        }
+    }
+
+    .search-result-info {
+        text-align: center;
+        letter-spacing: 1px;
+        color: #676a94;
+        font-size: 1.2rem;
+    }
+
+    .found-room-cards {
+        margin: 10rem 5rem;
+
+        .found-room-link {
+            border-radius: 5px;
+            background-color: rgba(27, 21, 46, 0.895);
+            color: #fff;
+            font-weight: 200;
+            width: 60%;
+            margin-bottom: 5rem;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            display: grid;
+            grid-template-columns: 40% 1fr;
+            text-decoration: none;
+            line-height: 2;
+            font-size: 1.2rem;
+            box-shadow: 0 1rem 1rem grey;
+
+            @media only screen and (max-width:$bp-medium) {
+                display: block;
+                width: 80%;
+                text-align: center;
+                padding: 1.5rem;
+            }
+
+            @media only screen and (max-width:$bp-small) {
+                width: 100%;
+            }
+
+            &:hover {
+                filter: brightness(0.9);
+            }
+
+            &:active {
+                background-color: rgba(6, 5, 87, 0.817);
+
+            }
+
+            .found-room-img {
+                width: 90%;
+                height: 25rem;
+                border-radius: 5px;
+                object-fit: cover;
+                padding: 1rem;
+
+            }
+
+            .found-room-details {
+                display: block;
+                padding: 2rem 0;
+                font-size: 1.5rem;
+
+                @media only screen and (max-width:$bp-medium) {
+                    padding: 0;
+                }
+
+                &__name {
+                    text-transform: uppercase;
+                    font-size: 2rem;
+                    font-weight: 400;
+                }
+
+                &__info {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    margin: 3rem 0;
+                    gap: 1rem;
+
+                    @media only screen and (max-width:$bp-medium) {
+                        margin: 0;
+                        gap: 1rem;
+                    }
+                }
+
+                &__description {
+                    @media only screen and (max-width:$bp-small) {
+                        text-align: justify;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,112 @@
+.user-profile-container {
+    display: grid;
+    min-height: 90vh;
+    grid-template-columns: 40vw 1fr;
+
+    @media only screen and (max-width:$bp-medium) {
+        grid-template-columns: 1fr;
+    }
+
+    &__card {
+        margin-top: 13rem;
+        text-transform: uppercase;
+        font-size: 1rem;
+        font-weight: 300;
+
+        @media only screen and (max-width:$bp-medium) {
+            margin-top: 18rem;
+            width: 80%;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @media only screen and (max-width:$bp-small) {
+            width: 100%;
+            margin-top: 13rem;
+        }
+
+        .password-changed {
+            color: #00d100;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            padding: 1rem .5rem;
+
+            @media only screen and (max-width:$bp-medium) {
+                padding: 1rem 4.5rem;
+            }
+        }
+
+        .form {
+            border: 1px solid $main-dark-blue;
+            border-radius: 3px;
+            width: 80%;
+            padding: 2rem;
+            font-size: 1.2rem;
+            margin-bottom: 7rem;
+
+            @media only screen and (max-width:$bp-medium) {
+                width: 90%;
+                margin-left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .user-form-label {
+                padding: .5rem;
+                display: grid;
+                line-height: 2;
+
+                input {
+                    padding: 1rem .5rem;
+                    border-radius: 3px;
+                    border: 1px solid black;
+                }
+
+                .text-danger {
+                    color: crimson;
+                }
+            }
+
+            .user-profile-btn {
+                color: $main-dark-blue;
+                letter-spacing: 1px;
+                font-size: 1.3rem;
+                text-transform: uppercase;
+                padding: .8rem 1rem;
+                font-weight: 400;
+                position: relative;
+                border: none;
+                background-color: transparent;
+                margin-top: 1.5rem;
+                cursor: pointer;
+
+                &::before {
+                    content: '';
+                    background-color: $main-dark-blue;
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 1px;
+                    z-index: -1;
+                    border-radius: 2px;
+                    transition: all .3s ease-in-out;
+                }
+
+                &:hover {
+                    color: $main-light-yellow;
+                }
+
+                &:hover::before {
+                    bottom: 0;
+                    height: 100%;
+                }
+
+                &:active {
+                    transform: translateY(2px);
+                    box-shadow: 0 .3rem .6rem darkgray;
+                }
+
+            }
+        }
+    }
+}

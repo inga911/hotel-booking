@@ -1,13 +1,13 @@
 <div class="user-navbar">
     <ul>
-        <li class="user-nav-link">
-            <a href="{{ route('user.edit-profile') }}" class="">Profile</a>
+        <li class="list">
+            <a href="{{ route('user.reservations-details') }}" class="list__link">Reservations</a>
         </li>
-        <li class="user-nav-link">
-            <a href="{{ route('user.reservations-details') }}" class="">Reservations</a>
+        <li class="list">
+            <a href="{{ route('user.edit-profile') }}" class="list__link">Profile</a>
         </li>
-        <li class="user-nav-link">
-            <a href="{{ route('user.change-password') }}" class="">Change password</a>
+        <li class="list">
+            <a href="{{ route('user.change-password') }}" class="list__link">Change password</a>
         </li>
     </ul>
 </div>

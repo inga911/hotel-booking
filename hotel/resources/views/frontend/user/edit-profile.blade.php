@@ -1,9 +1,9 @@
 @extends('frontend.main-content')
 @section('content')
-    <div class=" user-container">
+    <div class="user-profile-container">
         @include('frontend.user.user-sidebar')
-        <div class="profile-card ">
-            <h1 class="user-main-title">
+        <div class="user-profile-container__card">
+            <h1 class="user-profile-title">
                 <i class='bx bxs-chevron-right'></i>My Profile
             </h1>
             @if (session('message'))
@@ -31,31 +31,23 @@
                         <label>City</label>
                         <input type="text" name="town" value="{{ $user->town }}" />
                     </div>
-                    <div class="">
-                        <div class="user-form-label">
-                            <label>Email</label>
-                            <input type="email" name="email" value="{{ $user->email }}" />
-                            @error('email')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+                    <div class="user-form-label">
+                        <label>Email</label>
+                        <input type="email" name="email" value="{{ $user->email }}" />
+                        @error('email')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
-                    <div class="">
-                        <div class="user-form-label">
-                            <label>Phone number</label>
-                            <input type="text" name="phone" value="{{ old('phone', $user->phone) }}" />
-                            @error('phone')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+                    <div class="user-form-label">
+                        <label>Phone number</label>
+                        <input type="text" name="phone" value="{{ old('phone', $user->phone) }}" />
+                        @error('phone')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
-                    <button type="submit" class="checkin-button user-btn">Edit & Save profile information</button>
-
+                    <button type="submit" class="user-profile-btn">Edit & Save profile information</button>
                 </form>
             </div>
         </div>
-
-
-
     </div>
 @endsection

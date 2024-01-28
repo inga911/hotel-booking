@@ -1,35 +1,27 @@
-<nav class="top-nav">
+<nav class="nav">
     <a href="/">
-        <img class="header-logo" src="{{ asset('frontend/assets/images/logo/logo.jpg') }}" alt="Hotel logo">
+        <img class="nav__logo" src="{{ asset('frontend/assets/images/logo/logo.jpg') }}" alt="Hotel logo">
     </a>
-    <input class="menu-btn" type="checkbox" id="menu-btn">
-    <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
-    <ul class="menu">
-        <li><a href="/" class="nav-link">Home</a></li>
-        <li><a href="{{ route('frontend.show.all.room') }}" class="nav-link">All rooms</a></li>
-        <li><a href="{{ route('frontend.contact') }}" class="nav-link">Contact us</a></li>
+    <input class="nav__btn" type="checkbox" id="menu-btn">
+    <label class="nav__icon" for="menu-btn"><span class="hamburger"></span></label>
+    <div class="nav__menu">
+        <a href="/" class="nav__menu--link">Home</a></li>
+        <a href="{{ route('frontend.show.all.room') }}" class="nav__menu--link">All rooms</a></li>
+        <a href="{{ route('frontend.contact') }}" class="nav__menu--link">Contact us</a></li>
         @auth
-            <li>
-                <a href="{{ route('user.reservations-details') }}" class="nav-link">
-                    <i class='bx bxs-user-account front-header-icon'></i>My reservations
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('user.logout') }}" class="nav-link">
-                    <i class='bx bx-log-out front-header-icon'></i>Logout
-                </a>
-            </li>
+            <a href="{{ route('user.reservations-details') }}" class="nav__menu--link">
+                <i class='bx bxs-user-account'></i>My reservations
+            </a>
+            <a href="{{ route('user.logout') }}" class="nav__menu--link">
+                <i class='bx bx-log-out'></i>Logout
+            </a>
         @else
-            <li>
-                <a href="{{ route('login') }}" class="nav-link">
-                    <i class='bx bx-log-in front-header-icon'></i>Login
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('register') }}" class="nav-link">
-                    <i class='bx bxs-user-rectangle  front-header-icon'></i>Register
-                </a>
-            </li>
+            <a href="{{ route('login') }}" class="nav__menu--link">
+                <i class='bx bx-log-in'></i>Login
+            </a>
+            <a href="{{ route('register') }}" class="nav__menu--link">
+                <i class='bx bxs-user-rectangle '></i>Register
+            </a>
         @endauth
-    </ul>
+    </div>
 </nav>
