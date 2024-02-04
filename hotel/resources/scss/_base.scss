@@ -8,6 +8,7 @@ $bp-smallest: 25em; //400px  / 16 = 25em
 
 
 $main-dark-blue: rgb(7, 5, 87);
+$main-darker-blue: rgb(25, 18, 49);
 $main-light-yellow: rgb(243, 176, 5);
 $bg-light-grey: #f9f9f9;
 
@@ -115,21 +116,3 @@ body {
         opacity: 1;
     }
 }
-
-// @media (max-width: 480px) {
-//     .user-success {
-//         background: #90ee908a;
-//         width: 85%;
-//         padding: 1em;
-//         margin: 7%;
-//         position: relative;
-//     }
-
-//     .user-error {
-//         background: #ee90968a;
-//         width: 85%;
-//         padding: 1em;
-//         margin: 7%;
-//         position: relative;
-//     }
-// }

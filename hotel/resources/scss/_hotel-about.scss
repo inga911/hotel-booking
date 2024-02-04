@@ -1,0 +1,166 @@
+// @media(prefers-redused-motion: no-preference) {
+body {
+    overflow-x: hidden;
+}
+
+.about-hotel-container {
+    height: fit-content;
+
+    .about-hero {
+        @supports (animation-timeline: view()) {
+            img {
+                width: 100%;
+                height: 80vh;
+                object-fit: cover;
+                filter: brightness(0.4) blur(1px);
+                position: relative;
+                animation: hero-image-animation linear forwards;
+                animation-timeline: view();
+                animation-range: exit;
+                transform-origin: top;
+
+                @media only screen and (max-width:$bp-large) {
+                    height: 100vh;
+                }
+            }
+
+            .about-hero-text {
+                width: 70%;
+                position: absolute;
+                top: 40%;
+                margin-left: 50%;
+                transform: translateX(-50%);
+                text-align: center;
+                line-height: 2.5;
+                letter-spacing: 2px;
+                color: #fff;
+                text-transform: uppercase;
+                font-size: 3.5rem;
+                animation: fade-out linear;
+                animation-timeline: view();
+                animation-range: exit -280px;
+
+                @media only screen and (max-width:$bp-large) {
+                    width: 80%;
+                    font-size: 3rem;
+                }
+
+                @media only screen and (max-width:$bp-medium) {
+                    width: 80%;
+                    font-size: 2.5rem;
+                }
+            }
+        }
+
+        @keyframes fade-out {
+            from {
+                opacity: .9;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        @keyframes hero-image-animation {
+            5% {
+                opacity: .8;
+            }
+
+            55% {
+                opacity: .2;
+                scale: 1.2;
+            }
+
+            100% {
+                opacity: 0;
+                scale: 1.3;
+            }
+        }
+    }
+
+    .about-main-text {
+        line-height: 2;
+        margin: 10rem auto;
+        height: fit-content;
+        padding-top: 4%;
+
+        @media only screen and (max-width:$bp-medium) {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 400;
+            font-size: 3rem;
+            margin: 5rem auto;
+            width: 50%;
+
+            @media only screen and (max-width:$bp-medium) {
+                width: 80%;
+            }
+        }
+
+        p {
+            font-size: 1.7rem;
+            width: 80%;
+            text-align: justify;
+            margin: 2rem auto 0rem auto;
+        }
+    }
+
+    .about-second-text {
+        height: fit-content;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        width: 80%;
+        margin: 5rem auto;
+
+        @media only screen and (max-width:$bp-large-900) {
+            grid-template-columns: 1fr;
+            margin-top: 0;
+        }
+
+        @supports (animation-timeline: view()) {
+            img {
+                width: 100%;
+                filter: brightness(.8);
+                border-radius: 3px;
+                scale: .6;
+                opacity: 0;
+                filter: grayscale(0.7);
+                animation: fade-in linear forwards;
+                animation-timeline: view();
+                animation-range: entry;
+
+                @media only screen and (max-width:$bp-large-900) {
+                    height: 20rem;
+                    object-fit: cover;
+                }
+            }
+        }
+
+        @keyframes fade-in {
+            to {
+                scale: 1;
+                opacity: 1;
+            }
+        }
+
+
+        p {
+            line-height: 2;
+            font-size: 1.7rem;
+            text-align: justify;
+            align-self: center;
+
+            @media only screen and (max-width:$bp-medium) {
+                padding: 0;
+            }
+        }
+    }
+}
+
+// }

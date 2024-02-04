@@ -13,7 +13,8 @@ class AdminController extends Controller
     {
         $id = Auth::user()->id;
         $admin = User::find($id);
-        return view('admin.index', compact('admin'));
+        $messagesCount = Contact::count();
+        return view('admin.index', compact('admin', 'messagesCount'));
     }
 
     public function adminLogout(Request $request)
@@ -33,11 +34,43 @@ class AdminController extends Controller
 
 
     //Contact
-    public function requestMessage()
+    public function requestMessage(Request $request)
     {
         $id = Auth::user()->id;
         $admin = User::find($id);
-        $contact = Contact::latest()->get();
-        return view('admin.contact.request-message', compact('contact', 'admin'));
+        $sort = $request->sort ?? 'default';
+
+        $query = Contact::query();
+
+        switch ($sort) {
+            case 'created_at_asc':
+                $query->orderBy('created_at', 'asc');
+                break;
+            case 'created_at_desc':
+                $query->orderBy('created_at', 'desc');
+                break;
+            default:
+                $query->orderBy('created_at', 'desc');
+                break;
+        }
+
+        $sortMessages = $query->paginate(6);
+
+        return view('admin.contact.request-message', [
+            'admin' => $admin,
+            'sortMessages' => $sortMessages,
+            'sort' => $sort
+        ]);
+    }
+
+    public function deleteMessage($id)
+    {
+        $message = Contact::find($id);
+
+        if ($message) {
+            $message->delete();
+            return back()->with('success', 'Message deleted successfully.');
+        }
+        return back()->with('error', 'Message not found.');
     }
 }

@@ -15,17 +15,23 @@
                         <div>
                             <div class="card--room-info"><i class='bx bx-euro card-bx'></i> {{ $room->price }} / night
                             </div>
-                            {{-- <div class="card--room-name"><i class='bx bx-bed card-bx'></i> {{ $room->bed_style }}</div> --}}
-                            {{-- <div class="card--room-name"><i class='bx bx-male-female card-bx'></i>
-                                {{ $room->total_adult }}
-                            </div> --}}
-                            {{-- <div class="card--room-name"><i class='bx bx-child card-bx'></i> {{ $room->total_child }}
-                            </div> --}}
                         </div>
-                        {{-- <div class="room-description">{{ $room->room_short_desc }}</div> --}}
                     </a>
                 </div>
             @endif
         @endforeach
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cardsContainer = document.querySelector('.rooms-container__cards');
+            const cards = cardsContainer.querySelectorAll('.card');
+
+            if (cards.length === 1) {
+                document.querySelector('.card').style.cssText =
+                    'width: 50%; margin-left: auto; margin-right: auto;';
+            }
+        });
+    </script>
+
 </section>

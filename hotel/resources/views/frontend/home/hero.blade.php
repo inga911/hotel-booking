@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="checkin__form--check">
-                    <div class="check-label">Guest (adult)</div>
+                    <div class="check-label">Adult</div>
                     <select name="person_adult" class="check-input">
                         @for ($i = 1; $i <= 6; $i++)
                             <option value="{{ $i }}">{{ $i }}</option>
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="checkin__form--check">
-                    <div class="check-label">Guest (child)</div>
+                    <div class="check-label">Child</div>
                     <select name="person_child" class="check-input">
                         @for ($i = 0; $i <= 6; $i++)
                             <option value="{{ $i }}">{{ $i }}</option>

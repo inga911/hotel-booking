@@ -2,7 +2,7 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
-    background: rgb(25, 18, 49);
+    background: $main-darker-blue;
     color: goldenrod;
 
     .footer-container {
@@ -137,18 +137,12 @@ footer {
                         color: rgb(213, 190, 132);
                     }
 
-
                     .bx {
                         font-weight: 300;
                         font-size: 1.5rem;
                         vertical-align: middle;
                     }
                 }
-
-
-
-
-
             }
         }
     }

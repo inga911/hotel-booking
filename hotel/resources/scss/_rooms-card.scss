@@ -4,12 +4,13 @@
 
     &__cards {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
         width: 80%;
         margin-left: 50%;
         transform: translateX(-50%);
         gap: 5rem;
         margin-top: 8%;
+        justify-items: center;
 
         .card {
             background-color: rgba(27, 21, 46, 0.895);
@@ -17,6 +18,11 @@
             justify-items: center;
             border-radius: 3px;
             box-shadow: 0 1rem 2rem rgba(62, 61, 61, 0.727);
+            width: 40rem;
+
+            @media only screen and (max-width:$bp-medium) {
+                max-width: 100%;
+            }
 
             &:active {
                 transform: translateY(3px);
@@ -48,13 +54,15 @@
                 font-size: 1.5rem;
 
                 .card-bx {
-                    font: 2em;
+                    font-size: 2rem;
+                    font-weight: 100;
                 }
             }
 
             &--room-info {
                 color: #fff;
                 padding: 1rem;
+                font-size: 1.2rem;
                 line-height: 1.2rem;
                 font-weight: 200;
                 text-align: center;

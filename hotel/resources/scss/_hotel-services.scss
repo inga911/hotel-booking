@@ -1,0 +1,80 @@
+.services-hotel-container {
+    .service-title {
+        height: 45vh;
+        font-size: 5rem;
+        padding: 15rem 0 10rem 0;
+        text-transform: uppercase;
+        font-weight: 200;
+        text-align: center;
+        letter-spacing: 3.5rem;
+        word-spacing: 2rem;
+        background: $main-darker-blue;
+        color: $main-light-yellow;
+
+        @media only screen and (max-width:$bp-large) {
+            padding-top: 15%;
+        }
+    }
+
+    .service-grid {
+        padding: 10rem 0;
+        width: 80%;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        display: grid;
+        gap: 3rem;
+        grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+        grid-template-rows: repeat(4, fit-content);
+
+        .services-col {
+            border-radius: 3px;
+            box-shadow: 0 1rem 1.2rem rgb(188, 187, 187);
+            border: 1px solid lightgray;
+            padding: 3rem;
+            display: flex;
+            gap: 2rem;
+
+            .bx {
+                color: $main-dark-blue;
+                font-size: 5rem;
+            }
+
+            .service-col-info {
+                padding: 1rem;
+
+                h3 {
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    font-size: 1.7rem;
+                    letter-spacing: 1.5px;
+                }
+
+                .services-text {
+                    padding-top: 3rem;
+                    font-size: 1.5rem;
+                    line-height: 1.5;
+                    text-align: justify;
+                    margin-left: -25%;
+                }
+            }
+
+            &:hover {
+                .bx {
+                    color: $main-light-yellow;
+                }
+            }
+        }
+    }
+
+    .about-services {
+        width: 80%;
+        font-size: 1.5rem;
+        line-height: 2;
+        margin: 0 auto 5rem auto;
+
+        &__paragraph {
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+}

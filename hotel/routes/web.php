@@ -16,6 +16,10 @@ use App\Models\Testimonials;
 Route::get('/', [FrontController::class, 'index']);
 Route::get('/show-all-room', [FrontController::class, 'showAllRoom'])->name('frontend.show.all.room');
 Route::get('/show-room/{room}', [FrontController::class, 'showRoom'])->name('frontend.show.room');
+Route::get('/about-hotel', [FrontController::class, 'aboutHotel'])->name('frontend.about.hotel');
+Route::get('/services-hotel', [FrontController::class, 'servicesHotel'])->name('frontend.services.hotel');
+Route::get('/gallery-hotel', [FrontController::class, 'galleryHotel'])->name('frontend.gallery.hotel');
+Route::get('/privacy-hotel', [FrontController::class, 'privacyHotel'])->name('frontend.privacy.hotel');
 //Contact
 Route::get('/contact', [FrontController::class, 'contact'])->name('frontend.contact');
 Route::post('/store-contact', [FrontController::class, 'storeContact'])->name('frontend.store.contact');
@@ -109,9 +113,5 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
 
     //Contacts request
     Route::get('/request-message', [AdminController::class, 'requestMessage'])->name('admin.request-message');
+    Route::delete('/delete-message/{id}', [AdminController::class, 'deleteMessage'])->name('admin.delete-message');
 });
-
-// //Notification
-// Route::controller(BookingController::class)->group(function () {
-//     Route::post('/mark-notification-as-read/{notification}', 'MarkAsRead');
-// });

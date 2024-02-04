@@ -251,7 +251,7 @@ class BookingController extends Controller
     public function userBooking()
     {
         $id = Auth::user()->id;
-        $allUserBookingData = Booking::where('user_id', $id)->orderBy('id', 'desc')->get();
+        $allUserBookingData = Booking::where('user_id', $id)->orderBy('id', 'desc')->paginate(3);
         return view('frontend.user.user-reservation', compact('allUserBookingData'));
     }
 
@@ -265,21 +265,4 @@ class BookingController extends Controller
 
         return $pdf->download('booking-invoice.pdf');
     }
-
-
-    // NOTIFICATION
-    // public function MarkAsRead(Request $request, $notificationId)
-    // {
-
-    //     $user = Auth::user();
-    //     $notification = $user->notifications()->where('id', $notificationId)->first();
-
-    //     if ($notification) {
-    //         $notification->markAsRead();
-    //     }
-
-    //     return response()->json(['count' => $user->unreadNotifications()->count()]);
-    // }
-
-
 }

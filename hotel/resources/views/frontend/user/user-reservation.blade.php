@@ -43,7 +43,7 @@
                     <tr>
                         <th>Status</th>
                         <td>
-                            @if ($item->status == '1')
+                            @if ($item->status == '1' || $item->status == '2')
                                 <a href="{{ route('user.invoice', $item->id) }}" class="user-download">
                                     <i class='bx bxs-download'></i>
                                     Complete
@@ -60,6 +60,7 @@
                         class="start-room-search">HERE.</a>
                 </div>
             @endforelse
+            <div class="pagination-div">{{ $allUserBookingData->links() }}</div>
         </div>
     </div>
 @endsection

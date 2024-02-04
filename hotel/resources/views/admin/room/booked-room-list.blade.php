@@ -3,7 +3,7 @@
 @section('admin')
     <h1 class="admin-main-title">
         <i class='bx bxs-chevron-right'></i>
-        Booked Room list/status
+        Room list with current status
     </h1>
     <div class="card">
         <div class="card-body">
@@ -11,11 +11,11 @@
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Sl</th>
+                            <th>#</th>
                             <th>Room Type</th>
                             <th>Room Number</th>
                             <th>Booking Status</th>
-                            <th>In/Out Date</th>
+                            <th>Check In/Out Date</th>
                             <th>Booking No</th>
                             <th>Customer</th>
                             <th>Status</th>
@@ -26,9 +26,14 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $item->roomType->name }}</td>
-                                <td>{{ $item->room_number }}</td>
+                                <td><a href="{{ route('admin.room-edit', $item) }}">{{ $item->room_number }}</a>
+                                </td>
                                 <td>
-                                    @if ($item->lastBooking)
+                                    @php
+                                        $isCurrentlyBooked = $item->lastBooking && now()->between($item->lastBooking->check_in, $item->lastBooking->check_out);
+                                    @endphp
+
+                                    @if ($isCurrentlyBooked)
                                         @if ($item->lastBooking->payment_status == 1)
                                             <span class="badge bg-danger">Booked</span>
                                         @else
@@ -39,29 +44,29 @@
                                     @endif
                                 </td>
 
-
-
                                 <td>
-                                    @if ($item->lastBooking)
+                                    @if ($item->lastBooking && now()->between($item->lastBooking->check_in, $item->lastBooking->check_out))
                                         {{ date('d-m-Y', strtotime($item->lastBooking->check_in)) }}
                                         to
                                         {{ date('d-m-Y', strtotime($item->lastBooking->check_out)) }}
                                     @else
-                                        ---
+                                        <span class="badge bg-success"></span>
                                     @endif
                                 </td>
 
                                 <td>
-                                    @if ($item->lastBooking)
+                                    @if ($item->lastBooking && now()->between($item->lastBooking->check_in, $item->lastBooking->check_out))
                                         {{ $item->lastBooking->code }}
                                     @else
-                                        ---
+                                        <div></div>
                                     @endif
                                 </td>
 
                                 <td>
-                                    @if ($item->lastBooking)
+                                    @if ($item->lastBooking && now()->between($item->lastBooking->check_in, $item->lastBooking->check_out))
                                         {{ $item->lastBooking->name }}
+                                    @else
+                                        <div></div>
                                     @endif
                                 </td>
 
@@ -79,5 +84,8 @@
                 </table>
             </div>
         </div>
+
+        <div class="pagination-div">{{ $room_number_list->links() }}</div>
+
     </div>
 @endsection

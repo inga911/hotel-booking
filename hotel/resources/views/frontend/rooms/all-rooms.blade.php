@@ -10,30 +10,31 @@
         @endphp
         <div class="search-result">Total: {{ $activeRoomsCount }} rooms</div>
 
-        <div class="sort-rooms">
-            <form action="{{ route('frontend.show.all.room') }}" method="get">
-                <label for="sort">Sort</label>
-                <select class="form-select" name="sort">
-                    @foreach ($sortRoom as $value => $text)
-                        <option value="{{ $value }}" @if ($value === $sort) selected @endif>
-                            {{ $text }}</option>
-                    @endforeach
-                </select>
-
-                <label for="filter">Filter</label>
-                <select class="form-select" name="filter">
-                    @foreach ($filterRoom as $value => $text)
-                        <option value="{{ $value }}" @if ($value === $filter) selected @endif>
-                            {{ $text }}</option>
-                    @endforeach
-                </select>
-
-                <button type="submit">SORT</button>
-                <a href="{{ route('frontend.show.all.room') }}">CLEAR</a>
-            </form>
-        </div>
+        <form action="{{ route('frontend.show.all.room') }}" method="get" class="sort-rooms">
+            <div>
+                <div class="sort-filter custom-select">
+                    <label for="sort">Sort</label>
+                    <select class="form-select" name="sort" onchange="this.form.submit()">
+                        @foreach ($sortRoom as $value => $text)
+                            <option value="{{ $value }}" @if ($value === $sort) selected @endif>
+                                {{ $text }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="sort-filter  custom-select">
+                    <label for="filter">Filter</label>
+                    <select class="form-select" name="filter" onchange="this.form.submit()">
+                        @foreach ($filterRoom as $value => $text)
+                            <option value="{{ $value }}" @if ($value === $filter) selected @endif>
+                                {{ $text }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <a class="sort-btn clear-btn" href="{{ route('frontend.show.all.room') }}">CLEAR</a>
+            </div>
+        </form>
         <div class="rooms-container__cards">
-            @foreach ($roomList as $room)
+            @foreach ($filteredRooms as $room)
                 @if ($room->status == 'active')
                     <div class="card">
                         <a href="{{ route('frontend.show.room', $room) }}" class="card--link">
@@ -59,5 +60,9 @@
                 @endif
             @endforeach
         </div>
+
+        <div class="pagination-div">{{ $filteredRooms->appends(request()->input())->links() }}</div>
+
+
     </section>
 @endsection

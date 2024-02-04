@@ -2,11 +2,10 @@
     <div class="footer-container">
         <img src="{{ asset('frontend/assets/images/logo/logo.jpg') }}" alt="logo" class="footer-container--logo">
         <div class="footer-container--links">
-            <a href="#" class="footer-links">About us</a>
-            <a href="#" class="footer-links">Services</a>
-            <a href="#" class="footer-links">Gallery</a>
-            <a href="#" class="footer-links">Terms</a>
-            <a href="#" class="footer-links">Privacy Policy</a>
+            <a href="{{ route('frontend.about.hotel') }}" class="footer-links">About us</a>
+            <a href="{{ route('frontend.services.hotel') }}" class="footer-links">Services</a>
+            <a href="{{ route('frontend.gallery.hotel') }}" class="footer-links">Gallery</a>
+            <a href="{{ route('frontend.privacy.hotel') }}" class="footer-links">Privacy Policy</a>
         </div>
         <div class="footer-container--links">
             <a href="#" class="footer-links"><i class='bx bxl-linkedin-square'></i> Linkedin</a>

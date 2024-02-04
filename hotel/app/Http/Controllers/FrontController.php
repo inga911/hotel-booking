@@ -23,16 +23,16 @@ class FrontController extends Controller
         $bookArea = BookArea::all();
         $roomType = RoomType::all();
         $roomList = Room::all();
-        $testimonials = Testimonials::all();
-        $randomRooms = $roomList->shuffle()->unique('id')->take(4);
-        $randomReview = $testimonials->shuffle()->take(3);
+        // $testimonials = Testimonials::all();
+        $randomRooms = $roomList->shuffle()->unique('id')->take(6);
+        // $randomReview = $testimonials->shuffle()->take(3);
         return view('frontend.index', [
             'bookArea' => $bookArea,
             'roomType' => $roomType,
             'roomList' => $roomList,
-            'testimonials' => $testimonials,
+            // 'testimonials' => $testimonials,
             'randomRooms' => $randomRooms,
-            'randomReview' => $randomReview,
+            // 'randomReview' => $randomReview,
         ]);
     }
 
@@ -72,8 +72,6 @@ class FrontController extends Controller
         $data->address = $request->address;
         $data->town = $request->town;
         $data->save();
-
-
         $notification = [
             'message' => 'Profile information updated successfully!',
             'alert-type' => 'success',
@@ -85,11 +83,8 @@ class FrontController extends Controller
     public function userLogout(Request $request)
     {
         Auth::guard('web')->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
         return redirect('/');
     }
 
@@ -118,10 +113,9 @@ class FrontController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'Password Change Successfully',
+            'message' => 'Password has been changed successfully!',
             'alert-type' => 'success'
         );
-
         return back()->with($notification);
     }
 
@@ -133,22 +127,63 @@ class FrontController extends Controller
         return view('frontend.rooms.show-room', compact('room', 'searchData'));
     }
 
-
-    public function showAllRoom()
+    public function showAllRoom(Request $request)
     {
         $roomType = RoomType::all();
+        $sort = $request->sort ?? 'default';
+        $filter = $request->filter ?? '';
         $roomList = Room::all();
-        $testimonials = Testimonials::all();
+        $rooms = Room::where('status', 'active');
+
+        switch ($filter) {
+            case 'single':
+                $rooms->where('total_adult', 1);
+                break;
+            case 'double':
+                $rooms->where('total_adult', 2);
+                break;
+            case 'single_no_kids':
+                $rooms->where('total_adult', 1)->where('total_child', 0);
+                break;
+            case 'double_no_kids':
+                $rooms->where('total_adult', 2)->where('total_child', 0);
+                break;
+            case 'single_with_kids':
+                $rooms->where('total_adult', 1)->where('total_child', '>', 0);
+                break;
+            case 'double_with_kids':
+                $rooms->where('total_adult', 2)->where('total_child', '>', 0);
+                break;
+        }
+
+        switch ($sort) {
+            case 'price_asc':
+                $rooms->orderBy('price');
+                break;
+            case 'price_desc':
+                $rooms->orderBy('price', 'desc');
+                break;
+            default:
+                $rooms->orderBy('id');
+                break;
+        }
+
+        $filteredRooms = $rooms->paginate(6);
+
         return view('frontend.rooms.all-rooms', [
-            'roomType' => $roomType,
+            'filteredRooms' => $filteredRooms,
             'roomList' => $roomList,
-            'testimonials' => $testimonials,
+            'roomType' => $roomType,
+            'sortRoom' => Room::SORT,
+            'sort' => $sort,
+            'filterRoom' => Room::FILTER,
+            'filter' => $filter
         ]);
     }
 
+
     public function bookingSearch(Request $request, Room $room)
     {
-
         $request->validate([
             'check_in' => 'required|date|after_or_equal:today',
             'check_out' => 'required|date|after:check_in',
@@ -172,9 +207,6 @@ class FrontController extends Controller
         }
 
         $checkBookingDateId = RoomBookedDate::whereIn('book_date', $date_array)->distinct()->pluck('booking_id')->toArray();
-
-
-
 
         $personAdult = $request->input('person_adult');
         $personChild = $request->input('person_child');
@@ -261,5 +293,28 @@ class FrontController extends Controller
             'success' => 'Your message was sent successfully'
         );
         return redirect()->back()->with($notification);
+    }
+
+    public function aboutHotel()
+    {
+        $bookArea = BookArea::all();
+        return view('frontend.body.hotel-about', [
+            'bookArea' => $bookArea,
+        ]);
+    }
+
+    public function servicesHotel()
+    {
+        return view('frontend.body.hotel-services');
+    }
+
+    public function galleryHotel()
+    {
+        return view('frontend.body.hotel-gallery');
+    }
+
+    public function privacyHotel()
+    {
+        return view('frontend.body.hotel-privacy');
     }
 }

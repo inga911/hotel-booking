@@ -32,3 +32,144 @@
     font-weight: 200;
     line-height: 1.5;
 }
+
+.sort-rooms {
+    display: block;
+    justify-content: center;
+    margin: 3rem auto;
+    line-height: 3rem;
+    font-size: 1.2rem;
+
+    div {
+        display: flex;
+        justify-content: center;
+
+        @media only screen and (max-width:$bp-medium-700) {
+            display: grid;
+            gap: 2rem;
+            justify-content: flex-start;
+        }
+
+
+        .sort-filter {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-left: 5rem;
+
+            label {
+                margin-right: 5px;
+                text-transform: uppercase;
+                font-weight: 500;
+                letter-spacing: 1px;
+            }
+
+            .form-select {
+                padding: 8px 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                background-color: white;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                transition: border-color 0.3s;
+                cursor: pointer;
+                letter-spacing: 1px;
+
+
+                option {
+                    font-size: 1.2rem;
+                    margin: 1rem 0;
+                }
+
+                &:focus {
+                    border-color: #e5d609;
+                    outline: none;
+                }
+            }
+        }
+
+        .sort-btn {
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: $main-dark-blue;
+            letter-spacing: 1px;
+            display: block;
+            position: relative;
+            overflow: hidden;
+            padding: 1rem 1rem;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            line-height: 1.5rem;
+            font-weight: 300;
+
+            &::before {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                background-color: $main-light-yellow;
+                left: 0;
+                bottom: 0;
+                transform-origin: right;
+                transform: scaleX(0);
+                transition: transform .3s ease-in-out;
+            }
+
+            &:hover::before {
+                transform-origin: left;
+                transform: scaleX(1);
+            }
+
+            &:hover {
+                color: $main-light-yellow;
+            }
+
+            &:active::before {
+                width: 0%;
+            }
+
+            &:active {
+                color: rgb(213, 177, 85);
+            }
+        }
+
+        .clear-btn {
+            font-weight: 500;
+            margin-left: 4.1rem;
+
+            &::before {
+                background-color: crimson;
+            }
+
+            &:hover {
+                color: crimson;
+            }
+
+            &:active {
+                color: rgb(81, 17, 8);
+            }
+        }
+    }
+
+    .sort-filter-btn {
+        display: flex;
+        align-items: baseline;
+        row-gap: 3rem;
+        justify-content: center;
+        margin-top: 2rem;
+
+        @media only screen and (max-width:$bp-medium-700) {
+            display: flex;
+            row-gap: 2rem;
+            justify-content: flex-start;
+            width: 90%;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @media only screen and (max-width:$bp-small) {
+            width: 85%;
+        }
+    }
+}

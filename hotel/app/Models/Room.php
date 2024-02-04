@@ -13,6 +13,23 @@ class Room extends Model
     protected $guarded = [];
     public $timestamps = false;
 
+    const SORT = [
+        'default' => 'Default',
+        'price_asc' => 'Low price to high price',
+        'price_desc' => 'High price to low price',
+    ];
+
+    const FILTER = [
+        'default' => 'Show all',
+        'single' => 'Single room',
+        'double' => 'Double room',
+        'single_no_kids' => 'Single room without child',
+        'double_no_kids' => 'Double room without child',
+        'single_with_kids' => 'Single room with child',
+        'double_with_kids' => 'Double room with child'
+    ];
+
+
     public function roomType()
     {
         return $this->belongsTo(RoomType::class, 'room_type_id');
@@ -37,6 +54,7 @@ class Room extends Model
     {
         return Booking::where('room_id', $this->id)
             ->where('status', 0)
+            ->where('status', 2)
             ->count();
     }
 
@@ -77,11 +95,9 @@ class Room extends Model
 
     public function isAvailableForDates($checkIn, $checkOut)
     {
-        // Convert check-in and check-out dates to Carbon instances
         $checkInDate = Carbon::parse($checkIn);
         $checkOutDate = Carbon::parse($checkOut);
 
-        // Check if there are any bookings that overlap with the selected dates
         $overlap = $this->bookings()
             ->where(function ($query) use ($checkInDate, $checkOutDate) {
                 $query->where(function ($q) use ($checkInDate, $checkOutDate) {
@@ -95,7 +111,6 @@ class Room extends Model
             })
             ->count();
 
-        // Calculate the total number of rooms and subtract the overlapped bookings
         $totalRooms = $this->room_numbers_count;
         $availableRooms = max(0, $totalRooms - $overlap);
 

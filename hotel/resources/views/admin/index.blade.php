@@ -7,65 +7,11 @@
         <i class='bx bxs-chevron-right'></i>main admin content
 
     </h1>
-    {{-- DROPDOWN NOTIFICATIONS --}}
-    {{-- <li class="nav-item dropdown dropdown-large" style="list-style: none">
-        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" data-bs-toggle="dropdown">
-            @php
-                $ncount = Auth::user()
-                    ->unreadNotifications()
-                    ->count();
-            @endphp
-            <span class="alert-count" id="notification-count"
-                style="    color: red;
-        position: absolute;
-        left: 35px;
-        top: 50px;">{{ $ncount }}</span>
-            <i class='bx bx-bell'></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-end">
-            <a href="javascript:;">
-                <div class="msg-header">
-                    <p class="msg-header-title">Notifications</p>
-                    <p class="msg-header-badge"> </p>
-                </div>
-            </a>
-            <div class="header-notifications-list">
-
-                @php
-                    $user = Auth::user();
-                @endphp
-
-                @forelse ($user->notifications as $notification)
-                    <a class="dropdown-item" href="javascript:;"
-                        onclick="markNotificationAsRead('{{ $notification->id }}')">
-                        <div>
-                            <div><i class='bx bx-check-square'></i>
-                            </div>
-                            <div>
-                                <h6>{{ $notification->data['message'] }}<span>
-                                        {{ Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}
-                                    </span></h6>
-                                <p>New Booking </p>
-                            </div>
-                        </div>
-                    </a>
-                @empty
-                @endforelse
-
-
-            </div>
-            <a href="javascript:;">
-                <div class="text-center msg-footer">
-
-                    <button class="btn btn-primary w-100">View All Notifications</button>
-                </div>
-            </a>
-        </div>
-    </li> --}}
     @php
         $bookings = App\Models\Booking::latest()->get();
         $pendingBooking = App\Models\Booking::where('status', '0')->get();
-        $completeBooking = App\Models\Booking::where('status', '1')->get();
+        $activeBooking = App\Models\Booking::where('status', '1')->get();
+        $doneBooking = App\Models\Booking::where('status', '2')->get();
         $totalPrice = App\Models\Booking::sum('total_price');
 
         $today = Carbon\Carbon::now()->toDateString();
@@ -76,7 +22,6 @@
         $allData = App\Models\Booking::orderBy('id', 'desc')
             ->limit(10)
             ->get();
-
     @endphp
     <div class="main-info-top">
         <div class="horizontal-cards">
@@ -94,20 +39,20 @@
             </div>
             <div class="card-top">
                 <div class="card-body" name="payment_status">
-                    <strong>Complete Booking:</strong>
-                    <div>{{ count($completeBooking) }}</div>
+                    <strong>Active Booking:</strong>
+                    <div>{{ count($activeBooking) }}</div>
+                </div>
+            </div>
+            <div class="card-top">
+                <div class="card-body" name="payment_status">
+                    <strong>Done Booking:</strong>
+                    <div>{{ count($doneBooking) }}</div>
                 </div>
             </div>
             <div class="card-top">
                 <div class="card-body">
                     <strong>Total Price:</strong>
                     <div>{{ $totalPrice }}</div>
-                </div>
-            </div>
-            <div class="card-top">
-                <div class="card-body">
-                    <strong>Today total Price:</strong>
-                    <div>{{ $todayTotalPrice }}</div>
                 </div>
             </div>
         </div>
@@ -127,6 +72,14 @@
                     <div>{{ $todayTotalPrice }}</div>
                 </div>
             </div>
+            <a href="{{ route('admin.request-message') }}">
+                <div class="card-top">
+                    <div class="card-body">
+                        <strong> Messages:</strong>
+                        <div> {{ $messagesCount }}</div>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 
@@ -170,23 +123,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($allData as $key => $item)
+                        @forelse ($pendingBooking as $key => $item)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td>
-                                    <a href="{{ route('admin.booking-edit', $item->id) }}">
-                                        {{ $item->code }}
-                                    </a>
-                                </td>
-                                <td>{{ $item->created_at->format('d/m/Y') }} </td>
-                                <td>{{ $item['user']['name'] }} </td>
-                                <td>{{ $item['room']['roomType']['name'] }} </td>
-                                <td>{{ $item->check_in }} / {{ $item->check_out }} </td>
-                                <td>
-                                    {{ $item->totalGuests }}
-                                    (Adult: {{ $item->total_adult }} and child: {{ $item->total_child }})
-                                </td>
-
+                                <td><a href="{{ route('admin.booking-edit', $item->id) }}">{{ $item->code }}</a></td>
+                                <td>{{ $item->created_at->format('d/m/Y') }}</td>
+                                <td>{{ $item['user']['name'] }}</td>
+                                <td>{{ $item['room']['roomType']['name'] }}</td>
+                                <td>{{ $item->check_in }} / {{ $item->check_out }}</td>
+                                <td>{{ $item->totalGuests }} (Adult: {{ $item->total_adult }} and child:
+                                    {{ $item->total_child }})</td>
                                 <td>
                                     @if ($item->payment_status == 1)
                                         <div>Complete</div>
@@ -194,78 +140,28 @@
                                         <div>Pending</div>
                                     @endif
                                 </td>
-
                                 <td>
                                     @if ($item->status == 1)
                                         <div>Active</div>
+                                    @elseif ($item->status == 2)
+                                        <div>Done</div>
                                     @else
                                         <div>Pending</div>
                                     @endif
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="9" class="text-center">No new bookings today</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>
 
-
-    {{-- <li class="nav-item dropdown dropdown-large" style="list-style: none">
-        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" data-bs-toggle="dropdown"
-            style="color: #fff">
-            @php
-                $ncount = Auth::user()
-                    ->unreadNotifications()
-                    ->count();
-            @endphp
-            <span class="alert-count" id="notification-count"
-                style="    color: red;
-        position: absolute;
-        left: 35px;
-        top: 50px;">{{ $ncount }}</span>
-            <i class='bx bx-bell'></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-end">
-            <a href="javascript:;">
-                <div class="msg-header">
-                    <p class="msg-header-title">Notifications</p>
-                    <p class="msg-header-badge"> </p>
-                </div>
-            </a>
-            <div class="header-notifications-list">
-
-                @php
-                    $user = Auth::user();
-                @endphp
-
-                @forelse ($user->notifications as $notification)
-                    <a class="dropdown-item" href="javascript:;"
-                        onclick="markNotificationAsRead('{{ $notification->id }}')">
-                        <div>
-                            <div><i class='bx bx-check-square'></i>
-                            </div>
-                            <div>
-                                <h6>{{ $notification->data['message'] }}<span>
-                                        {{ Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}
-                                    </span></h6>
-                                <p>New Booking </p>
-                            </div>
-                        </div>
-                    </a>
-                @empty
-                @endforelse
-
-
-            </div>
-            <a href="javascript:;">
-                <div class="text-center msg-footer">
-
-                    <button class="btn btn-primary w-100">View All Notifications</button>
-                </div>
-            </a>
-        </div>
-    </li> --}}
 
     <script>
         function markNotificationAsRead(notificationId) {
@@ -285,9 +181,8 @@
                     console.log('Error', error);
                 });
         }
-    </script>
 
-    <script>
+
         var ctx = document.getElementById('bookingChart').getContext('2d');
 
         var labels = [];
@@ -348,23 +243,4 @@
 
         });
     </script>
-    {{-- <script>
-        function markNotificationAsRead(notificationId) {
-            fetch('/mark-notification-as-read/' + notificationId, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    body: JSON.stringify({})
-                })
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('notification-count').textContent = data.count;
-                })
-                .catch(error => {
-                    console.log('Error', error);
-                });
-        }
-    </script> --}}
 @endsection

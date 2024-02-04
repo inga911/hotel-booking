@@ -61,13 +61,24 @@
             <button type="submit" class="show-room-btn">BOOK NOW</button>
         </form>
 
+        <dialog class="modal" id="modal">
+            <h2>Image name</h2>
+            <img src="" alt="">
+            <button class="button close-button">X</button>
+            <button class="button prev-button"><i class='bx bx-left-arrow-alt'></i></button>
+            <button class="button next-button"><i class='bx bx-right-arrow-alt'></i></button>
+            <div class="photo-count"></div>
+        </dialog>
+
         <div class="about-room">
             <div>
                 @if (count($room->gallery) > 0)
                     <div class="photo-gallery">
                         @foreach ($room->gallery as $key => $photo)
-                            <img src="{{ asset('/upload/room_photos') . '/' . $photo->room_photo }}"
-                                class="show-room-photo" alt="room-{{ $key + 1 }}">
+                            <button class="btn-img">
+                                <img src="{{ asset('/upload/room_photos') . '/' . $photo->room_photo }}"
+                                    class="show-room-photo image" alt="room-{{ $key + 1 }}">
+                            </button>
                         @endforeach
                     </div>
                 @else
@@ -143,4 +154,74 @@
         let totalNights = Math.ceil(timeDifference / (1000 * 3600 * 24));
         return totalNights;
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.querySelector('.modal');
+        const modalImage = modal.querySelector('img');
+        const modalTitle = modal.querySelector('h2');
+        const photoCountElement = modal.querySelector('.photo-count');
+        const images = document.querySelectorAll('.btn-img img');
+        let currentIndex = 0;
+
+        const updatePhotoCount = () => {
+            photoCountElement.textContent =
+                `Photo ${currentIndex + 1} of ${images.length}`;
+        };
+
+        const openModalButtons = document.querySelectorAll('.btn-img');
+        const closeModalButton = document.querySelector('.close-button');
+        const prevButton = modal.querySelector('.prev-button');
+        const nextButton = modal.querySelector('.next-button');
+
+        openModalButtons.forEach((button, index) => {
+            button.addEventListener('click', function() {
+                const imageSrc = this.querySelector('img').src;
+                const imageAlt = this.querySelector('img').alt;
+
+                modalImage.src = imageSrc;
+                modalTitle.textContent = imageAlt;
+                modal.showModal();
+                modal.classList.remove('closing');
+                currentIndex = index;
+                updatePhotoCount();
+            });
+        });
+
+        const showPrevImage = () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = images.length - 1;
+            }
+            const imageSrc = images[currentIndex].src;
+            const imageAlt = images[currentIndex].alt;
+            modalImage.src = imageSrc;
+            modalTitle.textContent = imageAlt;
+            updatePhotoCount();
+        };
+
+        const showNextImage = () => {
+            if (currentIndex < images.length - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0;
+            }
+            const imageSrc = images[currentIndex].src;
+            const imageAlt = images[currentIndex].alt;
+            modalImage.src = imageSrc;
+            modalTitle.textContent = imageAlt;
+            updatePhotoCount();
+        };
+
+        prevButton.addEventListener('click', showPrevImage);
+        nextButton.addEventListener('click', showNextImage);
+
+        closeModalButton.addEventListener('click', () => {
+            modal.classList.add('closing');
+            setTimeout(() => {
+                modal.close();
+                modal.classList.remove('closing');
+            }, 500);
+        });
+    });
 </script>

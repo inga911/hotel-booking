@@ -39,7 +39,9 @@
                 <div class="card-body">
                     <strong>Booking status:</strong>
                     @if ($bookingEditData->status == '1')
-                        <div>Complete</div>
+                        <div>Active</div>
+                    @elseif ($bookingEditData->status == '2')
+                        <div>Done</div>
                     @else
                         <div>Pending</div>
                     @endif
@@ -58,7 +60,7 @@
                         <thead>
                             <tr>
                                 <th>Room Type</th>
-                                <th>Room ID/Number</th>
+                                <th>Room ID / Number / Name</th>
                                 <th>Check IN</th>
                                 <th>Check Out</th>
                                 <th>Guest (adult)</th>
@@ -71,7 +73,8 @@
                         <tbody>
                             <tr>
                                 <td>{{ $bookingEditData['room']['roomType']['name'] }}</td>
-                                <td>{{ $bookingEditData['room']['id'] }} / {{ $bookingEditData['room']['room_number'] }}
+                                <td>{{ $bookingEditData['room']['id'] }} / {{ $bookingEditData['room']['room_number'] }} /
+                                    {{ $bookingEditData['room']['room_name'] }}
                                 </td>
                                 <td>{{ $bookingEditData->check_in }}</td>
                                 <td>{{ $bookingEditData->check_out }}</td>
@@ -114,15 +117,16 @@
                                         </option>
                                         <option value="1" {{ $bookingEditData->status == 1 ? 'selected' : '' }}
                                             class="input">
-                                            Complete
+                                            Active
+                                        </option>
+                                        <option value="2" {{ $bookingEditData->status == 2 ? 'selected' : '' }}
+                                            class="input">
+                                            Done
                                         </option>
                                     </select>
                                 </div>
-                                {{-- <a href="{{ route('admin.download.invoice', $bookingEditData->id) }}"><i
-                                        class='bx bxs-download'></i>
-                                        Download Invoice</a> --}}
                                 <div>
-                                    <button type="submit">Update</button>
+                                    <button type="submit" onclick="return confirm('Are you sure?')">Update</button>
                                 </div>
                             </div>
                         </div>
@@ -145,7 +149,8 @@
                                             value="{{ $bookingEditData->check_out }}">
                                     </div>
                                     <div class="mt-2">
-                                        <button type="submit" class="btn btn-primary">Update </button>
+                                        <button type="submit" class="btn btn-primary"
+                                            onclick="return confirm('Are you sure?')">Update </button>
                                     </div>
                                 </div>
                             </form>

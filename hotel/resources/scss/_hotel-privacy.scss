@@ -1,0 +1,29 @@
+.privacy-hotel-container {
+
+    h1 {
+        height: 45vh;
+        font-size: 5rem;
+        padding: 15rem 0 10rem 0;
+        text-transform: uppercase;
+        font-weight: 200;
+        text-align: center;
+        letter-spacing: 3.5rem;
+        word-spacing: 2rem;
+        background: $main-darker-blue;
+        color: $main-light-yellow;
+    }
+
+    .privacy-terms {
+        width: 80%;
+        margin: 5rem auto;
+        text-align: justify;
+
+        ol {
+            li {
+                list-style: decimal;
+                line-height: 2.5;
+                font-size: 1.2rem;
+            }
+        }
+    }
+}
