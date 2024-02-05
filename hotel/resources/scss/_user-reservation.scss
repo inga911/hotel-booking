@@ -1,6 +1,7 @@
 .user-reservation-container {
     display: grid;
     grid-template-columns: 40vw 1fr;
+    min-height: 80vh;
 
     @media only screen and (max-width:$bp-large) {
         grid-template-columns: repeat(auto-fit, minmax(max-content, 1fr));

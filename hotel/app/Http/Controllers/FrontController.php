@@ -168,8 +168,17 @@ class FrontController extends Controller
                 break;
         }
 
+        $searchTerm = $request->input('search');
+        if ($searchTerm) {
+            $rooms->where(function ($query) use ($searchTerm) {
+                $query->where('room_name', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('room_short_desc', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('room_description', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('bed_style', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('price', 'LIKE', "%{$searchTerm}%");
+            });
+        }
         $filteredRooms = $rooms->paginate(6);
-
         return view('frontend.rooms.all-rooms', [
             'filteredRooms' => $filteredRooms,
             'roomList' => $roomList,
@@ -177,7 +186,8 @@ class FrontController extends Controller
             'sortRoom' => Room::SORT,
             'sort' => $sort,
             'filterRoom' => Room::FILTER,
-            'filter' => $filter
+            'filter' => $filter,
+            'rooms' => $rooms
         ]);
     }
 

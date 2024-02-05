@@ -2,6 +2,12 @@
     <a href="/">
         <img class="nav__logo" src="{{ asset('frontend/assets/images/logo/logo.jpg') }}" alt="Hotel logo">
     </a>
+    <form action="{{ route('frontend.show.all.room') }}" class="search" method="GET">
+        <input type="text" name="search" class="search__input" placeholder="Search hotels" />
+        <button class="search__button">
+            <i class='bx bx-search search__icon'></i>
+        </button>
+    </form>
     <input class="nav__btn" type="checkbox" id="menu-btn">
     <label class="nav__icon" for="menu-btn"><span class="hamburger"></span></label>
     <div class="nav__menu">
