@@ -7,19 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf=token" content="{{ csrf_token() }}">
     <title>ADMIN</title>
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/sidebar.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/footer.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/profile.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/book-area.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/room-types.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/single-room-type.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/create-room.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/edit-booking.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/main.css') }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
 </head>
 
 <body>

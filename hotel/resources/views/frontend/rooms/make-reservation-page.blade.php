@@ -176,7 +176,6 @@
             </div>
         </form>
     </div>
-
     <script>
         function showPayment() {
             let x = document.getElementById("stripe_pay");

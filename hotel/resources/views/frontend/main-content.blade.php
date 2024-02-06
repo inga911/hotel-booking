@@ -13,7 +13,9 @@
         rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main-front.css') }}">
-    @vite(['resources/scss/main.scss'])
+    @vite(['resources/scss/main.scss', 'resources/js/app.js'])
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
 
 </head>
 

@@ -21,17 +21,4 @@
             @endif
         @endforeach
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const cardsContainer = document.querySelector('.rooms-container__cards');
-            const cards = cardsContainer.querySelectorAll('.card');
-
-            if (cards.length === 1) {
-                document.querySelector('.card').style.cssText =
-                    'width: 50%; margin-left: auto; margin-right: auto;';
-            }
-        });
-    </script>
-
 </section>

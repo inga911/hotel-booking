@@ -2,7 +2,6 @@
 @section('admin')
     @include('admin.body.errors')
     @include('admin.body.messages')
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     @if (!$book)
         <h1 class="admin-main-title">

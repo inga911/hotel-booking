@@ -34,39 +34,3 @@
         </form>
     </div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        let adultsNumberInput = document.getElementById('adultsNumber');
-        let increaseAdultsBtn = document.getElementById('increaseAdults');
-        let decreaseAdultsBtn = document.getElementById('decreaseAdults');
-
-        let childNumberInput = document.getElementById('childNumber');
-        let increaseChildBtn = document.getElementById('increaseChild');
-        let decreaseChildsBtn = document.getElementById('decreaseChild');
-
-        increaseAdultsBtn.addEventListener('click', function() {
-            let currentValue = parseInt(adultsNumberInput.value, 10);
-            adultsNumberInput.value = currentValue + 1;
-        });
-
-        increaseChildBtn.addEventListener('click', function() {
-            let currentValue = parseInt(childNumberInput.value, 10);
-            childNumberInput.value = currentValue + 1;
-        });
-
-        decreaseAdultsBtn.addEventListener('click', function() {
-            let currentValue = parseInt(adultsNumberInput.value, 10);
-            if (currentValue > 1) {
-                adultsNumberInput.value = currentValue - 1;
-            }
-        });
-
-        decreaseChildsBtn.addEventListener('click', function() {
-            let currentValue = parseInt(childNumberInput.value, 10);
-            if (currentValue > 0) {
-                childNumberInput.value = currentValue - 1;
-            }
-        });
-    });
-</script>

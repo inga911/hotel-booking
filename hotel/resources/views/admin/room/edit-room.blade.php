@@ -41,7 +41,7 @@
             <form method="post" action="{{ route('admin.room-update', $room) }}" enctype="multipart/form-data">
                 @csrf
                 <div class="tab-content py-3">
-                    <div class="tab-pane fade show active" id="primaryhome" role="tabpanel">
+                    <div class="tab-panel fade show active" id="primaryhome" role="tabpanel">
                         <div class="display-inline">
                             <!-- Room Name -->
                             <div class="form-group">
@@ -137,7 +137,7 @@
 
                     </div>
 
-                    <div class="tab-pane fade" id="primaryphotos" role="tabpanel">
+                    <div class="tab-panel fade" id="primaryphotos" role="tabpanel">
 
                         <!-- Room Photo Upload -->
                         <div class="form-group book-area-photo">
@@ -180,7 +180,7 @@
         </div>
 
 
-        <div class="tab-pane fade" id="primarynumber" role="tabpanel">
+        <div class="tab-panel fade" id="primarynumber" role="tabpanel">
             <form method="post" action="{{ route('admin.room-update', $room) }}" enctype="multipart/form-data">
 
                 @csrf
