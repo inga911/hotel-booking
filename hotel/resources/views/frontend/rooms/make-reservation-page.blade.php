@@ -132,13 +132,13 @@
                 </div>
             </div>
             <div class="payment-card">
-                <div class="payment-method">
-                    <input type="radio" checked id="cash-on-delivery" name="payment_method" value="cash">
+                {{-- <div class="payment-method">
+                    <input type="radio" checked id="cash-on-delivery" name="payment_method" value="Cash">
                     <label for="cash-on-delivery">Cash On Delivery</label>
-                </div>
+                </div> --}}
                 <div class="payment-method">
                     <input type="radio" onclick="showPayment()" id="stripe" name="payment_method" value="Stripe">
-                    <label for="stripe">Stripe</label>
+                    <label for="stripe">Card</label>
                 </div>
                 <div id="stripe_pay" class="stripe-card" style="display: none;">
                     <div class="card-name">

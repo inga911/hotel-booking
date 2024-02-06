@@ -30,7 +30,7 @@
         </div>
         <div style="width:50%; line-height:2; position:absolute; top:0; right:0;">
             <div
-                style="text-transform:uppercase; color: rgb(120, 120, 120); font-size:12px; letter-spacing:1px; padding:10px 0">
+                style="text-transform:uppercase; color: rgb(120, 120, 120); font-size:12px; letter-spacing:1px; padding:10px 0;">
                 Client
                 Info details</div>
             <div><span style="text-transform: uppercase; letter-spacing:1px;">Name: </span>

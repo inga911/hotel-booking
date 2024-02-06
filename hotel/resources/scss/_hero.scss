@@ -102,6 +102,38 @@
                 padding-bottom: 1rem;
             }
 
+            .counter-btn {
+                font-size: 2.2rem;
+                color: rgb(218, 195, 136);
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                vertical-align: middle;
+                padding: .3rem .5rem;
+                border-radius: 50%;
+                transition: all .1.5s;
+
+                &:hover {
+                    background-color: rgba(231, 231, 231, 0.279);
+
+                }
+
+                .bx-minus,
+                .bx-plus {
+                    vertical-align: middle;
+                }
+            }
+
+            .counter-input {
+                padding: 0.8rem;
+                width: 4rem;
+                text-align: center;
+                border: 1px solid rgba(218, 195, 136, 0.35);
+                background: transparent;
+                color: rgb(218, 195, 136);
+                border-radius: 6px;
+            }
+
             .check-input {
                 line-height: 1;
                 border-radius: 7px;

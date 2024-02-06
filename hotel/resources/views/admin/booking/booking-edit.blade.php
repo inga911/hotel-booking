@@ -53,21 +53,21 @@
     <div class="booking-edit-container">
         {{-- BOOKED ROOM DETAILS --}}
         <div class="card booked-room-details">
-            <h6>Booked room details</h6>
+            <h4 class="booking-edit-title">Booked room details</h4>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <table class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Room Type</th>
-                                <th>Room ID / Number / Name</th>
-                                <th>Check IN</th>
-                                <th>Check Out</th>
-                                <th>Guest (adult)</th>
-                                <th>Guest (child)</th>
-                                <th>Days (total)</th>
-                                <th>Room Price</th>
-                                <th>Price (total)</th>
+                                <th class="table-top">Room Type</th>
+                                <th class="table-top">Room ID / Number / Name</th>
+                                <th class="table-top">Check IN</th>
+                                <th class="table-top">Check Out</th>
+                                <th class="table-top">Guest (adult)</th>
+                                <th class="table-top">Guest (child)</th>
+                                <th class="table-top">Days (total)</th>
+                                <th class="table-top">Room Price</th>
+                                <th class="table-top">Price (total)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -92,7 +92,7 @@
                         @csrf
                         <div>
                             <div class="payment-booking-status">
-                                <h6>Update status</h6>
+                                <h5 class="booking-edit-title">Update status</h5>
                                 <div>
                                     <label class="label">Payment Status</label>
                                     <select name="payment_status">
@@ -133,7 +133,7 @@
                     </form>
                     {{-- MANAGE BOOKING DATES --}}
                     <div class="manage-booking-dates">
-                        <h6>Manage room book dates</h6>
+                        <h5 class="booking-edit-title">Manage room book dates</h5>
                         <div class="card-body">
                             <form action="{{ route('admin.update-check-in-out', $bookingEditData->id) }}" method="post">
                                 @csrf
@@ -163,7 +163,7 @@
 
         {{-- CUSTOMER INFORMATION --}}
         <div class="card customer-information">
-            <h6>Customer information</h6>
+            <h4 class="booking-edit-title">Customer information</h4>
             <div class="card-body">
                 <ul class="customer-list">
                     <li><b>Name:</b>

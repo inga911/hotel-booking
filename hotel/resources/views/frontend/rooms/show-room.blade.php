@@ -21,23 +21,13 @@
             </div>
             <div class="check-in">
                 <label>Guest (Adult)</label>
-                <select name="person_adult" class="">
-                    @for ($i = 1; $i <= 6; $i++)
-                        <option value="{{ $i }}"
-                            {{ request()->input('person_adult', 1) == $i ? 'selected' : '' }}>
-                            {{ $i }}</option>
-                    @endfor
-                </select>
+                <span class="guest-input">{{ request()->input('person_adult', 1) }}</span>
+                <input type="hidden" name="person_adult" value="{{ request()->input('person_adult', 1) }}">
             </div>
             <div class="check-in">
                 <label>Guest (Child)</label>
-                <select name="person_child" class="">
-                    @for ($i = 0; $i <= 6; $i++)
-                        <option value="{{ $i }}"
-                            {{ request()->input('person_child', 0) == $i ? 'selected' : '' }}>
-                            {{ $i }}</option>
-                    @endfor
-                </select>
+                <span class="guest-input">{{ request()->input('person_child', 0) }}</span>
+                <input type="hidden" name="person_child" value="{{ request()->input('person_child', 0) }}">
             </div>
             <table>
                 <tr>

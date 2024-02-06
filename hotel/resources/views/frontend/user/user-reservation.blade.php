@@ -41,6 +41,12 @@
                         </td>
                     </tr>
                     <tr>
+                        <th>Total price</th>
+                        <td>
+                            {{ $item->total_price }} <i class='bx bx-euro'></i>
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Status</th>
                         <td>
                             @if ($item->status == '1' || $item->status == '2')
@@ -49,7 +55,7 @@
                                     Complete
                                 </a>
                             @else
-                                <i class='bx bx-loader-circle bx-spin'></i> Pending
+                                <i class='bx bx-loader-circle bx-spin'></i> Awaiting confirmation
                             @endif
                         </td>
                     </tr>

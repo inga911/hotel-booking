@@ -1,11 +1,27 @@
 @extends('admin.admin-dashboard')
 @section('admin')
+    @php
+        $currentPage = request('page', 1);
+        $perPage = $allBookingData->perPage();
+        $startingIndex = ($currentPage - 1) * $perPage;
+    @endphp
     <h1 class="admin-main-title">
         <i class='bx bxs-chevron-right'></i>
         All Booking List
     </h1>
     <div class="page-content">
         <div class="card">
+            <div class="search-col">
+                <form action="{{ route('admin.booking-list') }}" class="search" method="GET">
+                    <input type="text" name="search" class="search__input"
+                        placeholder="Search bookings by booking NO., client name, status" />
+                    <button class="search__button">
+                        <i class='bx bx-search search__icon'></i>
+                    </button>
+                </form>
+                <a href="{{ route('admin.booking-list') }}" class="search-clear-btn">Clear</a>
+            </div>
+
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered" style="width:100%">
@@ -25,7 +41,7 @@
                         <tbody>
                             @foreach ($allBookingData as $key => $item)
                                 <tr>
-                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $startingIndex + $key + 1 }}</td>
                                     <td>
                                         <a href="{{ route('admin.booking-edit', $item->id) }}">
                                             {{ $item->code }}
@@ -61,6 +77,7 @@
                     </table>
                 </div>
             </div>
+            <div class="pagination-div">{{ $allBookingData->appends(request()->input())->links() }}</div>
         </div>
     </div>
 @endsection

@@ -30,23 +30,23 @@
                 <li>
                     <a href="{{ route('admin.booking-list') }}">
                         <i class='bx bx-book-content'></i>
-                        <span class="nav-item">BookingList</span>
+                        <span class="nav-item">AllBookingList</span>
                     </a>
-                    <span class="tooltip">BookingList</span>
+                    <span class="tooltip">All Booking List</span>
                 </li>
                 <li>
                     <a href="{{ route('admin.booked-room-list') }}">
                         <i class='bx bx-list-ul'></i>
                         <span class="nav-item">RoomListStatus</span>
                     </a>
-                    <span class="tooltip">RoomListStatus</span>
+                    <span class="tooltip">Room List Status</span>
                 </li>
                 <li>
                     <a href="{{ route('admin.room-type-list') }}">
                         <i class='bx bx-sitemap'></i>
                         <span class="nav-item">RoomType</span>
                     </a>
-                    <span class="tooltip">RoomType</span>
+                    <span class="tooltip">Room Type</span>
                 </li>
 
                 <li>
@@ -55,7 +55,7 @@
                         <i class='bx bx-hotel'></i>
                         <span class="nav-item">CreateRoom</span>
                     </a>
-                    <span class="tooltip">CreateRoom</span>
+                    <span class="tooltip">Create Room</span>
                 </li>
 
 
@@ -64,7 +64,7 @@
                         <i class='bx bx-message'></i>
                         <span class="nav-item">RequestMessage</span>
                     </a>
-                    <span class="tooltip">RequestMessage</span>
+                    <span class="tooltip">Request Message</span>
                 </li>
 
                 {{-- <li>
@@ -77,9 +77,9 @@
                 <li>
                     <a href="{{ route('admin.book-area') }}">
                         <i class='bx bxs-chalkboard'></i>
-                        <span class="nav-item">BookArea</span>
+                        <span class="nav-item">QuickBookArea</span>
                     </a>
-                    <span class="tooltip">BookArea</span>
+                    <span class="tooltip">Quick Booking Area</span>
                 </li>
                 <li>
                     <a href="{{ route('admin.logout') }}">

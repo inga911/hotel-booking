@@ -8,36 +8,35 @@
                 @csrf
                 <div class="check-in">
                     <label>Check-in date</label>
-                    <input autocomplete="off" type="date" name="check_in" class="" id="check_in"
+                    <input autocomplete="off" type="date" name="check_in" id="check_in"
                         value="{{ request()->input('check_in', date('Y-m-d')) }}" min="{{ date('Y-m-d') }}" required>
                 </div>
                 <div class="check-in">
                     <label>Check-out date</label>
-                    <input autocomplete="off" type="date" name="check_out" class="" id="check_out"
+                    <input autocomplete="off" type="date" name="check_out" id="check_out"
                         value="{{ request('check_out', date('Y-m-d', strtotime('+1 day'))) }}" min="{{ date('Y-m-d') }}"
                         required>
                 </div>
-                <div class="check-in">
-                    <label>Guest (Adult)</label>
-                    <select name="person_adult" class="">
-                        @for ($i = 1; $i <= 6; $i++)
-                            <option value="{{ $i }}"
-                                {{ request()->input('person_adult', 1) == $i ? 'selected' : '' }}>
-                                {{ $i }}</option>
-                        @endfor
-                    </select>
+                <div id="adultsCounter" class="check-in">
+                    <label>Adult</label>
+                    <div class="counter">
+                        <button type="button" id="decreaseAdults" class="counter-btn"><i class='bx bx-minus'></i></button>
+                        <input type="text" id="adultsNumber" name="person_adult" value="1" class="counter-input"
+                            readonly>
+                        <button type="button" id="increaseAdults" class="counter-btn"><i class='bx bx-plus'></i></button>
+                    </div>
                 </div>
-                <div class="check-in">
-                    <label>Guest (Child)</label>
-                    <select name="person_child" class="">
-                        @for ($i = 0; $i <= 6; $i++)
-                            <option value="{{ $i }}"
-                                {{ request()->input('person_child', 0) == $i ? 'selected' : '' }}>
-                                {{ $i }}</option>
-                        @endfor
-                    </select>
+
+                <div id="childCounter" class="check-in">
+                    <label>Child</label>
+                    <div class="counter">
+                        <button type="button" id="decreaseChild" class="counter-btn"><i class='bx bx-minus'></i></button>
+                        <input type="text" id="childNumber" name="person_child" value="0" class="counter-input"
+                            readonly>
+                        <button type="button" id="increaseChild" class="counter-btn"><i class='bx bx-plus'></i></button>
+                    </div>
                 </div>
-                <button type="submit" class="show-room-btn search-btn">BOOK NOW</button>
+                <button type="submit" class="show-room-btn search-btn">SEARCH</button>
             </form>
         </div>
 
@@ -66,14 +65,14 @@
                         <div class="found-room-details">
                             <div class="found-room-details__name">{{ $room->room_name }}</div>
                             <div class="found-room-details__info">
-                                <div class=""><i class='bx bx-euro'></i> {{ $room->price }}
+                                <div><i class='bx bx-euro'></i> {{ $room->price }}
                                 </div>
-                                <div class=""><i class='bx bx-bed'></i> {{ $room->bed_style }}
+                                <div><i class='bx bx-bed'></i> {{ $room->bed_style }}
                                 </div>
-                                <div class=""><i class='bx bx-male-female'></i>
+                                <div><i class='bx bx-male-female'></i>
                                     {{ $room->total_adult }}
                                 </div>
-                                <div class=""><i class='bx bx-child'></i>
+                                <div><i class='bx bx-child'></i>
                                     {{ $room->total_child }}
                                 </div>
                             </div>
@@ -86,4 +85,40 @@
             @endforelse
         </div>
     </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let adultsNumberInput = document.getElementById('adultsNumber');
+            let increaseAdultsBtn = document.getElementById('increaseAdults');
+            let decreaseAdultsBtn = document.getElementById('decreaseAdults');
+
+            let childNumberInput = document.getElementById('childNumber');
+            let increaseChildBtn = document.getElementById('increaseChild');
+            let decreaseChildsBtn = document.getElementById('decreaseChild');
+
+            increaseAdultsBtn.addEventListener('click', function() {
+                let currentValue = parseInt(adultsNumberInput.value, 10);
+                adultsNumberInput.value = currentValue + 1;
+            });
+
+            increaseChildBtn.addEventListener('click', function() {
+                let currentValue = parseInt(childNumberInput.value, 10);
+                childNumberInput.value = currentValue + 1;
+            });
+
+            decreaseAdultsBtn.addEventListener('click', function() {
+                let currentValue = parseInt(adultsNumberInput.value, 10);
+                if (currentValue > 1) {
+                    adultsNumberInput.value = currentValue - 1;
+                }
+            });
+
+            decreaseChildsBtn.addEventListener('click', function() {
+                let currentValue = parseInt(childNumberInput.value, 10);
+                if (currentValue > 0) {
+                    childNumberInput.value = currentValue - 1;
+                }
+            });
+        });
+    </script>
+
 @endsection

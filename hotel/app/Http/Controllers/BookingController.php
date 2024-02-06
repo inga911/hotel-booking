@@ -174,15 +174,35 @@ class BookingController extends Controller
     }
 
     //Booking List (admin)
-    public function bookingList()
+    public function bookingList(Request $request)
     {
         $id = Auth::user()->id;
         $admin = User::find($id);
 
-        $allBookingData = Booking::orderBy('id', 'desc')->get();
+        $query = Booking::query();
+
+        $searchTerm = $request->input('search');
+        if ($searchTerm) {
+            $query->where(function ($query) use ($searchTerm) {
+                $query->where('code', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('name', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('status', 'LIKE', "%{$searchTerm}%");
+                if ($searchTerm == 'pending') {
+                    $query->orWhere('status', 0);
+                } elseif ($searchTerm == 'active') {
+                    $query->orWhere('status', 1);
+                } elseif ($searchTerm == 'done') {
+                    $query->orWhere('status', 2);
+                }
+            });
+        }
+
+        $allBookingData = $query->orderBy('id', 'desc')->paginate(10);
+
         foreach ($allBookingData as $booking) {
             $booking->totalGuests = $booking->total_adult + $booking->total_child;
         }
+
         return view('admin.booking.booking-list', compact('allBookingData', 'admin'));
     }
 

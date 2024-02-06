@@ -178,6 +178,9 @@ class FrontController extends Controller
                     ->orWhere('price', 'LIKE', "%{$searchTerm}%");
             });
         }
+        if ($rooms->count() == 0) {
+            return abort(404);
+        }
         $filteredRooms = $rooms->paginate(6);
         return view('frontend.rooms.all-rooms', [
             'filteredRooms' => $filteredRooms,

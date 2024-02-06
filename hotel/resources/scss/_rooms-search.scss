@@ -13,6 +13,43 @@
             display: block;
         }
 
+        .counter {
+            text-align: center;
+        }
+
+        .counter-btn {
+            font-size: 2.2rem;
+            color: $main-dark-blue;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            vertical-align: middle;
+            padding: .3rem .5rem;
+            border-radius: 50%;
+            transition: all .1.5s;
+
+            &:hover {
+                background-color: rgba(231, 231, 231, 0.279);
+                color: $main-light-yellow;
+
+            }
+
+            .bx-minus,
+            .bx-plus {
+                vertical-align: middle;
+            }
+        }
+
+        .counter-input {
+            padding: 0.8rem;
+            width: 4rem;
+            text-align: center;
+            border: 1px solid $main-dark-blue;
+            background: transparent;
+            color: $main-dark-blue;
+            border-radius: 6px;
+        }
+
         .search-btn {
             height: 3.2rem;
             align-self: center;
