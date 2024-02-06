@@ -173,3 +173,11 @@
     bottom: 12px;
     left: 14px;
 }
+
+.sidebar {
+    z-index: 100;
+}
+
+.sidebar ul li .tooltip {
+    z-index: 101;
+}

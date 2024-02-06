@@ -1,3 +1,11 @@
+.horizontal-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3em;
+    margin: 4% auto;
+}
+
 .card-top {
     background: #fff;
     padding: 1em;
@@ -15,18 +23,10 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.card-title {
+/* .card-title {
     font-size: 24px;
     margin-bottom: 10px;
-}
-
-.horizontal-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 3em;
-    margin: 4% auto;
-}
+} */
 
 .booking-edit-container {
     display: flex;
@@ -42,7 +42,7 @@
 }
 
 .manage-booking-dates {
-    width: 13em;
+    width: 17rem;
     padding: 1em;
 }
 
@@ -78,6 +78,7 @@
     letter-spacing: 1px;
     font-size: smaller;
     width: 30%;
+    height: fit-content;
 }
 
 .customer-list {
@@ -88,4 +89,25 @@
     display: inline-flex;
     width: 70%;
     justify-content: space-between;
+}
+
+.booking-edit-title {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    border-bottom: 1px solid darkgray;
+    margin-bottom: 2rem;
+    color: darkgrey;
+}
+
+.card-body > strong {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.table-top {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
 }
