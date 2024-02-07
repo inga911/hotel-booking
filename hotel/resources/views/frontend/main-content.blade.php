@@ -20,12 +20,15 @@
 </head>
 
 <body>
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+    </div>
+
     <header class="header">
         @include('frontend.body.header')
     </header>
 
     @yield('content')
-
     @include('frontend.body.footer')
 </body>
 

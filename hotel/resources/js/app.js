@@ -2,6 +2,25 @@ import './bootstrap';
 import Alpine from 'alpinejs';
 window.Alpine = Alpine;
 Alpine.start();
+
+// LOADER START
+window.addEventListener('load', () => {
+    const loader = document.getElementById('loader-wrapper');
+    if (loader) {
+        loader.style.display = 'none';
+    }
+});
+function showLoader() {
+    document.getElementById('loader-wrapper').style.display = 'flex';
+}
+
+function hideLoader() {
+    document.getElementById('loader-wrapper').style.display = 'none';
+}
+
+showLoader();
+// LOADER END
+
 // HOTEL GALLERY START
 document.addEventListener('DOMContentLoaded', () => {
     const modal = document.querySelector('.modal');
