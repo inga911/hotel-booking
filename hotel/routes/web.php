@@ -7,11 +7,9 @@ use App\Http\Controllers\BookAreaController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
-use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RoomListController;
 use App\Http\Controllers\SettingController;
-use App\Models\Testimonials;
 
 Route::get('/', [FrontController::class, 'index']);
 Route::get('/show-all-room', [FrontController::class, 'showAllRoom'])->name('frontend.show.all.room');
@@ -46,11 +44,6 @@ Route::middleware('auth')->group(function () {
     //User booking
     Route::get('/booking-details', [BookingController::class, 'userBooking'])->name('user.reservations-details');
     Route::get('/user-invoice/{id}', [BookingController::class, 'userInvoice'])->name('user.invoice');
-
-
-    // //Testimonials 
-    // Route::get('/testimonials-create', [TestimonialsController::class, 'createTestimonials'])->name('testimonials.create');
-    // Route::post('/testimonials-store', [TestimonialsController::class, 'storeTestimonials'])->name('testimonials.store');
 });
 //Reservation
 Route::middleware(['auth'])->group(function () {

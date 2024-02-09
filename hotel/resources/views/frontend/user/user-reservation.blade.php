@@ -24,7 +24,7 @@
                     </tr>
                     <tr>
                         <th>Room</th>
-                        <td>{{ $item['room']['roomType']['name'] }}</td>
+                        <td>{{ $item['room']['room_name'] }}</td>
                     </tr>
                     <tr>
                         <th>Check IN/OUT</th>

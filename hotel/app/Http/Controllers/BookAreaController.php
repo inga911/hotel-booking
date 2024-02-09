@@ -90,9 +90,4 @@ class BookAreaController extends Controller
 
         return redirect()->back();
     }
-
-    public function bookRoom()
-    {
-        //
-    }
 }

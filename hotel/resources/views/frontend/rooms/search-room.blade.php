@@ -48,8 +48,9 @@
                     })
                     ->count();
             @endphp
-
-            We can offer you {{ $availableRoomsCount }} rooms according to your request
+            @if ($availableRoomsCount >= 1)
+                We can offer you {{ $availableRoomsCount }} rooms according to your request
+            @endif
         </div>
         <div class="found-room-cards">
             @forelse ($rooms as $room)
@@ -81,7 +82,8 @@
                     </a>
                 @endif
             @empty
-                <div>No rooms available for the selected dates and number of PERSONS.</div>
+                <div class="search-result-info">Sorry, no rooms available for the selected dates and/or number of persons.
+                </div>
             @endforelse
         </div>
     </section>
