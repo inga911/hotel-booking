@@ -1,15 +1,13 @@
-import './bootstrap';
-import Alpine from 'alpinejs';
-window.Alpine = Alpine;
-Alpine.start();
+import 'bootstrap';
+import axios from 'axios';
+window.axios = axios;
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 // LOADER START
-window.addEventListener('load', () => {
-    const loader = document.getElementById('loader-wrapper');
-    if (loader) {
-        loader.style.display = 'none';
-    }
+window.addEventListener('load', function () {
+    hideLoader();
 });
+
 function showLoader() {
     document.getElementById('loader-wrapper').style.display = 'flex';
 }
@@ -17,8 +15,6 @@ function showLoader() {
 function hideLoader() {
     document.getElementById('loader-wrapper').style.display = 'none';
 }
-
-showLoader();
 // LOADER END
 
 // HOTEL GALLERY START

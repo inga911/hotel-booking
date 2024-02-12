@@ -12,11 +12,9 @@
         href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,200&display=swap"
         rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/main-front.css') }}">
-    @vite(['resources/scss/main.scss', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('frontend\assets\css\style.css') }}">
+    @vite(['resources/js/app.js'])
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
-
 </head>
 
 <body>
